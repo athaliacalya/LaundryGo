@@ -1,12 +1,11 @@
 'use client';
-// app/login/page.js - halaman login Emeraldé
-
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 
 export default function LoginPage() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
   const [loading, setLoading] = useState(false);
   const router = useRouter();
@@ -15,7 +14,6 @@ export default function LoginPage() {
     e.preventDefault();
     setErrorMsg('');
     setLoading(true);
-
     const res = await fetch('/api/login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -23,105 +21,176 @@ export default function LoginPage() {
     });
     const data = await res.json();
     setLoading(false);
-
-    if (!res.ok) {
-      setErrorMsg(data.error || 'Login gagal');
-      return;
-    }
-
+    if (!res.ok) { setErrorMsg(data.error || 'Username atau password salah.'); return; }
     router.push(data.role === 'admin' ? '/admin/pelanggan' : '/kasir/transaksi');
     router.refresh();
   }
 
   return (
-    <main className="min-h-screen flex bg-[#F3FAF6]">
-      {/* Panel kiri - branding, hanya tampil di layar besar */}
-      <div className="hidden lg:flex lg:w-1/2 relative overflow-hidden bg-gradient-to-br from-[#046B4F] to-[#023D2E] text-white flex-col justify-between p-14">
-        <div className="pointer-events-none absolute -top-16 -left-10 w-72 h-72 rounded-full bg-white/10" />
-        <div className="pointer-events-none absolute top-1/3 right-0 w-40 h-40 rounded-full bg-white/10" />
-        <div className="pointer-events-none absolute bottom-10 left-1/4 w-24 h-24 rounded-full bg-white/10" />
-
-        <div className="relative z-10">
-          <p className="text-sm tracking-wide text-white/70 mb-2">Sistem Informasi</p>
-          <h1
-            className="text-6xl"
-            style={{ fontFamily: 'Fraunces, serif', fontWeight: 600 }}
+    <main
+      style={{
+        minHeight: '100vh',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: '#F7F7F5',
+        padding: '24px',
+        fontFamily: "'Plus Jakarta Sans', sans-serif",
+      }}
+    >
+      <div style={{ width: '100%', maxWidth: '360px' }}>
+        {/* Logo */}
+        <div style={{ marginBottom: '32px' }}>
+          <span
+            style={{
+              fontFamily: 'Fraunces, serif',
+              fontWeight: 600,
+              fontSize: '22px',
+              color: '#0F766E',
+              letterSpacing: '-0.3px',
+            }}
           >
-            Emeraldé
-          </h1>
-        </div>
-
-        <div className="relative z-10">
-          <p className="text-lg leading-relaxed max-w-sm text-white/90">
-            Catat cucian masuk, pantau status pengerjaan, dan kelola pelanggan
-            dari satu tempat.
+            LaundryGo
+          </span>
+          <p style={{ marginTop: '6px', fontSize: '14px', color: '#6B6B67' }}>
+            Sistem Informasi Laundry. Masuk untuk melanjutkan.
           </p>
         </div>
-      </div>
 
-      {/* Panel kanan - form login */}
-      <div className="flex flex-1 items-center justify-center p-6 sm:p-12">
-        <div className="w-full max-w-sm">
-          <p
-            className="lg:hidden text-2xl mb-8 text-[#046B4F]"
-            style={{ fontFamily: 'Fraunces, serif', fontWeight: 600 }}
+        {/* Error */}
+        {errorMsg && (
+          <div
+            style={{
+              marginBottom: '16px',
+              padding: '10px 14px',
+              fontSize: '13px',
+              color: '#991B1B',
+              backgroundColor: '#FEF2F2',
+              border: '1px solid #FECACA',
+              borderRadius: '6px',
+            }}
           >
-            Emeraldé
-          </p>
+            {errorMsg}
+          </div>
+        )}
 
-          <h2
-            className="text-2xl text-[#16323A] mb-1"
-            style={{ fontFamily: 'Fraunces, serif', fontWeight: 600 }}
-          >
-            Masuk ke akun kamu
-          </h2>
-          <p className="text-sm text-[#5B7377] mb-8">
-            Gunakan akun admin atau kasir untuk melanjutkan.
-          </p>
+        {/* Form */}
+        <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
+          <div>
+            <label
+              htmlFor="username"
+              style={{ display: 'block', fontSize: '13px', fontWeight: 500, color: '#1C1C1A', marginBottom: '6px' }}
+            >
+              Username
+            </label>
+            <input
+              id="username"
+              type="text"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              autoComplete="username"
+              required
+              placeholder="Masukkan username"
+              style={{
+                width: '100%',
+                padding: '9px 12px',
+                fontSize: '14px',
+                color: '#1C1C1A',
+                backgroundColor: '#FFFFFF',
+                border: '1px solid #E4E4E0',
+                borderRadius: '6px',
+                outline: 'none',
+              }}
+              onFocus={(e) => (e.target.style.borderColor = '#0F766E')}
+              onBlur={(e) => (e.target.style.borderColor = '#E4E4E0')}
+            />
+          </div>
 
-          {errorMsg && (
-            <div className="mb-5 text-sm text-[#9A3324] bg-[#FBEAE8] border border-[#F0C7C1] rounded-lg px-4 py-2.5">
-              {errorMsg}
-            </div>
-          )}
-
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <div>
-              <label className="block text-sm font-medium text-[#16323A] mb-1.5">
-                Username
-              </label>
+          <div>
+            <label
+              htmlFor="password"
+              style={{ display: 'block', fontSize: '13px', fontWeight: 500, color: '#1C1C1A', marginBottom: '6px' }}
+            >
+              Password
+            </label>
+            <div style={{ position: 'relative' }}>
               <input
-                className="w-full border border-[#CBE0D5] rounded-lg px-4 py-2.5 text-[#16323A] focus:outline-none focus:ring-2 focus:ring-[#046B4F] focus:border-transparent transition-shadow"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                autoComplete="username"
-                required
-              />
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium text-[#16323A] mb-1.5">
-                Password
-              </label>
-              <input
-                type="password"
-                className="w-full border border-[#CBE0D5] rounded-lg px-4 py-2.5 text-[#16323A] focus:outline-none focus:ring-2 focus:ring-[#046B4F] focus:border-transparent transition-shadow"
+                id="password"
+                type={showPassword ? 'text' : 'password'}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 autoComplete="current-password"
                 required
+                placeholder="Masukkan password"
+                style={{
+                  width: '100%',
+                  padding: '9px 38px 9px 12px',
+                  fontSize: '14px',
+                  color: '#1C1C1A',
+                  backgroundColor: '#FFFFFF',
+                  border: '1px solid #E4E4E0',
+                  borderRadius: '6px',
+                  outline: 'none',
+                }}
+                onFocus={(e) => (e.target.style.borderColor = '#0F766E')}
+                onBlur={(e) => (e.target.style.borderColor = '#E4E4E0')}
               />
+              <button
+                type="button"
+                onClick={() => setShowPassword((v) => !v)}
+                tabIndex={-1}
+                aria-label={showPassword ? 'Sembunyikan password' : 'Tampilkan password'}
+                style={{
+                  position: 'absolute',
+                  right: '10px',
+                  top: '50%',
+                  transform: 'translateY(-50%)',
+                  background: 'none',
+                  border: 'none',
+                  cursor: 'pointer',
+                  color: '#9CA3AF',
+                  padding: '2px',
+                  display: 'flex',
+                  alignItems: 'center',
+                }}
+              >
+                {showPassword ? (
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M17.94 17.94A10.07 10.07 0 0112 20c-7 0-11-8-11-8a18.45 18.45 0 015.06-5.94" />
+                    <path d="M9.9 4.24A9.12 9.12 0 0112 4c7 0 11 8 11 8a18.5 18.5 0 01-2.16 3.19" />
+                    <line x1="1" y1="1" x2="23" y2="23" />
+                  </svg>
+                ) : (
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                    <circle cx="12" cy="12" r="3" />
+                  </svg>
+                )}
+              </button>
             </div>
+          </div>
 
-            <button
-              type="submit"
-              disabled={loading}
-              className="w-full bg-[#046B4F] hover:bg-[#035940] disabled:opacity-60 text-white font-medium py-2.5 rounded-lg transition-colors mt-2"
-            >
-              {loading ? 'Memproses...' : 'Masuk'}
-            </button>
-          </form>
-        </div>
+          <button
+            type="submit"
+            disabled={loading}
+            style={{
+              marginTop: '4px',
+              width: '100%',
+              padding: '10px',
+              fontSize: '14px',
+              fontWeight: 600,
+              color: '#FFFFFF',
+              backgroundColor: loading ? '#5EADA8' : '#0F766E',
+              border: 'none',
+              borderRadius: '6px',
+              cursor: loading ? 'not-allowed' : 'pointer',
+              transition: 'background-color 0.15s',
+              fontFamily: "'Plus Jakarta Sans', sans-serif",
+            }}
+          >
+            {loading ? 'Memproses...' : 'Masuk'}
+          </button>
+        </form>
       </div>
     </main>
   );
