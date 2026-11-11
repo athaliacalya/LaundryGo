@@ -1,5 +1,6 @@
 import { getSession } from '@/lib/session';
 import LogoutButton from '@/components/LogoutButton';
+import Logo from '@/components/Logo';
 import Link from 'next/link';
 
 // Komponen sidebar item — aktif ditandai dengan blok hijau muda
@@ -99,17 +100,7 @@ export default async function AdminLayout({ children }) {
       >
         {/* Logo */}
         <div style={{ padding: '4px 12px 20px', borderBottom: '1px solid #E4E4E0', marginBottom: '12px' }}>
-          <span
-            style={{
-              fontFamily: 'Fraunces, serif',
-              fontWeight: 600,
-              fontSize: '18px',
-              color: '#0F766E',
-              letterSpacing: '-0.2px',
-            }}
-          >
-            LaundryGo
-          </span>
+          <Logo textColor="#12161C" />
         </div>
 
         {/* Nav */}
