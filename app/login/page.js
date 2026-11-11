@@ -39,7 +39,7 @@ export default function LoginPage() {
       return;
     }
 
-    router.push(data.role === 'admin' ? '/admin/pelanggan' : '/kasir/transaksi');
+    router.push(data.role === 'admin' ? '/admin' : '/kasir/transaksi');
     router.refresh();
   }
 

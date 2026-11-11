@@ -47,3 +47,4 @@ export default function Logo({ textColor = '#FFFFFF', className = '' }) {
     </div>
   );
 }
+

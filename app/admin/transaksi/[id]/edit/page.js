@@ -1,8 +1,6 @@
-export default function EditTransaksiAdminPage() {
-  return (
-    <div style={{ padding: '28px 32px', fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
-      <h1 style={{ fontSize: '18px', fontWeight: 600, color: '#1C1C1A', margin: '0 0 8px' }}>Edit Transaksi</h1>
-      <p style={{ fontSize: '14px', color: '#9CA3AF' }}>Halaman ini belum diimplementasikan.</p>
-    </div>
-  );
+import { redirect } from 'next/navigation';
+
+export default async function EditTransaksiPage({ params }) {
+  const { id } = await params;
+  redirect(`/admin/transaksi/${id}`);
 }
