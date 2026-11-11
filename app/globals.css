@@ -10,22 +10,3 @@ html, body {
 * {
   box-sizing: border-box;
 }
-
-@keyframes floatCard {
-  0%, 100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-6px);
-  }
-}
-
-.floating-card {
-  animation: floatCard 6s ease-in-out infinite;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .floating-card {
-    animation: none !important;
-  }
-}

@@ -4,10 +4,11 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { Poppins } from 'next/font/google';
+import Logo from '@/components/Logo';
 
 const poppins = Poppins({
   subsets: ['latin'],
-  weight: ['400', '500', '600', '700', '800'],
+  weight: ['500', '600', '700'],
   display: 'swap',
 });
 
@@ -23,17 +24,21 @@ export default function LoginPage() {
     e.preventDefault();
     setErrorMsg('');
     setLoading(true);
+
     const res = await fetch('/api/login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ username, password }),
     });
+
     const data = await res.json();
     setLoading(false);
+
     if (!res.ok) {
       setErrorMsg(data.error || 'Username atau password salah.');
       return;
     }
+
     router.push(data.role === 'admin' ? '/admin/pelanggan' : '/kasir/transaksi');
     router.refresh();
   }
@@ -41,129 +46,143 @@ export default function LoginPage() {
   return (
     <main
       className={`${poppins.className} relative min-h-screen w-full flex flex-col justify-between overflow-x-hidden`}
-      style={{ backgroundColor: '#0B0F14' }}
+      style={{ backgroundColor: '#080B0F' }}
     >
-      {/* Background Image */}
-      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none select-none">
+      {/* Background Foto dengan Lapisan Solid */}
+      <div className="absolute inset-0 z-0 pointer-events-none select-none">
         <Image
           src="/images/login-bg.jpg"
-          alt="Mesin cuci LaundryGo"
+          alt="Latar belakang mesin cuci"
           fill
           priority
           sizes="100vw"
           className="object-cover object-center"
         />
-
-        {/* Dark Gradient Overlay */}
+        {/* Lapisan solid rgba(8,11,15,0.72) tanpa vignette dan tanpa gradasi */}
         <div
           className="absolute inset-0"
-          style={{
-            background:
-              'linear-gradient(90deg, rgba(5,8,12,0.88) 0%, rgba(5,8,12,0.55) 55%, rgba(5,8,12,0.35) 100%)',
-          }}
-        />
-
-        {/* Vignette Overlay (Top & Bottom) */}
-        <div
-          className="absolute inset-0"
-          style={{
-            background:
-              'linear-gradient(180deg, rgba(5,8,12,0.78) 0%, transparent 18%, transparent 82%, rgba(5,8,12,0.82) 100%)',
-          }}
+          style={{ backgroundColor: 'rgba(8, 11, 15, 0.72)' }}
         />
       </div>
 
-      {/* Main Container */}
-      <div className="relative z-10 w-full flex-1 flex items-center justify-center px-4 sm:px-8 lg:px-16 py-10 lg:py-12">
-        <div className="w-full max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+      {/* Konten Utama */}
+      <div className="relative z-10 w-full flex-1 flex items-center justify-center px-4 sm:px-8 lg:px-16 py-8">
+        <div className="w-full max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           
-          {/* Kolom Kiri: Desktop Hero Section (>= 1024px) */}
-          <div className="hidden lg:flex flex-col justify-center max-w-xl text-left select-none">
-            {/* Logo Desktop */}
-            <div className="mb-8">
-              <span className="text-3xl font-extrabold italic tracking-tight text-[#F4F6F8]">
-                LaundryGo
-              </span>
+          {/* Panel Kiri (Desktop >= 1024px) */}
+          <div className="hidden lg:flex flex-col justify-center text-left">
+            <div style={{ marginBottom: '32px' }}>
+              <Logo />
             </div>
 
-            {/* Headline */}
-            <h1 className="text-5xl xl:text-6xl font-extrabold uppercase leading-[1.08] tracking-tight mb-6">
-              <span className="block text-[#F4F6F8]">CUCI LAUNDRY</span>
-              <span className="block text-[#F2D94E]">LEBIH CEPAT</span>
-              <span className="block text-[#F4F6F8]">&amp; TERATUR</span>
-            </h1>
-
-            {/* Deskripsi */}
-            <p className="text-[#C9CED6] text-lg lg:text-xl font-normal leading-relaxed max-w-md">
-              Kelola pelanggan, layanan, dan transaksi laundry dalam satu sistem.
-            </p>
-          </div>
-
-          {/* Kolom Kanan: Kartu Login Melayang */}
-          <div className="flex flex-col items-center lg:items-end w-full">
-            {/* Logo Mobile (< 1024px) */}
-            <div className="lg:hidden text-center mb-6 select-none">
-              <span className="text-3xl font-extrabold italic tracking-tight text-[#F4F6F8]">
-                LaundryGo
-              </span>
-            </div>
-
-            {/* Kartu Glassmorphism */}
-            <div
-              className="floating-card w-full max-w-[420px] lg:max-w-[440px] rounded-3xl p-7 sm:p-10 transition-shadow duration-300"
+            <h1
               style={{
-                backgroundColor: 'rgba(11, 15, 20, 0.72)',
-                backdropFilter: 'blur(18px)',
-                WebkitBackdropFilter: 'blur(18px)',
-                border: '1px solid rgba(255, 255, 255, 0.12)',
-                boxShadow: '0 30px 80px rgba(0, 0, 0, 0.55)',
+                fontSize: '40px',
+                fontWeight: 600,
+                lineHeight: 1.25,
+                color: '#F4F6F8',
+                marginBottom: '28px',
+                letterSpacing: '-0.4px',
               }}
             >
-              <div className="mb-8">
-                <h2 className="text-[26px] sm:text-[28px] font-bold text-[#F4F6F8] leading-tight mb-2 tracking-tight">
-                  Selamat datang kembali
-                </h2>
-                <p className="text-sm sm:text-[15px] text-[#C9CED6] font-normal leading-snug">
-                  Masuk untuk mengelola laundry Anda.
-                </p>
-              </div>
+              Catat cucian, hitung tagihan,
+              <br />
+              dan cetak nota dari satu tempat.
+            </h1>
 
-              {/* Alert Error */}
-              {errorMsg && (
-                <div
-                  role="alert"
-                  aria-live="polite"
-                  className="mb-6 p-3.5 rounded-xl text-sm flex items-start gap-3"
+            <ul
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '12px',
+                listStyle: 'none',
+                padding: 0,
+                margin: 0,
+              }}
+            >
+              {['Pelanggan dan layanan', 'Transaksi dan pembayaran', 'Laporan pendapatan'].map((item) => (
+                <li
+                  key={item}
                   style={{
-                    backgroundColor: 'rgba(239, 68, 68, 0.15)',
-                    border: '1px solid rgba(239, 68, 68, 0.4)',
-                    color: '#FCA5A5',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '10px',
+                    fontSize: '15px',
+                    fontWeight: 500,
+                    color: '#C9CED6',
                   }}
                 >
                   <svg
-                    className="w-5 h-5 flex-shrink-0 mt-0.5"
-                    fill="none"
-                    stroke="currentColor"
+                    width="16"
+                    height="16"
                     viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="#F2D94E"
+                    strokeWidth="2.4"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    style={{ flexShrink: 0 }}
                     aria-hidden="true"
                   >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
-                    />
+                    <polyline points="20 6 9 17 4 12" />
                   </svg>
-                  <span className="leading-snug">{errorMsg}</span>
-                </div>
-              )}
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Panel Kanan: Kartu Login Padat */}
+          <div className="flex flex-col items-center lg:items-end w-full">
+            {/* Logo untuk Mobile (< 1024px) */}
+            <div className="lg:hidden mb-6 text-center select-none">
+              <Logo />
+            </div>
+
+            {/* Kartu Solid Krem */}
+            <div
+              style={{
+                width: '100%',
+                maxWidth: '400px',
+                backgroundColor: '#F5F3EE',
+                color: '#12161C',
+                border: '1px solid #D9D5CB',
+                borderRadius: '14px',
+                padding: '32px',
+                boxShadow: '0 8px 24px rgba(0, 0, 0, 0.25)',
+              }}
+            >
+              {/* Header Kartu */}
+              <div style={{ marginBottom: '24px', textAlign: 'left' }}>
+                <h2
+                  style={{
+                    fontSize: '24px',
+                    fontWeight: 600,
+                    color: '#12161C',
+                    lineHeight: 1.2,
+                    marginBottom: '4px',
+                  }}
+                >
+                  Masuk
+                </h2>
+                <p style={{ fontSize: '14px', color: '#5B6470', margin: 0 }}>
+                  Gunakan akun admin atau kasir.
+                </p>
+              </div>
 
               {/* Form Login */}
-              <form onSubmit={handleSubmit} className="flex flex-col gap-5">
+              <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
                 <div>
                   <label
                     htmlFor="username"
-                    className="block text-sm font-medium text-[#F4F6F8] mb-2 tracking-normal"
+                    style={{
+                      display: 'block',
+                      fontSize: '14px',
+                      fontWeight: 500,
+                      color: '#12161C',
+                      marginBottom: '6px',
+                      textAlign: 'left',
+                    }}
                   >
                     Username
                   </label>
@@ -174,19 +193,26 @@ export default function LoginPage() {
                     onChange={(e) => setUsername(e.target.value)}
                     autoComplete="username"
                     required
-                    placeholder="Masukkan username"
-                    className="w-full h-[52px] px-4 rounded-xl text-[15px] text-[#F4F6F8] outline-none transition-all duration-200"
+                    placeholder="contoh: kasir1"
                     style={{
-                      backgroundColor: 'rgba(255, 255, 255, 0.06)',
-                      border: '1px solid rgba(255, 255, 255, 0.14)',
+                      width: '100%',
+                      height: '46px',
+                      padding: '0 12px',
+                      fontSize: '14px',
+                      color: '#12161C',
+                      backgroundColor: '#FFFFFF',
+                      border: '1px solid #C9C4B8',
+                      borderRadius: '8px',
+                      outline: 'none',
                     }}
                     onFocus={(e) => {
-                      e.target.style.borderColor = '#6FA3E8';
-                      e.target.style.boxShadow = '0 0 0 4px rgba(111, 163, 232, 0.25)';
+                      e.target.style.borderColor = '#12161C';
+                      e.target.style.outline = '2px solid #F2D94E';
+                      e.target.style.outlineOffset = '1px';
                     }}
                     onBlur={(e) => {
-                      e.target.style.borderColor = 'rgba(255, 255, 255, 0.14)';
-                      e.target.style.boxShadow = 'none';
+                      e.target.style.borderColor = '#C9C4B8';
+                      e.target.style.outline = 'none';
                     }}
                   />
                 </div>
@@ -194,11 +220,18 @@ export default function LoginPage() {
                 <div>
                   <label
                     htmlFor="password"
-                    className="block text-sm font-medium text-[#F4F6F8] mb-2 tracking-normal"
+                    style={{
+                      display: 'block',
+                      fontSize: '14px',
+                      fontWeight: 500,
+                      color: '#12161C',
+                      marginBottom: '6px',
+                      textAlign: 'left',
+                    }}
                   >
                     Password
                   </label>
-                  <div className="relative">
+                  <div style={{ position: 'relative' }}>
                     <input
                       id="password"
                       type={showPassword ? 'text' : 'password'}
@@ -206,30 +239,55 @@ export default function LoginPage() {
                       onChange={(e) => setPassword(e.target.value)}
                       autoComplete="current-password"
                       required
-                      placeholder="Masukkan password"
-                      className="w-full h-[52px] pl-4 pr-12 rounded-xl text-[15px] text-[#F4F6F8] outline-none transition-all duration-200"
+                      placeholder="password Anda"
                       style={{
-                        backgroundColor: 'rgba(255, 255, 255, 0.06)',
-                        border: '1px solid rgba(255, 255, 255, 0.14)',
+                        width: '100%',
+                        height: '46px',
+                        padding: '0 44px 0 12px',
+                        fontSize: '14px',
+                        color: '#12161C',
+                        backgroundColor: '#FFFFFF',
+                        border: '1px solid #C9C4B8',
+                        borderRadius: '8px',
+                        outline: 'none',
                       }}
                       onFocus={(e) => {
-                        e.target.style.borderColor = '#6FA3E8';
-                        e.target.style.boxShadow = '0 0 0 4px rgba(111, 163, 232, 0.25)';
+                        e.target.style.borderColor = '#12161C';
+                        e.target.style.outline = '2px solid #F2D94E';
+                        e.target.style.outlineOffset = '1px';
                       }}
                       onBlur={(e) => {
-                        e.target.style.borderColor = 'rgba(255, 255, 255, 0.14)';
-                        e.target.style.boxShadow = 'none';
+                        e.target.style.borderColor = '#C9C4B8';
+                        e.target.style.outline = 'none';
                       }}
                     />
                     <button
                       type="button"
                       onClick={() => setShowPassword((v) => !v)}
                       aria-label={showPassword ? 'Sembunyikan password' : 'Tampilkan password'}
-                      className="absolute right-1 top-1/2 -translate-y-1/2 w-12 h-12 flex items-center justify-center text-[#C9CED6] hover:text-[#F4F6F8] transition-colors rounded-lg cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#6FA3E8]/40"
+                      tabIndex={-1}
+                      style={{
+                        position: 'absolute',
+                        right: '1px',
+                        top: '1px',
+                        width: '44px',
+                        height: '44px',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        background: 'none',
+                        border: 'none',
+                        color: '#8A8F98',
+                        cursor: 'pointer',
+                        borderRadius: '6px',
+                      }}
+                      onMouseEnter={(e) => (e.currentTarget.style.color = '#12161C')}
+                      onMouseLeave={(e) => (e.currentTarget.style.color = '#8A8F98')}
                     >
                       {showPassword ? (
                         <svg
-                          className="w-5 h-5"
+                          width="16"
+                          height="16"
                           viewBox="0 0 24 24"
                           fill="none"
                           stroke="currentColor"
@@ -243,7 +301,8 @@ export default function LoginPage() {
                         </svg>
                       ) : (
                         <svg
-                          className="w-5 h-5"
+                          width="16"
+                          height="16"
                           viewBox="0 0 24 24"
                           fill="none"
                           stroke="currentColor"
@@ -259,48 +318,69 @@ export default function LoginPage() {
                   </div>
                 </div>
 
+                {/* Pesan Error di atas tombol */}
+                {errorMsg && (
+                  <div
+                    role="alert"
+                    aria-live="polite"
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '6px',
+                      color: '#B42318',
+                      fontSize: '13px',
+                      fontWeight: 500,
+                      marginTop: '2px',
+                    }}
+                  >
+                    <svg
+                      width="15"
+                      height="15"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="#B42318"
+                      strokeWidth="2.2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      style={{ flexShrink: 0 }}
+                      aria-hidden="true"
+                    >
+                      <circle cx="12" cy="12" r="10" />
+                      <line x1="12" y1="8" x2="12" y2="12" />
+                      <line x1="12" y1="16" x2="12.01" y2="16" />
+                    </svg>
+                    <span>{errorMsg}</span>
+                  </div>
+                )}
+
+                {/* Tombol Masuk */}
                 <button
                   type="submit"
                   disabled={loading}
-                  className="w-full h-[52px] mt-2 rounded-full font-semibold text-base flex items-center justify-center cursor-pointer transition-all duration-200 hover:-translate-y-[1px] disabled:opacity-75 disabled:cursor-not-allowed disabled:transform-none"
                   style={{
-                    backgroundColor: '#F2D94E',
-                    color: '#0B0F14',
+                    width: '100%',
+                    height: '46px',
+                    borderRadius: '8px',
+                    backgroundColor: loading ? '#2A313B' : '#12161C',
+                    color: '#FFFFFF',
+                    fontSize: '14px',
+                    fontWeight: 600,
+                    border: 'none',
+                    cursor: loading ? 'not-allowed' : 'pointer',
+                    transition: 'background-color 150ms ease',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    marginTop: '4px',
                   }}
                   onMouseEnter={(e) => {
-                    if (!loading) e.currentTarget.style.backgroundColor = '#FFE76A';
+                    if (!loading) e.currentTarget.style.backgroundColor = '#2A313B';
                   }}
                   onMouseLeave={(e) => {
-                    if (!loading) e.currentTarget.style.backgroundColor = '#F2D94E';
+                    if (!loading) e.currentTarget.style.backgroundColor = '#12161C';
                   }}
                 >
-                  {loading ? (
-                    <span className="flex items-center gap-2">
-                      <svg
-                        className="animate-spin h-5 w-5 text-[#0B0F14]"
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                      >
-                        <circle
-                          className="opacity-25"
-                          cx="12"
-                          cy="12"
-                          r="10"
-                          stroke="currentColor"
-                          strokeWidth="4"
-                        />
-                        <path
-                          className="opacity-75"
-                          fill="currentColor"
-                          d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                        />
-                      </svg>
-                      <span>Memproses...</span>
-                    </span>
-                  ) : (
-                    'Masuk'
-                  )}
+                  {loading ? 'Memeriksa...' : 'Masuk'}
                 </button>
               </form>
             </div>
@@ -308,14 +388,11 @@ export default function LoginPage() {
         </div>
       </div>
 
-      {/* Footer Hak Cipta */}
-      <footer className="relative z-10 w-full px-4 sm:px-8 lg:px-16 py-4">
-        <div className="w-full max-w-7xl mx-auto flex items-center justify-center lg:justify-start">
-          <p
-            className="text-xs font-normal select-none"
-            style={{ color: 'rgba(201, 206, 214, 0.6)' }}
-          >
-            &copy; 2026 LaundryGo
+      {/* Footer Manual */}
+      <footer style={{ position: 'relative', zIndex: 10, width: '100%', padding: '16px 24px' }}>
+        <div className="w-full max-w-5xl mx-auto text-left">
+          <p style={{ fontSize: '13px', color: '#8A8F98', margin: 0 }}>
+            Sistem Informasi Laundry - Project WEB 26
           </p>
         </div>
       </footer>
