@@ -1,10 +1,15 @@
-// TODO: Isi file ini dengan Server Actions untuk fitur Transaksi (kasir).
-// Ikuti pola yang sama dengan app/admin/pelanggan/actions.js:
-//
-// 'use server';
-// import { supabaseAdmin } from '@/lib/supabaseAdmin';
-// import { revalidatePath } from 'next/cache';
-// import { redirect } from 'next/navigation';
-//
-// export async function tambahTransaksi(prevState, formData) { ... }
-// export async function updateTransaksi(id, prevState, formData) { ... }
+'use server';
+
+import { buatTransaksi, updateStatusCucian, catatPembayaran } from '@/lib/transaksiActions';
+
+export async function buatTransaksiKasir(prevState, formData) {
+  return buatTransaksi('kasir', prevState, formData);
+}
+
+export async function updateStatusCucianKasir(id, status) {
+  return updateStatusCucian(id, status, 'kasir');
+}
+
+export async function catatPembayaranKasir(id, prev, fd) {
+  return catatPembayaran(id, 'kasir', prev, fd);
+}

@@ -24,7 +24,7 @@ export async function middleware(request) {
 
   // Halaman khusus admin
   if (pathname.startsWith('/admin') && role !== 'admin') {
-    return NextResponse.redirect(new URL('/dashboard', request.url));
+    return NextResponse.redirect(new URL('/kasir/transaksi', request.url));
   }
 
   return response;
