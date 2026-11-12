@@ -79,10 +79,11 @@ export async function hapusLayanan(formData) {
 
   if (count && count > 0) {
     // Tidak dihapus karena sudah dipakai transaksi
-    return { error: 'Layanan tidak dapat dihapus karena sudah tercatat dalam riwayat transaksi.' };
+    redirect('/admin/layanan?error=' + encodeURIComponent('Layanan tidak dapat dihapus karena sudah tercatat dalam riwayat transaksi.'));
   }
 
   await supabaseAdmin.from('layanan').delete().eq('id_layanan', id);
   revalidatePath('/admin/layanan');
   revalidatePath('/kasir/layanan');
+  redirect('/admin/layanan');
 }
