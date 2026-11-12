@@ -319,11 +319,20 @@ export default function ResponsiveShell({ sidebar, children }) {
           .app-overlay {
             display: none !important;
           }
+          .app-shell-root {
+            display: block !important;
+            min-height: auto !important;
+            overflow: visible !important;
+          }
+          .app-shell-body {
+            display: block !important;
+          }
           .app-shell-main {
             margin: 0 !important;
             padding: 0 !important;
             width: 100% !important;
             max-width: 100% !important;
+            overflow: visible !important;
           }
         }
       `}</style>
