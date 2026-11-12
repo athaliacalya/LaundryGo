@@ -61,6 +61,18 @@ export async function hapusPelanggan(formData) {
   if (!auth.ok) return;
 
   const id = formData.get('id_pelanggan');
+
+  // Validasi: Pelanggan yang sudah memiliki transaksi tidak bisa dihapus
+  const { count } = await supabaseAdmin
+    .from('transaksi')
+    .select('*', { count: 'exact', head: true })
+    .eq('id_pelanggan', id);
+
+  if (count && count > 0) {
+    redirect('/admin/pelanggan?error=' + encodeURIComponent('Pelanggan tidak dapat dihapus karena sudah memiliki riwayat transaksi.'));
+  }
+
   await supabaseAdmin.from('pelanggan').delete().eq('id_pelanggan', id);
   revalidatePath('/admin/pelanggan');
+  redirect('/admin/pelanggan');
 }
