@@ -90,8 +90,9 @@ export default function StatusCucianButton({ idTransaksi, currentStatus, updateA
         <button
           onClick={handleClick}
           disabled={loading}
+          className="status-action-btn"
           style={{
-            padding: '9px 16px',
+            padding: '10px 18px',
             fontSize: '13px',
             fontWeight: 600,
             color: '#FFFFFF',
@@ -110,6 +111,19 @@ export default function StatusCucianButton({ idTransaksi, currentStatus, updateA
           Cucian sudah diambil (status akhir).
         </p>
       )}
+
+      <style>{`
+        @media (max-width: 767px) {
+          .status-action-btn {
+            min-height: 48px !important;
+            font-size: 14px !important;
+            width: 100% !important;
+            display: inline-flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+          }
+        }
+      `}</style>
     </div>
   );
 }

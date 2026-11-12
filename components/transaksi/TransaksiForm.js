@@ -4,13 +4,16 @@ import { useState, useActionState } from 'react';
 
 const inputStyle = {
   width: '100%',
-  padding: '9px 12px',
-  fontSize: '14px',
+  minHeight: '44px',
+  padding: '10px 12px',
+  fontSize: '16px',
   color: '#1C1C1A',
   backgroundColor: '#FFFFFF',
   border: '1px solid #E4E4E0',
   borderRadius: '6px',
   outline: 'none',
+  boxSizing: 'border-box',
+  fontFamily: "'Plus Jakarta Sans', sans-serif",
 };
 
 const labelStyle = {
@@ -119,19 +122,20 @@ export default function TransaksiForm({ action, pelangganList, layananList, back
           name="tgl_masuk"
           type="datetime-local"
           defaultValue={new Date().toISOString().slice(0, 16)}
-          style={{ ...inputStyle, width: '240px' }}
+          style={{ ...inputStyle, width: '100%', maxWidth: '280px' }}
         />
       </div>
 
       {/* Daftar Item Layanan */}
-      <div style={{ marginBottom: '20px' }}>
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '10px' }}>
+      <div style={{ marginBottom: '24px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '10px', flexWrap: 'wrap', gap: '8px' }}>
           <span style={{ ...labelStyle, marginBottom: 0 }}>Item Layanan Cucian</span>
           <button
             type="button"
             onClick={addItem}
+            className="tambah-baris-btn"
             style={{
-              padding: '4px 12px',
+              padding: '6px 14px',
               fontSize: '13px',
               fontWeight: 500,
               color: '#0F766E',
@@ -146,7 +150,7 @@ export default function TransaksiForm({ action, pelangganList, layananList, back
         </div>
 
         <div
-          className="table-container"
+          className="transaksi-items-wrapper table-container"
           style={{
             border: '1px solid #E4E4E0',
             borderRadius: '8px',
@@ -155,13 +159,13 @@ export default function TransaksiForm({ action, pelangganList, layananList, back
             backgroundColor: '#FFFFFF',
           }}
         >
-          <table style={{ width: '100%', minWidth: '460px', borderCollapse: 'collapse', fontSize: '14px' }}>
+          <table className="transaksi-items-table" style={{ width: '100%', borderCollapse: 'collapse', fontSize: '14px' }}>
             <thead>
               <tr style={{ backgroundColor: '#F7F7F5', borderBottom: '1px solid #E4E4E0' }}>
-                <th style={{ textAlign: 'left', padding: '8px 12px', fontWeight: 500, color: '#6B6B67' }}>Layanan</th>
-                <th style={{ textAlign: 'center', padding: '8px 12px', fontWeight: 500, color: '#6B6B67', width: '100px' }}>Jumlah</th>
-                <th style={{ textAlign: 'right', padding: '8px 12px', fontWeight: 500, color: '#6B6B67', width: '130px' }}>Subtotal</th>
-                <th style={{ width: '40px' }}></th>
+                <th style={{ textAlign: 'left', padding: '10px 12px', fontWeight: 500, color: '#6B6B67' }}>Layanan</th>
+                <th style={{ textAlign: 'center', padding: '10px 12px', fontWeight: 500, color: '#6B6B67', width: '110px' }}>Jumlah</th>
+                <th style={{ textAlign: 'right', padding: '10px 12px', fontWeight: 500, color: '#6B6B67', width: '130px' }}>Subtotal</th>
+                <th style={{ width: '48px' }}></th>
               </tr>
             </thead>
             <tbody>
@@ -169,12 +173,15 @@ export default function TransaksiForm({ action, pelangganList, layananList, back
                 const detail = itemsDetail[idx];
                 return (
                   <tr key={idx} style={{ borderBottom: '1px solid #F0F0EE' }}>
-                    <td style={{ padding: '8px 12px' }}>
+                    <td className="td-layanan" style={{ padding: '8px 12px' }}>
+                      <label className="mobile-only-label">
+                        Layanan #{idx + 1}
+                      </label>
                       <select
                         value={item.id_layanan}
                         onChange={(e) => updateItem(idx, 'id_layanan', e.target.value)}
                         required
-                        style={{ ...inputStyle, padding: '6px 8px', fontSize: '13px' }}
+                        style={{ ...inputStyle, minHeight: '44px', fontSize: '16px' }}
                       >
                         <option value="">Pilih layanan</option>
                         {(layananList || []).map((l) => (
@@ -184,7 +191,10 @@ export default function TransaksiForm({ action, pelangganList, layananList, back
                         ))}
                       </select>
                     </td>
-                    <td style={{ padding: '8px 6px', textAlign: 'center' }}>
+                    <td className="td-jumlah" style={{ padding: '8px 6px', textAlign: 'center' }}>
+                      <label className="mobile-only-label">
+                        Jumlah ({detail?.layanan?.satuan || 'satuan'})
+                      </label>
                       <input
                         type="number"
                         step="0.1"
@@ -193,28 +203,31 @@ export default function TransaksiForm({ action, pelangganList, layananList, back
                         onChange={(e) => updateItem(idx, 'jumlah', e.target.value)}
                         required
                         placeholder="0"
-                        style={{ ...inputStyle, padding: '6px 8px', fontSize: '13px', textAlign: 'center', width: '80px' }}
+                        style={{ ...inputStyle, minHeight: '44px', fontSize: '16px', textAlign: 'center' }}
                       />
                     </td>
-                    <td style={{ padding: '8px 12px', textAlign: 'right', fontWeight: 500, color: '#0F766E', fontSize: '13px' }}>
-                      {detail?.subtotal > 0 ? formatRupiah(detail.subtotal) : '—'}
+                    <td className="td-subtotal" style={{ padding: '8px 12px', textAlign: 'right', fontWeight: 500, color: '#0F766E', fontSize: '14px' }}>
+                      <span className="mobile-only-label">Subtotal</span>
+                      <span className="subtotal-val">{detail?.subtotal > 0 ? formatRupiah(detail.subtotal) : '—'}</span>
                     </td>
-                    <td style={{ padding: '8px 6px', textAlign: 'center' }}>
+                    <td className="td-hapus" style={{ padding: '8px 6px', textAlign: 'center' }}>
                       {items.length > 1 && (
                         <button
                           type="button"
                           onClick={() => removeItem(idx)}
+                          className="hapus-baris-btn"
                           style={{
                             background: 'none',
                             border: 'none',
                             color: '#DC2626',
                             cursor: 'pointer',
-                            fontSize: '16px',
-                            padding: '2px 6px',
+                            fontSize: '18px',
+                            padding: '4px 8px',
                           }}
                           title="Hapus baris"
                         >
-                          &times;
+                          <span className="desktop-hapus-icon">&times;</span>
+                          <span className="mobile-hapus-text">Hapus Item</span>
                         </button>
                       )}
                     </td>
@@ -224,10 +237,10 @@ export default function TransaksiForm({ action, pelangganList, layananList, back
             </tbody>
             <tfoot>
               <tr style={{ borderTop: '2px solid #E4E4E0', backgroundColor: '#FAFAF9' }}>
-                <td colSpan={2} style={{ padding: '10px 12px', fontWeight: 600, textAlign: 'right', color: '#1C1C1A' }}>
+                <td colSpan={2} style={{ padding: '12px 14px', fontWeight: 600, textAlign: 'right', color: '#1C1C1A' }}>
                   Total:
                 </td>
-                <td style={{ padding: '10px 12px', textAlign: 'right', fontWeight: 700, color: '#0F766E', fontSize: '15px' }}>
+                <td style={{ padding: '12px 14px', textAlign: 'right', fontWeight: 700, color: '#0F766E', fontSize: '16px' }}>
                   {formatRupiah(totalBayar)}
                 </td>
                 <td></td>
@@ -238,52 +251,79 @@ export default function TransaksiForm({ action, pelangganList, layananList, back
       </div>
 
       {/* Pembayaran Awal (DP / Lunas) */}
-      <div style={{ marginBottom: '16px' }}>
-        <label htmlFor="bayar_awal" style={labelStyle}>
+      <div style={{ marginBottom: '24px' }}>
+        <label style={labelStyle}>
           Pembayaran Awal / DP (opsional)
         </label>
-        <div style={{ display: 'flex', gap: '10px', alignItems: 'center', flexWrap: 'wrap' }}>
-          <input
-            id="bayar_awal"
-            type="number"
-            min="0"
-            value={bayarAwal}
-            onChange={(e) => setBayarAwal(e.target.value)}
-            placeholder="0"
-            style={{ ...inputStyle, width: '180px' }}
-          />
-          <select name="metode_bayar" style={{ ...inputStyle, width: '140px' }}>
-            <option value="tunai">Tunai</option>
-            <option value="transfer">Transfer</option>
-            <option value="qris">QRIS</option>
-          </select>
-          {totalBayar > 0 && (
-            <button
-              type="button"
-              onClick={() => setBayarAwal(String(totalBayar))}
-              style={{
-                padding: '6px 12px',
-                fontSize: '12px',
-                fontWeight: 500,
-                color: '#0F766E',
-                backgroundColor: '#ECFDF5',
-                border: '1px solid #A7F3D0',
-                borderRadius: '6px',
-                cursor: 'pointer',
-                whiteSpace: 'nowrap',
-              }}
+        
+        {/* Baris Dua Kolom: Menjadi satu kolom di layar < 640px */}
+        <div
+          className="form-row-2col"
+          style={{
+            display: 'grid',
+            gridTemplateColumns: '1fr 1fr',
+            gap: '12px',
+            marginBottom: '8px',
+          }}
+        >
+          <div>
+            <label htmlFor="bayar_awal" className="mobile-only-label" style={{ fontSize: '12px', color: '#6B6B67', marginBottom: '4px' }}>
+              Jumlah Bayar Awal (Rp)
+            </label>
+            <input
+              id="bayar_awal"
+              type="number"
+              min="0"
+              value={bayarAwal}
+              onChange={(e) => setBayarAwal(e.target.value)}
+              placeholder="Nominal DP (0)"
+              style={{ ...inputStyle, minHeight: '44px', fontSize: '16px' }}
+            />
+          </div>
+          <div>
+            <label htmlFor="metode_bayar" className="mobile-only-label" style={{ fontSize: '12px', color: '#6B6B67', marginBottom: '4px' }}>
+              Metode Pembayaran
+            </label>
+            <select
+              id="metode_bayar"
+              name="metode_bayar"
+              style={{ ...inputStyle, minHeight: '44px', fontSize: '16px' }}
             >
-              Bayar Lunas
-            </button>
-          )}
+              <option value="tunai">Tunai</option>
+              <option value="transfer">Transfer</option>
+              <option value="qris">QRIS</option>
+            </select>
+          </div>
         </div>
+
+        {totalBayar > 0 && (
+          <button
+            type="button"
+            onClick={() => setBayarAwal(String(totalBayar))}
+            className="bayar-lunas-btn"
+            style={{
+              padding: '8px 14px',
+              fontSize: '13px',
+              fontWeight: 500,
+              color: '#0F766E',
+              backgroundColor: '#ECFDF5',
+              border: '1px solid #A7F3D0',
+              borderRadius: '6px',
+              cursor: 'pointer',
+              whiteSpace: 'nowrap',
+            }}
+          >
+            Bayar Lunas ({formatRupiah(totalBayar)})
+          </button>
+        )}
       </div>
 
       {/* Tombol Aksi */}
-      <div style={{ display: 'flex', gap: '10px', marginTop: '24px' }}>
+      <div style={{ display: 'flex', gap: '10px', marginTop: '24px', flexWrap: 'wrap' }}>
         <button
           type="submit"
           disabled={isPending}
+          className="primary-btn"
           style={{
             padding: '10px 20px',
             fontSize: '14px',
@@ -299,6 +339,7 @@ export default function TransaksiForm({ action, pelangganList, layananList, back
         </button>
         <a
           href={backUrl}
+          className="cancel-btn"
           style={{
             padding: '10px 16px',
             fontSize: '14px',
@@ -309,11 +350,170 @@ export default function TransaksiForm({ action, pelangganList, layananList, back
             textDecoration: 'none',
             display: 'inline-flex',
             alignItems: 'center',
+            justifyContent: 'center',
           }}
         >
           Batal
         </a>
       </div>
+
+      <style>{`
+        @media (min-width: 640px) {
+          .mobile-only-label {
+            display: none !important;
+          }
+          .mobile-hapus-text {
+            display: none !important;
+          }
+          .desktop-hapus-icon {
+            display: inline !important;
+          }
+        }
+        @media (max-width: 639px) {
+          .mobile-only-label {
+            display: block !important;
+            font-size: 12px !important;
+            font-weight: 500 !important;
+            color: #6B6B67 !important;
+            margin-bottom: 4px !important;
+          }
+          .mobile-hapus-text {
+            display: inline !important;
+          }
+          .desktop-hapus-icon {
+            display: none !important;
+          }
+          .form-row-2col {
+            grid-template-columns: 1fr !important;
+            gap: 12px !important;
+          }
+          .transaksi-items-wrapper {
+            background: transparent !important;
+            border: none !important;
+            overflow: visible !important;
+          }
+          .transaksi-items-table {
+            display: block !important;
+            min-width: 0 !important;
+            width: 100% !important;
+          }
+          .transaksi-items-table thead {
+            display: none !important;
+          }
+          .transaksi-items-table tbody {
+            display: flex !important;
+            flex-direction: column !important;
+            gap: 12px !important;
+            width: 100% !important;
+          }
+          .transaksi-items-table tbody tr {
+            display: flex !important;
+            flex-direction: column !important;
+            gap: 8px !important;
+            background: #FFFFFF !important;
+            border: 1px solid #E4E4E0 !important;
+            border-radius: 8px !important;
+            padding: 12px !important;
+            width: 100% !important;
+            box-sizing: border-box !important;
+          }
+          .transaksi-items-table tbody td {
+            display: block !important;
+            padding: 0 !important;
+            border: none !important;
+            width: 100% !important;
+            text-align: left !important;
+            height: auto !important;
+          }
+          .transaksi-items-table .td-layanan select {
+            width: 100% !important;
+            min-height: 44px !important;
+            font-size: 16px !important;
+          }
+          .transaksi-items-table .td-jumlah input {
+            width: 100% !important;
+            min-height: 44px !important;
+            font-size: 16px !important;
+            text-align: left !important;
+          }
+          .transaksi-items-table .td-subtotal {
+            display: flex !important;
+            justify-content: space-between !important;
+            align-items: center !important;
+            padding-top: 6px !important;
+            padding-bottom: 6px !important;
+            border-top: 1px dashed #E4E4E0 !important;
+          }
+          .transaksi-items-table .td-subtotal .subtotal-val {
+            font-size: 15px !important;
+            font-weight: 600 !important;
+            color: #0F766E !important;
+          }
+          .transaksi-items-table .hapus-baris-btn {
+            width: 100% !important;
+            min-height: 44px !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            background-color: #FEF2F2 !important;
+            color: #DC2626 !important;
+            border: 1px solid #FECACA !important;
+            border-radius: 6px !important;
+            font-size: 13px !important;
+            font-weight: 500 !important;
+            margin-top: 4px !important;
+          }
+          .transaksi-items-table tfoot {
+            display: block !important;
+            width: 100% !important;
+            margin-top: 12px !important;
+          }
+          .transaksi-items-table tfoot tr {
+            display: flex !important;
+            justify-content: space-between !important;
+            align-items: center !important;
+            padding: 12px 14px !important;
+            background: #FFFFFF !important;
+            border: 1px solid #E4E4E0 !important;
+            border-radius: 8px !important;
+            width: 100% !important;
+            box-sizing: border-box !important;
+          }
+          .transaksi-items-table tfoot td {
+            display: inline-block !important;
+            padding: 0 !important;
+            border: none !important;
+            height: auto !important;
+          }
+        }
+        @media (max-width: 767px) {
+          .primary-btn {
+            min-height: 48px !important;
+            display: inline-flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            flex: 1 1 auto !important;
+          }
+          .cancel-btn {
+            min-height: 48px !important;
+            display: inline-flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+          }
+          .tambah-baris-btn {
+            min-height: 44px !important;
+            display: inline-flex !important;
+            align-items: center !important;
+          }
+          .bayar-lunas-btn {
+            min-height: 44px !important;
+            width: 100% !important;
+            display: inline-flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+          }
+        }
+      `}</style>
     </form>
   );
 }

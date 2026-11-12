@@ -3,13 +3,15 @@ import { useActionState } from 'react';
 
 const inputStyle = {
   width: '100%',
-  padding: '9px 12px',
-  fontSize: '14px',
+  minHeight: '44px',
+  padding: '10px 12px',
+  fontSize: '16px',
   color: '#1C1C1A',
   backgroundColor: '#FFFFFF',
   border: '1px solid #E4E4E0',
   borderRadius: '6px',
   outline: 'none',
+  boxSizing: 'border-box',
   fontFamily: "'Plus Jakarta Sans', sans-serif",
 };
 
@@ -98,12 +100,13 @@ export default function PelangganForm({ action, initialData, submitLabel }) {
       </div>
 
       {/* Submit */}
-      <div style={{ display: 'flex', gap: '10px', paddingTop: '4px' }}>
+      <div style={{ display: 'flex', gap: '10px', paddingTop: '4px', flexWrap: 'wrap' }}>
         <button
           type="submit"
           disabled={pending}
+          className="primary-btn"
           style={{
-            padding: '9px 20px',
+            padding: '10px 20px',
             fontSize: '14px',
             fontWeight: 600,
             color: '#FFFFFF',
@@ -119,8 +122,9 @@ export default function PelangganForm({ action, initialData, submitLabel }) {
         </button>
         <a
           href="/admin/pelanggan"
+          className="cancel-btn"
           style={{
-            padding: '9px 16px',
+            padding: '10px 16px',
             fontSize: '14px',
             fontWeight: 500,
             color: '#6B6B67',
@@ -130,11 +134,30 @@ export default function PelangganForm({ action, initialData, submitLabel }) {
             textDecoration: 'none',
             display: 'inline-flex',
             alignItems: 'center',
+            justifyContent: 'center',
           }}
         >
           Batal
         </a>
       </div>
+
+      <style>{`
+        @media (max-width: 767px) {
+          .primary-btn {
+            min-height: 48px !important;
+            display: inline-flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            flex: 1 1 auto !important;
+          }
+          .cancel-btn {
+            min-height: 48px !important;
+            display: inline-flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+          }
+        }
+      `}</style>
     </form>
   );
 }
