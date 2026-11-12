@@ -1,4 +1,5 @@
 import { supabaseAdmin } from '@/lib/supabaseAdmin';
+import { bersihkanKataCari } from '@/lib/cari';
 
 function formatRupiah(angka) {
   return new Intl.NumberFormat('id-ID', {
@@ -11,14 +12,15 @@ function formatRupiah(angka) {
 export default async function LayananKasirPage({ searchParams }) {
   const sp = await searchParams;
   const cari = sp?.cari || '';
+  const kataKunci = bersihkanKataCari(cari);
 
   let query = supabaseAdmin
     .from('layanan')
     .select('*')
     .order('id_layanan', { ascending: true });
 
-  if (cari) {
-    query = query.ilike('nama_layanan', `%${cari}%`);
+  if (kataKunci) {
+    query = query.ilike('nama_layanan', `%${kataKunci}%`);
   }
 
   const { data: daftarLayanan } = await query;
