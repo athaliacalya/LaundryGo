@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { supabaseAdmin } from '@/lib/supabaseAdmin';
+import { bersihkanKataCari } from '@/lib/cari';
 
 const PER_HALAMAN = 10;
 
@@ -12,6 +13,7 @@ function formatTanggal(str) {
 export default async function PelangganKasirPage({ searchParams }) {
   const sp = await searchParams;
   const cari = sp?.cari || '';
+  const kataKunci = bersihkanKataCari(cari);
   const halaman = parseInt(sp?.halaman || '1', 10);
 
   let query = supabaseAdmin
@@ -20,7 +22,7 @@ export default async function PelangganKasirPage({ searchParams }) {
     .order('id_pelanggan', { ascending: false })
     .range((halaman - 1) * PER_HALAMAN, halaman * PER_HALAMAN - 1);
 
-  if (cari) query = query.ilike('nama_pelanggan', `%${cari}%`);
+  if (kataKunci) query = query.ilike('nama_pelanggan', `%${kataKunci}%`);
 
   const { data: pelanggan, count } = await query;
   const totalHalaman = Math.max(1, Math.ceil((count || 0) / PER_HALAMAN));
