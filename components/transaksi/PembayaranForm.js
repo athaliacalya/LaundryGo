@@ -94,14 +94,14 @@ export default function PembayaranForm({ idTransaksi, sisaTagihan, catatPembayar
               value={jumlah}
               onChange={(e) => setJumlah(e.target.value)}
               placeholder="0"
-              style={{ ...inputStyle, width: '180px' }}
+              style={{ ...inputStyle, width: '100%' }}
             />
           </div>
-          <div style={{ minWidth: '130px' }}>
+          <div style={{ flex: '1', minWidth: '130px' }}>
             <label htmlFor="metode" style={labelStyle}>
               Metode
             </label>
-            <select id="metode" name="metode" style={{ ...inputStyle, width: '140px' }}>
+            <select id="metode" name="metode" style={{ ...inputStyle, width: '100%' }}>
               <option value="tunai">Tunai</option>
               <option value="transfer">Transfer</option>
               <option value="qris">QRIS</option>

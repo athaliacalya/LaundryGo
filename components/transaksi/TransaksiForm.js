@@ -146,14 +146,16 @@ export default function TransaksiForm({ action, pelangganList, layananList, back
         </div>
 
         <div
+          className="table-container"
           style={{
             border: '1px solid #E4E4E0',
             borderRadius: '8px',
-            overflow: 'hidden',
+            overflowX: 'auto',
+            WebkitOverflowScrolling: 'touch',
             backgroundColor: '#FFFFFF',
           }}
         >
-          <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '14px' }}>
+          <table style={{ width: '100%', minWidth: '460px', borderCollapse: 'collapse', fontSize: '14px' }}>
             <thead>
               <tr style={{ backgroundColor: '#F7F7F5', borderBottom: '1px solid #E4E4E0' }}>
                 <th style={{ textAlign: 'left', padding: '8px 12px', fontWeight: 500, color: '#6B6B67' }}>Layanan</th>
@@ -240,7 +242,7 @@ export default function TransaksiForm({ action, pelangganList, layananList, back
         <label htmlFor="bayar_awal" style={labelStyle}>
           Pembayaran Awal / DP (opsional)
         </label>
-        <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
+        <div style={{ display: 'flex', gap: '10px', alignItems: 'center', flexWrap: 'wrap' }}>
           <input
             id="bayar_awal"
             type="number"

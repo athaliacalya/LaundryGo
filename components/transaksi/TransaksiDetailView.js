@@ -346,14 +346,16 @@ export default function TransaksiDetailView({
             Rincian Item Layanan
           </h2>
           <div
+            className="table-container"
             style={{
               backgroundColor: '#FFFFFF',
               border: '1px solid #E4E4E0',
               borderRadius: '8px',
-              overflow: 'hidden',
+              overflowX: 'auto',
+              WebkitOverflowScrolling: 'touch',
             }}
           >
-            <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '14px' }}>
+            <table style={{ width: '100%', minWidth: '480px', borderCollapse: 'collapse', fontSize: '14px' }}>
               <thead>
                 <tr style={{ backgroundColor: '#F7F7F5', borderBottom: '1px solid #E4E4E0' }}>
                   <th style={thStyle}>Layanan</th>
@@ -406,14 +408,16 @@ export default function TransaksiDetailView({
             Riwayat Pembayaran
           </h2>
           <div
+            className="table-container"
             style={{
               backgroundColor: '#FFFFFF',
               border: '1px solid #E4E4E0',
               borderRadius: '8px',
-              overflow: 'hidden',
+              overflowX: 'auto',
+              WebkitOverflowScrolling: 'touch',
             }}
           >
-            <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '14px' }}>
+            <table style={{ width: '100%', minWidth: '480px', borderCollapse: 'collapse', fontSize: '14px' }}>
               <thead>
                 <tr style={{ backgroundColor: '#F7F7F5', borderBottom: '1px solid #E4E4E0' }}>
                   <th style={thStyle}>Tanggal Pembayaran</th>
