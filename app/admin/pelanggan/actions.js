@@ -1,6 +1,7 @@
 'use server';
 
 import { supabaseAdmin } from '@/lib/supabaseAdmin';
+import { requireRole } from '@/lib/session';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 
@@ -18,6 +19,9 @@ function validasiPelanggan(formData) {
 }
 
 export async function tambahPelanggan(prevState, formData) {
+  const auth = await requireRole(['admin']);
+  if (!auth.ok) return { errors: { umum: auth.error } };
+
   const { nama, no_hp, alamat, errors } = validasiPelanggan(formData);
   if (Object.keys(errors).length > 0) return { errors };
 
@@ -35,6 +39,9 @@ export async function tambahPelanggan(prevState, formData) {
 }
 
 export async function updatePelanggan(id, prevState, formData) {
+  const auth = await requireRole(['admin']);
+  if (!auth.ok) return { errors: { umum: auth.error } };
+
   const { nama, no_hp, alamat, errors } = validasiPelanggan(formData);
   if (Object.keys(errors).length > 0) return { errors };
 
@@ -50,6 +57,9 @@ export async function updatePelanggan(id, prevState, formData) {
 }
 
 export async function hapusPelanggan(formData) {
+  const auth = await requireRole(['admin']);
+  if (!auth.ok) return;
+
   const id = formData.get('id_pelanggan');
   await supabaseAdmin.from('pelanggan').delete().eq('id_pelanggan', id);
   revalidatePath('/admin/pelanggan');
