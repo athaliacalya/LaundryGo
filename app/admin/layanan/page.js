@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { supabaseAdmin } from '@/lib/supabaseAdmin';
+import { bersihkanKataCari } from '@/lib/cari';
 import { hapusLayanan } from './actions';
 
 const PER_HALAMAN = 10;
@@ -15,6 +16,7 @@ function formatRupiah(angka) {
 export default async function LayananAdminPage({ searchParams }) {
   const sp = await searchParams;
   const cari = sp?.cari || '';
+  const kataKunci = bersihkanKataCari(cari);
   const halaman = parseInt(sp?.halaman || '1', 10);
   const error = sp?.error || '';
 
@@ -24,8 +26,8 @@ export default async function LayananAdminPage({ searchParams }) {
     .order('id_layanan', { ascending: true })
     .range((halaman - 1) * PER_HALAMAN, halaman * PER_HALAMAN - 1);
 
-  if (cari) {
-    query = query.ilike('nama_layanan', `%${cari}%`);
+  if (kataKunci) {
+    query = query.ilike('nama_layanan', `%${kataKunci}%`);
   }
 
   const { data: daftarLayanan, count } = await query;
