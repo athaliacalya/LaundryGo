@@ -1,6 +1,7 @@
 'use server';
 
 import { supabaseAdmin } from '@/lib/supabaseAdmin';
+import { requireRole } from '@/lib/session';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 
@@ -20,6 +21,9 @@ function validasiLayanan(formData) {
 }
 
 export async function tambahLayanan(prevState, formData) {
+  const auth = await requireRole(['admin']);
+  if (!auth.ok) return { errors: { umum: auth.error } };
+
   const { nama, satuan, harga, estimasi_hari, errors } = validasiLayanan(formData);
   if (Object.keys(errors).length > 0) return { errors };
 
@@ -38,6 +42,9 @@ export async function tambahLayanan(prevState, formData) {
 }
 
 export async function updateLayanan(id, prevState, formData) {
+  const auth = await requireRole(['admin']);
+  if (!auth.ok) return { errors: { umum: auth.error } };
+
   const { nama, satuan, harga, estimasi_hari, errors } = validasiLayanan(formData);
   if (Object.keys(errors).length > 0) return { errors };
 
@@ -59,6 +66,9 @@ export async function updateLayanan(id, prevState, formData) {
 }
 
 export async function hapusLayanan(formData) {
+  const auth = await requireRole(['admin']);
+  if (!auth.ok) return;
+
   const id = formData.get('id_layanan');
 
   // Validasi PRD: Layanan yang sudah dipakai transaksi tidak bisa dihapus
