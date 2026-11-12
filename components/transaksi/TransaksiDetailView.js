@@ -96,18 +96,39 @@ export default function TransaksiDetailView({
       {/* CSS untuk Cetak Nota */}
       <style>{`
         @media print {
-          aside, nav, .no-print, header {
+          /* Sembunyikan sidebar, topbar, overlay, dan elemen non-cetak */
+          aside,
+          nav,
+          header,
+          .no-print,
+          .app-sidebar,
+          .app-topbar,
+          .app-overlay {
             display: none !important;
           }
-          main {
-            padding: 0 !important;
+
+          /* Konten melebar penuh */
+          main,
+          .app-shell-main {
             margin: 0 !important;
+            padding: 0 !important;
+            width: 100% !important;
+            max-width: 100% !important;
           }
+          .app-shell-body {
+            display: block !important;
+          }
+
+          /* Latar putih, teks hitam */
           body {
             background-color: #FFFFFF !important;
             color: #000000 !important;
             font-family: 'Courier New', Courier, monospace !important;
+            margin: 0;
+            padding: 0;
           }
+
+          /* Sembunyikan tampilan layar, tampilkan nota */
           .screen-view {
             display: none !important;
           }
@@ -118,6 +139,16 @@ export default function TransaksiDetailView({
             padding: 10px !important;
             font-size: 12px !important;
             color: #000000 !important;
+          }
+
+          /* Nota muat satu halaman */
+          .print-nota {
+            page-break-inside: avoid !important;
+            break-inside: avoid !important;
+          }
+          @page {
+            size: auto;
+            margin: 10mm;
           }
         }
         @media screen {

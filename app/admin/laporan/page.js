@@ -73,37 +73,119 @@ export default async function LaporanPage({ searchParams }) {
       {/* Print styles */}
       <style>{`
         @media print {
-          aside, .no-print {
+          /* Sembunyikan sidebar, topbar, overlay, tombol, filter */
+          aside,
+          nav,
+          header,
+          .no-print,
+          .app-sidebar,
+          .app-topbar,
+          .app-overlay {
             display: none !important;
           }
-          main {
+
+          /* Konten melebar penuh tanpa margin kiri */
+          main,
+          .app-shell-main {
             margin: 0 !important;
             padding: 0 !important;
+            width: 100% !important;
+            max-width: 100% !important;
+          }
+          .app-shell-body {
+            display: block !important;
+          }
+
+          /* Latar putih, teks hitam */
+          * {
+            color-adjust: exact !important;
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
           }
           body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: #FFFFFF !important;
+            color: #000000 !important;
+            font-family: 'Plus Jakarta Sans', Arial, sans-serif;
+            font-size: 12px;
+            margin: 0;
+            padding: 0;
           }
+
+          /* Judul cetak tampil */
           .print-title {
             display: block !important;
           }
+
+          /* Header halaman (non-cetak) disembunyikan */
+          .screen-header {
+            display: none !important;
+          }
+
+          /* Tabel: header ulang tiap halaman, baris tidak terbelah */
+          thead {
+            display: table-header-group !important;
+          }
+          tr {
+            break-inside: avoid !important;
+            page-break-inside: avoid !important;
+          }
+          table {
+            width: 100% !important;
+            min-width: 0 !important;
+            border-collapse: collapse !important;
+            font-size: 11px !important;
+          }
+          th, td {
+            padding: 6px 10px !important;
+            border-bottom: 1px solid #D1D5DB !important;
+          }
+          th {
+            background-color: #F3F4F6 !important;
+            font-weight: 600 !important;
+            color: #374151 !important;
+            text-align: left !important;
+          }
+
+          /* Wadah tabel tidak perlu overflow saat cetak */
+          .table-container {
+            overflow: visible !important;
+            border: none !important;
+            box-shadow: none !important;
+          }
+
+          /* Kartu ringkasan cetak: border tipis */
+          .laporan-summary-grid {
+            display: grid !important;
+            grid-template-columns: 1fr 1fr !important;
+            gap: 12px !important;
+            margin-bottom: 16px !important;
+          }
+          .laporan-summary-grid > div {
+            border: 1px solid #D1D5DB !important;
+            border-radius: 4px !important;
+            padding: 12px !important;
+            background: #FFFFFF !important;
+          }
         }
+
+        /* Aturan non-cetak */
         .print-title {
           display: none;
         }
       `}</style>
 
-      {/* Print-only title */}
-      <div className="print-title" style={{ marginBottom: '16px', textAlign: 'center' }}>
-        <h1 style={{ fontSize: '18px', fontWeight: 700, color: '#1C1C1A', margin: 0 }}>
+      {/* Judul hanya tampil saat dicetak */}
+      <div className="print-title" style={{ marginBottom: '20px', textAlign: 'center' }}>
+        <h1 style={{ fontSize: '18px', fontWeight: 700, color: '#000000', margin: 0 }}>
           Laporan Pendapatan LaundryGo
         </h1>
-        <p style={{ fontSize: '13px', color: '#6B6B67', margin: '4px 0 0' }}>
+        <p style={{ fontSize: '13px', color: '#374151', margin: '4px 0 0' }}>
           Periode: {formatTanggal(dari)} – {formatTanggal(sampai)}
         </p>
       </div>
 
-      {/* Header */}
-      <div style={{ marginBottom: '20px' }}>
+      {/* Header (hanya di layar, tersembunyi saat cetak) */}
+      <div className="screen-header" style={{ marginBottom: '20px' }}>
         <h1
           style={{
             fontSize: '18px',
