@@ -209,15 +209,46 @@ export default function ResponsiveShell({ sidebar, children }) {
 
           /* Hilangkan scroll horizontal di layar 360px */
           .app-shell-main > div {
-            padding: 16px 12px !important;
+            padding: 16px !important;
             max-width: 100% !important;
             box-sizing: border-box !important;
           }
 
           /* Header halaman agar bisa wrap di layar kecil */
+          .page-header,
           .app-shell-main div[style*="justify-content: space-between"] {
-            flex-wrap: wrap;
-            gap: 12px;
+            flex-wrap: wrap !important;
+            gap: 12px !important;
+          }
+
+          /* Bar pencarian & filter turun baris dan memenuhi lebar di layar kecil */
+          .search-form {
+            width: 100% !important;
+            margin-bottom: 16px !important;
+          }
+          .search-form input,
+          .search-input {
+            width: 100% !important;
+            max-width: 100% !important;
+            box-sizing: border-box !important;
+          }
+
+          .report-filter-form {
+            width: 100% !important;
+            flex-wrap: wrap !important;
+            gap: 10px !important;
+          }
+          .report-filter-form > div {
+            flex: 1 1 130px !important;
+            min-width: 130px !important;
+          }
+          .report-filter-form input {
+            width: 100% !important;
+            box-sizing: border-box !important;
+          }
+          .report-filter-form button {
+            width: 100% !important;
+            margin-top: 4px !important;
           }
 
           /* Input / select tidak melebihi lebar layar */
@@ -227,16 +258,30 @@ export default function ResponsiveShell({ sidebar, children }) {
             box-sizing: border-box !important;
           }
 
-          /* Tabel scroll horizontal di dalam wadah tanpa melebarkan halaman */
-          .app-shell-main table {
-            display: block;
-            overflow-x: auto;
-            max-width: 100%;
+          /* Wadah tabel scroll horizontal di dalam wadah tanpa melebarkan halaman */
+          .table-container {
+            overflow-x: auto !important;
             -webkit-overflow-scrolling: touch;
+            width: 100% !important;
+            max-width: 100% !important;
           }
 
-          /* Grid kartu ringkasan dashboard fleksibel di layar kecil */
-          .app-shell-main div[style*="grid-template-columns: 1fr 1fr"] {
+          /* Grid kartu ringkasan dashboard: 2 kolom di < 768px */
+          .dashboard-grid {
+            grid-template-columns: 1fr 1fr !important;
+          }
+
+          .laporan-summary-grid {
+            grid-template-columns: 1fr 1fr !important;
+          }
+        }
+
+        /* Layar sangat kecil (< 480px): Grid kartu ringkasan jadi 1 kolom */
+        @media (max-width: 479px) {
+          .dashboard-grid {
+            grid-template-columns: 1fr !important;
+          }
+          .laporan-summary-grid {
             grid-template-columns: 1fr !important;
           }
         }

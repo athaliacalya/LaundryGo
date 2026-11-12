@@ -152,6 +152,7 @@ export default async function AdminDashboardPage() {
 
       {/* Summary Cards 2x2 */}
       <div
+        className="dashboard-grid"
         style={{
           display: 'grid',
           gridTemplateColumns: '1fr 1fr',
@@ -195,14 +196,16 @@ export default async function AdminDashboardPage() {
       </div>
 
       <div
+        className="table-container"
         style={{
           backgroundColor: '#FFFFFF',
           border: '1px solid #E4E4E0',
           borderRadius: '8px',
-          overflow: 'hidden',
+          overflowX: 'auto',
+          WebkitOverflowScrolling: 'touch',
         }}
       >
-        <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '14px' }}>
+        <table style={{ width: '100%', minWidth: '600px', borderCollapse: 'collapse', fontSize: '14px' }}>
           <thead>
             <tr style={{ backgroundColor: '#F7F7F5', borderBottom: '1px solid #E4E4E0' }}>
               <th style={thStyle}>No Nota</th>

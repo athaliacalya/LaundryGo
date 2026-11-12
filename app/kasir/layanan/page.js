@@ -43,11 +43,12 @@ export default async function LayananKasirPage({ searchParams }) {
       </div>
 
       {/* Pencarian */}
-      <form style={{ marginBottom: '16px' }}>
+      <form className="search-form" style={{ marginBottom: '16px' }}>
         <input
           name="cari"
           defaultValue={cari}
           placeholder="Cari nama layanan..."
+          className="search-input"
           style={{
             padding: '8px 12px',
             fontSize: '14px',
@@ -57,19 +58,22 @@ export default async function LayananKasirPage({ searchParams }) {
             borderRadius: '6px',
             outline: 'none',
             width: '260px',
+            maxWidth: '100%',
           }}
         />
       </form>
 
       <div
+        className="table-container"
         style={{
           backgroundColor: '#FFFFFF',
           border: '1px solid #E4E4E0',
           borderRadius: '8px',
-          overflow: 'hidden',
+          overflowX: 'auto',
+          WebkitOverflowScrolling: 'touch',
         }}
       >
-        <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '14px' }}>
+        <table style={{ width: '100%', minWidth: '500px', borderCollapse: 'collapse', fontSize: '14px' }}>
           <thead>
             <tr style={{ backgroundColor: '#F7F7F5', borderBottom: '1px solid #E4E4E0' }}>
               <th style={{ textAlign: 'left', padding: '10px 16px', fontWeight: 500, color: '#6B6B67', width: '40px' }}>No</th>

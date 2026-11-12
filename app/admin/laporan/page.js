@@ -122,7 +122,7 @@ export default async function LaporanPage({ searchParams }) {
       {/* Date Filter Form */}
       <form
         method="GET"
-        className="no-print"
+        className="no-print report-filter-form"
         style={{
           display: 'flex',
           alignItems: 'flex-end',
@@ -191,6 +191,7 @@ export default async function LaporanPage({ searchParams }) {
 
       {/* Summary Card */}
       <div
+        className="laporan-summary-grid"
         style={{
           display: 'grid',
           gridTemplateColumns: '1fr 1fr',
@@ -232,15 +233,17 @@ export default async function LaporanPage({ searchParams }) {
 
       {/* Table */}
       <div
+        className="table-container"
         style={{
           backgroundColor: '#FFFFFF',
           border: '1px solid #E4E4E0',
           borderRadius: '8px',
-          overflow: 'hidden',
+          overflowX: 'auto',
+          WebkitOverflowScrolling: 'touch',
           marginBottom: '16px',
         }}
       >
-        <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '14px' }}>
+        <table style={{ width: '100%', minWidth: '550px', borderCollapse: 'collapse', fontSize: '14px' }}>
           <thead>
             <tr style={{ backgroundColor: '#F7F7F5', borderBottom: '1px solid #E4E4E0' }}>
               <th style={thStyle}>No Nota</th>
@@ -292,7 +295,7 @@ export default async function LaporanPage({ searchParams }) {
       </div>
 
       {/* Export Buttons */}
-      <div className="no-print" style={{ display: 'flex', gap: '12px' }}>
+      <div className="no-print" style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
         <ExportCSV data={transaksi || []} dari={dari} sampai={sampai} />
         <PrintButton />
       </div>
