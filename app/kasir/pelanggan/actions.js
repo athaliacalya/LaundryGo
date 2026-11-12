@@ -1,6 +1,7 @@
 'use server';
 
 import { supabaseAdmin } from '@/lib/supabaseAdmin';
+import { requireLogin } from '@/lib/session';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 
@@ -18,6 +19,9 @@ function validasiPelanggan(formData) {
 }
 
 export async function tambahPelangganKasir(prevState, formData) {
+  const auth = await requireLogin();
+  if (!auth.ok) return { errors: { umum: auth.error } };
+
   const { nama, no_hp, alamat, errors } = validasiPelanggan(formData);
   if (Object.keys(errors).length > 0) return { errors };
 
