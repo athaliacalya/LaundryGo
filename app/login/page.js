@@ -141,6 +141,7 @@ export default function LoginPage() {
 
             {/* Kartu Solid Krem */}
             <div
+              className="login-card"
               style={{
                 width: '100%',
                 maxWidth: '400px',
@@ -196,14 +197,16 @@ export default function LoginPage() {
                     placeholder="contoh: kasir1"
                     style={{
                       width: '100%',
-                      height: '46px',
+                      minHeight: '44px',
+                      height: '48px',
                       padding: '0 12px',
-                      fontSize: '14px',
+                      fontSize: '16px',
                       color: '#12161C',
                       backgroundColor: '#FFFFFF',
                       border: '1px solid #C9C4B8',
                       borderRadius: '8px',
                       outline: 'none',
+                      boxSizing: 'border-box',
                     }}
                     onFocus={(e) => {
                       e.target.style.borderColor = '#12161C';
@@ -242,14 +245,16 @@ export default function LoginPage() {
                       placeholder="password Anda"
                       style={{
                         width: '100%',
-                        height: '46px',
-                        padding: '0 44px 0 12px',
-                        fontSize: '14px',
+                        minHeight: '44px',
+                        height: '48px',
+                        padding: '0 48px 0 12px',
+                        fontSize: '16px',
                         color: '#12161C',
                         backgroundColor: '#FFFFFF',
                         border: '1px solid #C9C4B8',
                         borderRadius: '8px',
                         outline: 'none',
+                        boxSizing: 'border-box',
                       }}
                       onFocus={(e) => {
                         e.target.style.borderColor = '#12161C';
@@ -270,8 +275,8 @@ export default function LoginPage() {
                         position: 'absolute',
                         right: '1px',
                         top: '1px',
-                        width: '44px',
-                        height: '44px',
+                        width: '46px',
+                        height: '46px',
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
@@ -357,13 +362,15 @@ export default function LoginPage() {
                 <button
                   type="submit"
                   disabled={loading}
+                  className="login-submit-btn"
                   style={{
                     width: '100%',
-                    height: '46px',
+                    minHeight: '48px',
+                    height: '48px',
                     borderRadius: '8px',
                     backgroundColor: loading ? '#2A313B' : '#12161C',
                     color: '#FFFFFF',
-                    fontSize: '14px',
+                    fontSize: '15px',
                     fontWeight: 600,
                     border: 'none',
                     cursor: loading ? 'not-allowed' : 'pointer',
@@ -383,6 +390,14 @@ export default function LoginPage() {
                   {loading ? 'Memeriksa...' : 'Masuk'}
                 </button>
               </form>
+
+              <style>{`
+                @media (max-width: 480px) {
+                  .login-card {
+                    padding: 24px 18px !important;
+                  }
+                }
+              `}</style>
             </div>
           </div>
         </div>

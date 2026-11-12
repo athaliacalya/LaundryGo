@@ -4,13 +4,16 @@ import { useState, useActionState } from 'react';
 
 const inputStyle = {
   width: '100%',
-  padding: '9px 12px',
-  fontSize: '14px',
+  minHeight: '44px',
+  padding: '10px 12px',
+  fontSize: '16px',
   color: '#1C1C1A',
   backgroundColor: '#FFFFFF',
   border: '1px solid #E4E4E0',
   borderRadius: '6px',
   outline: 'none',
+  boxSizing: 'border-box',
+  fontFamily: "'Plus Jakarta Sans', sans-serif",
 };
 
 const labelStyle = {
@@ -79,10 +82,19 @@ export default function PembayaranForm({ idTransaksi, sisaTagihan, catatPembayar
       )}
 
       <form action={formAction}>
-        <div style={{ display: 'flex', gap: '12px', alignItems: 'flex-end', flexWrap: 'wrap' }}>
-          <div style={{ flex: '1', minWidth: '150px' }}>
+        {/* Baris Dua Kolom: Jumlah Bayar & Metode (menjadi 1 kolom di layar < 640px) */}
+        <div
+          className="pembayaran-form-grid"
+          style={{
+            display: 'grid',
+            gridTemplateColumns: '1fr 1fr',
+            gap: '12px',
+            marginBottom: '16px',
+          }}
+        >
+          <div>
             <label htmlFor="jumlah_bayar" style={labelStyle}>
-              Jumlah Bayar
+              Jumlah Bayar (Rp) <span style={{ color: '#EF4444' }}>*</span>
             </label>
             <input
               id="jumlah_bayar"
@@ -97,9 +109,9 @@ export default function PembayaranForm({ idTransaksi, sisaTagihan, catatPembayar
               style={{ ...inputStyle, width: '100%' }}
             />
           </div>
-          <div style={{ flex: '1', minWidth: '130px' }}>
+          <div>
             <label htmlFor="metode" style={labelStyle}>
-              Metode
+              Metode Pembayaran <span style={{ color: '#EF4444' }}>*</span>
             </label>
             <select id="metode" name="metode" style={{ ...inputStyle, width: '100%' }}>
               <option value="tunai">Tunai</option>
@@ -107,44 +119,78 @@ export default function PembayaranForm({ idTransaksi, sisaTagihan, catatPembayar
               <option value="qris">QRIS</option>
             </select>
           </div>
-          <div style={{ display: 'flex', gap: '8px' }}>
-            <button
-              type="button"
-              onClick={() => setJumlah(String(sisaTagihan))}
-              style={{
-                padding: '9px 14px',
-                fontSize: '13px',
-                fontWeight: 500,
-                color: '#0F766E',
-                backgroundColor: '#ECFDF5',
-                border: '1px solid #A7F3D0',
-                borderRadius: '6px',
-                cursor: 'pointer',
-                whiteSpace: 'nowrap',
-              }}
-            >
-              Bayar Lunas
-            </button>
-            <button
-              type="submit"
-              disabled={isPending}
-              style={{
-                padding: '9px 16px',
-                fontSize: '13px',
-                fontWeight: 600,
-                color: '#FFFFFF',
-                backgroundColor: isPending ? '#0D9488' : '#0F766E',
-                border: 'none',
-                borderRadius: '6px',
-                cursor: isPending ? 'not-allowed' : 'pointer',
-                whiteSpace: 'nowrap',
-              }}
-            >
-              {isPending ? 'Menyimpan...' : 'Simpan Pembayaran'}
-            </button>
-          </div>
+        </div>
+
+        {/* Tombol Aksi */}
+        <div className="pembayaran-buttons-row" style={{ display: 'flex', gap: '8px', alignItems: 'center', flexWrap: 'wrap' }}>
+          <button
+            type="button"
+            onClick={() => setJumlah(String(sisaTagihan))}
+            className="bayar-lunas-btn"
+            style={{
+              padding: '10px 16px',
+              fontSize: '13px',
+              fontWeight: 500,
+              color: '#0F766E',
+              backgroundColor: '#ECFDF5',
+              border: '1px solid #A7F3D0',
+              borderRadius: '6px',
+              cursor: 'pointer',
+              whiteSpace: 'nowrap',
+            }}
+          >
+            Bayar Lunas
+          </button>
+          <button
+            type="submit"
+            disabled={isPending}
+            className="primary-btn"
+            style={{
+              padding: '10px 18px',
+              fontSize: '14px',
+              fontWeight: 600,
+              color: '#FFFFFF',
+              backgroundColor: isPending ? '#0D9488' : '#0F766E',
+              border: 'none',
+              borderRadius: '6px',
+              cursor: isPending ? 'not-allowed' : 'pointer',
+              whiteSpace: 'nowrap',
+            }}
+          >
+            {isPending ? 'Menyimpan...' : 'Simpan Pembayaran'}
+          </button>
         </div>
       </form>
+
+      <style>{`
+        @media (max-width: 639px) {
+          .pembayaran-form-grid {
+            grid-template-columns: 1fr !important;
+            gap: 12px !important;
+          }
+          .pembayaran-buttons-row {
+            flex-direction: column !important;
+            gap: 8px !important;
+          }
+          .pembayaran-buttons-row > button {
+            width: 100% !important;
+          }
+        }
+        @media (max-width: 767px) {
+          .primary-btn {
+            min-height: 48px !important;
+            display: inline-flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+          }
+          .bayar-lunas-btn {
+            min-height: 44px !important;
+            display: inline-flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+          }
+        }
+      `}</style>
     </div>
   );
 }

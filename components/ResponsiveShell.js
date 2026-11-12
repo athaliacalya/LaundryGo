@@ -251,11 +251,27 @@ export default function ResponsiveShell({ sidebar, children }) {
             margin-top: 4px !important;
           }
 
-          /* Input / select tidak melebihi lebar layar */
-          .app-shell-main input,
-          .app-shell-main select {
+          /* Input / select minimal 44px dengan font minimal 16px (mencegah auto-zoom iOS) */
+          .app-shell-main input:not([type="checkbox"]):not([type="radio"]),
+          .app-shell-main select,
+          .app-shell-main textarea {
+            min-height: 44px;
+            font-size: 16px !important;
             max-width: 100% !important;
             box-sizing: border-box !important;
+          }
+
+          /* Tombol utama minimal 48px di layar < 768px */
+          .primary-btn {
+            min-height: 48px !important;
+          }
+
+          /* Baris form dua kolom menjadi 1 kolom di layar < 640px */
+          @media (max-width: 639px) {
+            .form-row-2col {
+              grid-template-columns: 1fr !important;
+              gap: 12px !important;
+            }
           }
 
           /* Wadah tabel scroll horizontal di dalam wadah tanpa melebarkan halaman */
