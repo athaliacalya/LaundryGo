@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { supabaseAdmin } from '@/lib/supabaseAdmin';
+import { bersihkanKataCari } from '@/lib/cari';
 
 const PER_HALAMAN = 10;
 
@@ -65,6 +66,7 @@ const statusCucianStyle = (status) => {
 export default async function TransaksiAdminPage({ searchParams }) {
   const sp = await searchParams;
   const cari = sp?.cari || '';
+  const kataKunci = bersihkanKataCari(cari);
   const halaman = parseInt(sp?.halaman || '1', 10);
 
   let query = supabaseAdmin
@@ -73,8 +75,8 @@ export default async function TransaksiAdminPage({ searchParams }) {
     .order('tgl_masuk', { ascending: false })
     .range((halaman - 1) * PER_HALAMAN, halaman * PER_HALAMAN - 1);
 
-  if (cari) {
-    query = query.or(`id_transaksi.ilike.%${cari}%,pelanggan.nama_pelanggan.ilike.%${cari}%`);
+  if (kataKunci) {
+    query = query.or(`id_transaksi.ilike.%${kataKunci}%,pelanggan.nama_pelanggan.ilike.%${kataKunci}%`);
   }
 
   const { data: transaksi, count } = await query;
