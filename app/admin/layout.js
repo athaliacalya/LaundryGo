@@ -2,6 +2,7 @@ import { getSession } from '@/lib/session';
 import LogoutButton from '@/components/LogoutButton';
 import Logo from '@/components/Logo';
 import Link from 'next/link';
+import ResponsiveShell from '@/components/ResponsiveShell';
 
 // Komponen sidebar item — aktif ditandai dengan blok hijau muda
 function NavItem({ href, label, icon }) {
@@ -83,76 +84,42 @@ export default async function AdminLayout({ children }) {
     },
   ];
 
-  return (
-    <div
-      style={{
-        display: 'flex',
-        minHeight: '100vh',
-        backgroundColor: '#F7F7F5',
-        fontFamily: "'Plus Jakarta Sans', sans-serif",
-      }}
-    >
-      {/* Sidebar */}
-      <aside
+  const sidebar = (
+    <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
+      {/* Logo */}
+      <div style={{ padding: '4px 12px 20px', borderBottom: '1px solid #E4E4E0', marginBottom: '12px' }}>
+        <Logo textColor="#12161C" />
+      </div>
+
+      {/* Nav */}
+      <nav style={{ display: 'flex', flexDirection: 'column', gap: '2px', flex: 1 }}>
+        {navItems.map((item) => (
+          <NavItem key={item.href} {...item} />
+        ))}
+      </nav>
+
+      {/* User info + logout */}
+      <div
         style={{
-          width: '220px',
-          flexShrink: 0,
-          backgroundColor: '#FFFFFF',
-          borderRight: '1px solid #E4E4E0',
-          display: 'flex',
-          flexDirection: 'column',
-          padding: '20px 12px',
-          position: 'sticky',
-          top: 0,
-          height: '100vh',
-          overflowY: 'auto',
+          borderTop: '1px solid #E4E4E0',
+          paddingTop: '16px',
+          marginTop: '8px',
         }}
       >
-        {/* Logo */}
-        <div style={{ padding: '4px 12px 20px', borderBottom: '1px solid #E4E4E0', marginBottom: '12px' }}>
-          <Logo textColor="#12161C" />
-        </div>
-
-        {/* Nav */}
-        <nav style={{ display: 'flex', flexDirection: 'column', gap: '2px', flex: 1 }}>
-          {navItems.map((item) => (
-            <NavItem key={item.href} {...item} />
-          ))}
-        </nav>
-
-        {/* User info + logout */}
-        <div
-          style={{
-            borderTop: '1px solid #E4E4E0',
-            paddingTop: '16px',
-            marginTop: '8px',
-          }}
-        >
-          <p style={{ fontSize: '13px', fontWeight: 500, color: '#1C1C1A', marginBottom: '2px' }}>
-            {user?.nama_lengkap}
-          </p>
-          <p style={{ fontSize: '12px', color: '#9CA3AF', marginBottom: '10px' }}>
-            {user?.role}
-          </p>
-          <LogoutButton />
-        </div>
-      </aside>
-
-      {/* Konten utama */}
-      <main style={{ flex: 1, minWidth: 0 }}>
-        {children}
-      </main>
-
-      {/* Style sidebar link aktif via CSS global trick — pakai injeksi style */}
-      <style>{`
-        .sidebar-link:hover {
-          background-color: #F0FDF9;
-          color: #0F766E;
-        }
-        .sidebar-link:hover span {
-          color: #0F766E;
-        }
-      `}</style>
+        <p style={{ fontSize: '13px', fontWeight: 500, color: '#1C1C1A', marginBottom: '2px' }}>
+          {user?.nama_lengkap}
+        </p>
+        <p style={{ fontSize: '12px', color: '#9CA3AF', marginBottom: '10px' }}>
+          {user?.role}
+        </p>
+        <LogoutButton />
+      </div>
     </div>
+  );
+
+  return (
+    <ResponsiveShell sidebar={sidebar}>
+      {children}
+    </ResponsiveShell>
   );
 }
