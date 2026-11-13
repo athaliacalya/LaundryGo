@@ -115,12 +115,13 @@ export default function TransaksiForm({ action, pelangganList, layananList, back
       {/* Tanggal Masuk */}
       <div style={{ marginBottom: '20px' }}>
         <label htmlFor="tgl_masuk" style={labelStyle}>
-          Tanggal Masuk
+          Tanggal Masuk <span style={{ color: '#EF4444' }}>*</span>
         </label>
         <input
           id="tgl_masuk"
           name="tgl_masuk"
           type="datetime-local"
+          required
           defaultValue={new Date().toISOString().slice(0, 16)}
           style={{ ...inputStyle, width: '100%', maxWidth: '280px' }}
         />
@@ -199,6 +200,7 @@ export default function TransaksiForm({ action, pelangganList, layananList, back
                         type="number"
                         step="0.1"
                         min="0.1"
+                        inputMode="decimal"
                         value={item.jumlah}
                         onChange={(e) => updateItem(idx, 'jumlah', e.target.value)}
                         required
@@ -273,7 +275,9 @@ export default function TransaksiForm({ action, pelangganList, layananList, back
             <input
               id="bayar_awal"
               type="number"
-              min="0"
+              min={0}
+              step={1}
+              inputMode="numeric"
               value={bayarAwal}
               onChange={(e) => setBayarAwal(e.target.value)}
               placeholder="Nominal DP (0)"
@@ -287,6 +291,7 @@ export default function TransaksiForm({ action, pelangganList, layananList, back
             <select
               id="metode_bayar"
               name="metode_bayar"
+              required
               style={{ ...inputStyle, minHeight: '44px', fontSize: '16px' }}
             >
               <option value="tunai">Tunai</option>
