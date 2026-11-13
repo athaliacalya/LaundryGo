@@ -194,6 +194,8 @@ export default function LoginPage() {
                     onChange={(e) => setUsername(e.target.value)}
                     autoComplete="username"
                     required
+                    minLength={3}
+                    maxLength={50}
                     placeholder="contoh: kasir1"
                     style={{
                       width: '100%',
@@ -242,6 +244,7 @@ export default function LoginPage() {
                       onChange={(e) => setPassword(e.target.value)}
                       autoComplete="current-password"
                       required
+                      minLength={1}
                       placeholder="password Anda"
                       style={{
                         width: '100%',

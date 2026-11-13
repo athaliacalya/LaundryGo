@@ -100,8 +100,10 @@ export default function PembayaranForm({ idTransaksi, sisaTagihan, catatPembayar
               id="jumlah_bayar"
               name="jumlah_bayar"
               type="number"
-              min="1"
+              min={1}
               max={sisaTagihan}
+              step={1}
+              inputMode="numeric"
               required
               value={jumlah}
               onChange={(e) => setJumlah(e.target.value)}
@@ -113,7 +115,7 @@ export default function PembayaranForm({ idTransaksi, sisaTagihan, catatPembayar
             <label htmlFor="metode" style={labelStyle}>
               Metode Pembayaran <span style={{ color: '#EF4444' }}>*</span>
             </label>
-            <select id="metode" name="metode" style={{ ...inputStyle, width: '100%' }}>
+            <select id="metode" name="metode" required style={{ ...inputStyle, width: '100%' }}>
               <option value="tunai">Tunai</option>
               <option value="transfer">Transfer</option>
               <option value="qris">QRIS</option>

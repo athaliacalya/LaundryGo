@@ -38,6 +38,8 @@ export default function LayananForm({ action, initialData, isEdit = false }) {
           name="nama_layanan"
           type="text"
           required
+          minLength={3}
+          maxLength={100}
           defaultValue={initialData?.nama_layanan || ''}
           placeholder="contoh: Cuci Setrika, Bed Cover"
           style={{
@@ -115,8 +117,9 @@ export default function LayananForm({ action, initialData, isEdit = false }) {
             id="harga"
             name="harga"
             type="number"
-            min="100"
-            step="100"
+            min={100}
+            step={100}
+            inputMode="numeric"
             required
             defaultValue={initialData?.harga ?? ''}
             placeholder="contoh: 7000"
@@ -151,8 +154,9 @@ export default function LayananForm({ action, initialData, isEdit = false }) {
           id="estimasi_hari"
           name="estimasi_hari"
           type="number"
-          min="1"
-          max="30"
+          min={1}
+          max={30}
+          inputMode="numeric"
           required
           defaultValue={initialData?.estimasi_hari ?? 2}
           placeholder="contoh: 2"

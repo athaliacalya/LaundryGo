@@ -52,9 +52,14 @@ export default function PelangganForm({ action, initialData, submitLabel }) {
 
       {/* Nama */}
       <div>
-        <label style={labelStyle}>Nama Pelanggan</label>
+        <label style={labelStyle}>
+          Nama Pelanggan <span style={{ color: '#EF4444' }}>*</span>
+        </label>
         <input
           name="nama_pelanggan"
+          required
+          minLength={3}
+          maxLength={100}
           defaultValue={initialData?.nama_pelanggan}
           placeholder="Contoh: Budi Santoso"
           style={inputStyle}
@@ -68,9 +73,18 @@ export default function PelangganForm({ action, initialData, submitLabel }) {
 
       {/* No HP */}
       <div>
-        <label style={labelStyle}>No HP</label>
+        <label style={labelStyle}>
+          No HP <span style={{ color: '#EF4444' }}>*</span>
+        </label>
         <input
           name="no_hp"
+          type="tel"
+          pattern="0[0-9]{9,14}"
+          inputMode="numeric"
+          required
+          minLength={10}
+          maxLength={15}
+          title="Nomor HP harus diawali 0 dan terdiri dari 10-15 digit angka"
           defaultValue={initialData?.no_hp}
           placeholder="Contoh: 081234567890"
           style={inputStyle}
@@ -84,10 +98,13 @@ export default function PelangganForm({ action, initialData, submitLabel }) {
 
       {/* Alamat */}
       <div>
-        <label style={labelStyle}>Alamat</label>
+        <label style={labelStyle}>
+          Alamat <span style={{ color: '#EF4444' }}>*</span>
+        </label>
         <textarea
           name="alamat"
           rows={3}
+          required
           defaultValue={initialData?.alamat}
           placeholder="Jl. Contoh No. 1, Kota..."
           style={{ ...inputStyle, resize: 'vertical', lineHeight: '1.5' }}
