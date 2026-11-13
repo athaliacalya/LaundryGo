@@ -17,19 +17,35 @@ export default function LogoutButton() {
         className="logout-btn"
         style={{
           fontSize: '13px',
-          color: '#9CA3AF',
+          fontWeight: 500,
+          color: '#64748B',
           background: 'none',
           border: 'none',
           cursor: 'pointer',
-          padding: '4px 0',
+          padding: '6px 8px',
+          borderRadius: '6px',
           fontFamily: "'Plus Jakarta Sans', sans-serif",
           display: 'inline-flex',
           alignItems: 'center',
+          gap: '8px',
+          width: '100%',
+          transition: 'all 0.15s ease',
         }}
-        onMouseOver={(e) => (e.currentTarget.style.color = '#EF4444')}
-        onMouseOut={(e) => (e.currentTarget.style.color = '#9CA3AF')}
+        onMouseOver={(e) => {
+          e.currentTarget.style.color = '#DC2626';
+          e.currentTarget.style.backgroundColor = '#FEF2F2';
+        }}
+        onMouseOut={(e) => {
+          e.currentTarget.style.color = '#64748B';
+          e.currentTarget.style.backgroundColor = 'transparent';
+        }}
       >
-        Keluar
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4" />
+          <polyline points="16 17 21 12 16 7" />
+          <line x1="21" y1="12" x2="9" y2="12" />
+        </svg>
+        <span>Keluar dari Akun</span>
       </button>
 
       <style>{`
