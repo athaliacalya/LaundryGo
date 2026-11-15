@@ -39,7 +39,7 @@ export default function StatusCucianButton({ idTransaksi, currentStatus, updateA
       } else {
         router.refresh();
       }
-    } catch (e) {
+    } catch {
       setError('Gagal mengubah status cucian.');
     } finally {
       setLoading(false);
