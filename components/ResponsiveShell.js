@@ -1,17 +1,19 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { usePathname } from 'next/navigation';
 import Logo from '@/components/Logo';
 
 export default function ResponsiveShell({ sidebar, children }) {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
+  const [prevPathname, setPrevPathname] = useState(pathname);
 
   // Otomatis menutup drawer jika rute berpindah
-  useEffect(() => {
+  if (prevPathname !== pathname) {
+    setPrevPathname(pathname);
     setIsOpen(false);
-  }, [pathname]);
+  }
 
   // Menutup drawer bila link menu atau tombol di dalam sidebar diklik
   function handleSidebarClick(e) {
