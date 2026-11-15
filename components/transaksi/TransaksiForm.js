@@ -54,14 +54,13 @@ export default function TransaksiForm({ action, pelangganList, layananList, back
 
   // Hitung total
   const layananMap = new Map((layananList || []).map((l) => [String(l.id_layanan), l]));
-  let totalBayar = 0;
   const itemsDetail = items.map((item) => {
     const l = layananMap.get(String(item.id_layanan));
     const jumlah = parseFloat(item.jumlah) || 0;
     const subtotal = l ? Math.round(jumlah * l.harga) : 0;
-    totalBayar += subtotal;
     return { ...item, layanan: l, jumlah, subtotal };
   });
+  const totalBayar = itemsDetail.reduce((sum, item) => sum + item.subtotal, 0);
 
   return (
     <form
