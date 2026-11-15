@@ -42,7 +42,7 @@ export default function LoginPage() {
 
       router.push(data.role === 'admin' ? '/admin' : '/kasir/transaksi');
       router.refresh();
-    } catch (err) {
+    } catch {
       setLoading(false);
       setErrorMsg('Gagal terhubung ke server. Periksa koneksi Anda.');
     }
@@ -55,17 +55,21 @@ export default function LoginPage() {
   }
 
   return (
+    /* Latar halaman dengan gradasi halus navy ke dark teal dan tinggi minimal 100vh */
     <main
-      className={`${poppins.className} min-h-screen w-full flex items-center justify-center p-4 sm:p-6 md:p-8`}
+      className={`${poppins.className} w-full flex items-center justify-center p-4 sm:p-6 md:p-8`}
       style={{
-        backgroundColor: '#0F172A',
-        backgroundImage: 'radial-gradient(circle at 50% 20%, #1E293B 0%, #0F172A 100%)',
+        minHeight: '100vh',
+        background: 'linear-gradient(135deg, #0F172A 0%, #134E4A 100%)',
       }}
     >
-      {/* Box Login Utama */}
+      {/* Kartu login utama dengan bayangan lembut */}
       <div
-        className="w-full max-w-4xl bg-white rounded-2xl shadow-2xl overflow-hidden flex flex-col md:flex-row border border-slate-700/40"
-        style={{ minHeight: '520px' }}
+        className="w-full max-w-4xl bg-white rounded-2xl overflow-hidden flex flex-col md:flex-row border border-slate-700/40"
+        style={{
+          minHeight: '520px',
+          boxShadow: '0 25px 60px rgba(0, 0, 0, 0.35)',
+        }}
       >
         {/* Kolom Kiri / Visual Showcase (Foto Mesin Cuci) */}
         <div className="relative w-full md:w-5/12 min-h-[160px] md:min-h-full flex flex-col justify-between p-6 sm:p-8 text-white select-none">
