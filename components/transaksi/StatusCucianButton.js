@@ -50,7 +50,7 @@ export default function StatusCucianButton({ idTransaksi, currentStatus, updateA
     <div
       style={{
         backgroundColor: '#FFFFFF',
-        border: '1px solid #E4E4E0',
+        border: '1px solid #E5E7EB',
         borderRadius: '8px',
         padding: '20px',
       }}
