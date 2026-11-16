@@ -18,7 +18,7 @@ export default async function TambahTransaksiAdminPage() {
     <div
       style={{
         padding: '28px 32px',
-        fontFamily: "'Plus Jakarta Sans', sans-serif",
+        fontFamily: 'inherit',
         maxWidth: '960px',
       }}
     >
