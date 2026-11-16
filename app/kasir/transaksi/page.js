@@ -1,14 +1,9 @@
 import Link from 'next/link';
 import { supabaseAdmin } from '@/lib/supabaseAdmin';
 import { bersihkanKataCari } from '@/lib/cari';
+import { formatTanggal } from '@/lib/waktu';
 
 const PER_HALAMAN = 10;
-
-function formatTanggal(str) {
-  if (!str) return '—';
-  const d = new Date(str);
-  return d.toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' });
-}
 
 function formatRupiah(angka) {
   return new Intl.NumberFormat('id-ID', {
