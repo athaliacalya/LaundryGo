@@ -98,9 +98,9 @@ export default async function IndexPage({ searchParams }) {
   const currentStepIdx = hasilLacak ? stepStatus.indexOf(hasilLacak.status_cucian) : -1;
 
   return (
-    <div className={`${poppins.className} min-h-screen bg-slate-50 text-slate-800 flex flex-col`}>
-      {/* 1. Header / Navbar Publik */}
-      <header className="sticky top-0 z-30 bg-white/95 backdrop-blur-md border-b border-slate-200">
+    <div className={`${poppins.className} min-h-screen bg-slate-50 text-slate-800 flex flex-col overflow-x-hidden`}>
+      {/* 1. Header / Navbar Publik dengan latar putih solid */}
+      <header className="sticky top-0 z-40 bg-white border-b border-[#E5E7EB]">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-2 text-decoration-none">
             <Logo textColor="#0F172A" />
@@ -371,43 +371,89 @@ export default async function IndexPage({ searchParams }) {
       {/* 4. Section Layanan & Tarif */}
       <section id="layanan" className="py-16 bg-slate-50">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-2xl mx-auto mb-12">
+          {/* Header Section Rata Tengah */}
+          <div className="text-center max-w-2xl mx-auto mb-10">
             <h2 className="text-2xl sm:text-3xl font-bold text-slate-900">
-              Paket Layanan &amp; Tarif Kami
+              Paket Layanan &amp; Tarif
             </h2>
             <p className="text-xs sm:text-sm text-slate-500 mt-2">
-              Harga transparan dan terjangkau dengan hasil cucian wangi, bersih, dan higienis.
+              Harga per satuan, tanpa biaya tambahan.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {/* Pembungkus Kartu Tarif Rata Tengah */}
+          <div
+            style={{
+              maxWidth: '1100px',
+              margin: '0 auto',
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
+              gap: '20px',
+              width: '100%',
+              boxSizing: 'border-box',
+            }}
+          >
             {daftarLayanan.map((item) => (
               <div
                 key={item.id_layanan}
-                className="bg-white rounded-lg border border-[#E5E7EB] p-6 flex flex-col justify-between transition"
+                style={{
+                  backgroundColor: '#FFFFFF',
+                  borderRadius: '8px',
+                  border: '1px solid #E5E7EB',
+                  boxShadow: 'none',
+                  padding: '24px',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'space-between',
+                }}
               >
                 <div>
-                  <div className="w-10 h-10 rounded-md bg-teal-50 text-teal-700 flex items-center justify-center font-bold mb-4">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <circle cx="12" cy="12" r="9" />
-                      <path d="M12 6v6l4 2" />
-                    </svg>
-                  </div>
-                  <h3 className="font-bold text-slate-900 text-base mb-1">
+                  {/* Nama Layanan (18px, semibold) */}
+                  <h3
+                    style={{
+                      fontSize: '18px',
+                      fontWeight: 600,
+                      color: '#0F172A',
+                      margin: '0 0 12px 0',
+                    }}
+                  >
                     {item.nama_layanan}
                   </h3>
-                  <div className="text-xs text-slate-500 mb-4">
-                    Estimasi pengerjaan: <span className="font-semibold text-slate-700">{item.estimasi_hari} hari</span>
+
+                  {/* Harga besar 28px hijau #0F766E dengan satuan kecil abu */}
+                  <div style={{ display: 'flex', alignItems: 'baseline', gap: '4px', marginBottom: '16px' }}>
+                    <span
+                      style={{
+                        fontSize: '28px',
+                        fontWeight: 700,
+                        color: '#0F766E',
+                        lineHeight: 1.1,
+                      }}
+                    >
+                      {formatRupiah(item.harga)}
+                    </span>
+                    <span
+                      style={{
+                        fontSize: '13px',
+                        color: '#94A3B8',
+                        fontWeight: 500,
+                      }}
+                    >
+                      / {item.satuan}
+                    </span>
                   </div>
                 </div>
 
-                <div className="pt-4 border-t border-slate-100 flex items-baseline justify-between">
-                  <div>
-                    <span className="text-xl font-extrabold text-teal-700">
-                      {formatRupiah(item.harga)}
-                    </span>
-                    <span className="text-xs text-slate-400 font-medium">/{item.satuan}</span>
-                  </div>
+                {/* Garis tipis dan estimasi hari tanpa ikon */}
+                <div
+                  style={{
+                    borderTop: '1px solid #E5E7EB',
+                    paddingTop: '14px',
+                    fontSize: '13px',
+                    color: '#64748B',
+                  }}
+                >
+                  Estimasi {item.estimasi_hari} hari
                 </div>
               </div>
             ))}
