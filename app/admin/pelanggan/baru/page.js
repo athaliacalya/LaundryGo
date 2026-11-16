@@ -7,7 +7,7 @@ export default function TambahPelangganPage() {
     <div
       style={{
         padding: '28px 32px',
-        fontFamily: "'Plus Jakarta Sans', sans-serif",
+        fontFamily: 'inherit',
         maxWidth: '600px',
       }}
     >
