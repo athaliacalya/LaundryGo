@@ -176,19 +176,55 @@ Aplikasi ini dibangun menggunakan **Node.js (Next.js App Router)** dan database 
 
 ## 6. Tangkapan Layar Aplikasi (Screenshots)
 
-Berikut adalah dokumentasi tangkapan layar antarmuka aplikasi LaundryGo:
+Berikut adalah dokumentasi visual antarmuka sistem **LaundryGo**:
 
-| No | Halaman / Fitur | File Tangkapan Layar | Deskripsi |
-|:---:|---|---|---|
-| 1 | **Halaman Masuk (Login)** | `docs/screenshots/01-login.png` | Antarmuka masuk petugas dengan pilihan akun cepat (`admin` dan `kasir1`). |
-| 2 | **Dashboard Admin** | `docs/screenshots/02-dashboard-admin.png` | Ringkasan metrik harian (Transaksi, Pendapatan, Cucian Diproses, Belum Lunas) & 5 transaksi terbaru. |
-| 3 | **Daftar Pelanggan** | `docs/screenshots/03-daftar-pelanggan.png` | Manajemen data pelanggan dengan fitur pencarian instan dan pagination 10 data. |
-| 4 | **Form Transaksi Baru** | `docs/screenshots/04-transaksi-baru.png` | Input multi-layanan (kiloan/satuan), kalkulasi otomatis subtotal & estimasi selesai, serta DP. |
-| 5 | **Detail Transaksi** | `docs/screenshots/05-detail-transaksi.png` | Rincian lengkap item layanan, riwayat pembayaran bertahap, dan pembaruan status cucian. |
-| 6 | **Pratinjau Nota Cetak** | `docs/screenshots/06-nota-cetak.png` | Format cetak struk nota 1 lembar bersih siap cetak ke printer/PDF (`window.print`). |
-| 7 | **Laporan Pendapatan** | `docs/screenshots/07-laporan-pendapatan.png` | Filter rentang tanggal (WIB), ringkasan omzet, serta tombol Cetak PDF dan Ekspor Excel (CSV). |
-| 8 | **Transaksi Kasir** | `docs/screenshots/08-transaksi-kasir.png` | Antarmuka operasional kasir dengan batasan hak akses menu tanpa laporan keuangan. |
-| 9 | **Daftar Layanan & Tarif** | `docs/screenshots/09-daftar-layanan.png` | Pengelolaan data master layanan cucian, satuan, tarif harga, dan estimasi hari pengerjaan. |
+### 1. Halaman Masuk (Login)
+> Antarmuka autentikasi petugas dengan pilihan akun cepat (`admin` dan `kasir1`).
+![Halaman Masuk (Login)](docs/screenshots/01-login.png)
+
+---
+
+### 2. Dashboard Administrator
+> Ringkasan metrik harian (Transaksi Hari Ini, Pendapatan Hari Ini, Cucian Diproses, Belum Lunas) dan tabel 5 transaksi terbaru.
+![Dashboard Admin](docs/screenshots/02-dashboard-admin.png)
+
+---
+
+### 3. Manajemen Pelanggan (CRUD, Pencarian & Pagination)
+> Pengelolaan data master pelanggan dengan kotak pencarian instan dan navigasi halaman.
+![Daftar Pelanggan](docs/screenshots/03-daftar-pelanggan.png)
+
+---
+
+### 4. Form Transaksi Baru (Multi-Layanan & Kalkulasi Otomatis)
+> Formulir pemesanan dengan penambahan beberapa item cucian sekaligus, kalkulasi total otomatis, dan opsi DP.
+![Form Transaksi Baru](docs/screenshots/04-transaksi-baru.png)
+
+---
+
+### 5. Detail Transaksi & Riwayat Pembayaran
+> Rincian nota cucian, riwayat pembayaran bertahap, serta kontrol perubahan status pengerjaan.
+![Detail Transaksi](docs/screenshots/05-detail-transaksi.png)
+
+---
+
+### 6. Pratinjau Cetak Nota Struk
+> Format cetak nota ringkas satu lembar siap cetak langsung ke printer kasir atau disimpan sebagai PDF.
+<p align="center">
+  <img src="docs/screenshots/06-nota-cetak.png" alt="Pratinjau Nota Cetak" width="480" />
+</p>
+
+---
+
+### 7. Laporan Pendapatan (Filter Tanggal, Cetak PDF & Ekspor Excel)
+> Rekapitulasi omzet dengan filter periode tanggal WIB, cetak dokumen PDF, serta ekspor file CSV (Excel).
+![Laporan Pendapatan](docs/screenshots/07-laporan-pendapatan.png)
+
+---
+
+### 8. Antarmuka Kasir (Perbedaan Hak Akses)
+> Tampilan operasional kasir dengan menu terisolasi (tanpa menu Laporan Pendapatan).
+![Transaksi Kasir](docs/screenshots/08-transaksi-kasir.png)
 
 ---
 
