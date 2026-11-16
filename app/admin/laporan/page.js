@@ -1,34 +1,26 @@
 import { supabaseAdmin } from '@/lib/supabaseAdmin';
 import ExportCSV from '@/components/laporan/ExportCSV';
-
-// Format tanggal: "16 Okt 2026"
-function formatTanggal(str) {
-  if (!str) return '—';
-  const d = new Date(str);
-  return d.toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' });
-}
+import PrintButton from '@/components/laporan/PrintButton';
+import { formatTanggal, tanggalHariIniWIB, awalBulanWIB, awalAkhirHariWIB } from '@/lib/waktu';
 
 // Format mata uang
 function formatRupiah(val) {
   return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(val || 0);
 }
 
-import PrintButton from '@/components/laporan/PrintButton';
-
 export default async function LaporanPage({ searchParams }) {
   const sp = await searchParams;
 
-  // Default: dari = first day of current month, sampai = today
-  const now = new Date();
-  const defaultDari = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-01`;
-  const defaultSampai = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
+  // Default: dari = awal bulan (WIB), sampai = hari ini (WIB)
+  const defaultDari = awalBulanWIB();
+  const defaultSampai = tanggalHariIniWIB();
 
   const dari = sp?.dari || defaultDari;
   const sampai = sp?.sampai || defaultSampai;
 
-  // Date range: dari 00:00 to sampai 23:59:59
-  const dariISO = new Date(dari + 'T00:00:00').toISOString();
-  const sampaiISO = new Date(sampai + 'T23:59:59').toISOString();
+  // Rentang tanggal menurut WIB dikonversi ke ISO string UTC
+  const dariISO = awalAkhirHariWIB(dari).awal;
+  const sampaiISO = awalAkhirHariWIB(sampai).akhir;
 
   // Fetch transaksi in range
   const { data: transaksi } = await supabaseAdmin
