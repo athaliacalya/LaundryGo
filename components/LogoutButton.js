@@ -24,7 +24,7 @@ export default function LogoutButton() {
           cursor: 'pointer',
           padding: '6px 8px',
           borderRadius: '6px',
-          fontFamily: "'Plus Jakarta Sans', sans-serif",
+          fontFamily: 'inherit',
           display: 'inline-flex',
           alignItems: 'center',
           gap: '8px',
