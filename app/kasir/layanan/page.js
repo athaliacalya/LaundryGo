@@ -29,7 +29,7 @@ export default async function LayananKasirPage({ searchParams }) {
     <div
       style={{
         padding: '28px 32px',
-        fontFamily: "'Plus Jakarta Sans', sans-serif",
+        fontFamily: 'inherit',
         maxWidth: '880px',
       }}
     >
@@ -54,7 +54,7 @@ export default async function LayananKasirPage({ searchParams }) {
             fontSize: '14px',
             color: '#1C1C1A',
             backgroundColor: '#FFFFFF',
-            border: '1px solid #E4E4E0',
+            border: '1px solid #E5E7EB',
             borderRadius: '6px',
             outline: 'none',
             width: '260px',
@@ -67,7 +67,7 @@ export default async function LayananKasirPage({ searchParams }) {
         className="table-container"
         style={{
           backgroundColor: '#FFFFFF',
-          border: '1px solid #E4E4E0',
+          border: '1px solid #E5E7EB',
           borderRadius: '8px',
           overflowX: 'auto',
           WebkitOverflowScrolling: 'touch',
@@ -75,7 +75,7 @@ export default async function LayananKasirPage({ searchParams }) {
       >
         <table style={{ width: '100%', minWidth: '500px', borderCollapse: 'collapse', fontSize: '14px' }}>
           <thead>
-            <tr style={{ backgroundColor: '#F7F7F5', borderBottom: '1px solid #E4E4E0' }}>
+            <tr style={{ backgroundColor: '#F7F7F5', borderBottom: '1px solid #E5E7EB' }}>
               <th style={{ textAlign: 'left', padding: '10px 16px', fontWeight: 500, color: '#6B6B67', width: '40px' }}>No</th>
               <th style={{ textAlign: 'left', padding: '10px 16px', fontWeight: 500, color: '#6B6B67' }}>Nama Layanan</th>
               <th style={{ textAlign: 'left', padding: '10px 16px', fontWeight: 500, color: '#6B6B67' }}>Satuan</th>
