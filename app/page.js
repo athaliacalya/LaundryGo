@@ -132,7 +132,7 @@ export default async function IndexPage({ searchParams }) {
             {user ? (
               <Link
                 href={user.role === 'admin' ? '/admin' : '/kasir/transaksi'}
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-teal-700 hover:bg-teal-800 text-white text-xs sm:text-sm font-semibold shadow-sm transition"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-teal-700 hover:bg-teal-800 text-white text-xs sm:text-sm font-semibold transition"
               >
                 <span>Dashboard ({user.nama_lengkap.split(' ')[0]})</span>
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -143,7 +143,7 @@ export default async function IndexPage({ searchParams }) {
             ) : (
               <Link
                 href="/login"
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-teal-700 hover:bg-teal-800 text-white text-xs sm:text-sm font-semibold shadow-sm transition"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-teal-700 hover:bg-teal-800 text-white text-xs sm:text-sm font-semibold transition"
               >
                 <span>Masuk ke Sistem</span>
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -189,13 +189,13 @@ export default async function IndexPage({ searchParams }) {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 max-w-md mx-auto">
             <a
               href="#lacak"
-              className="w-full sm:w-auto px-6 py-3 rounded-lg bg-teal-500 hover:bg-teal-400 text-slate-950 font-bold text-sm shadow-lg transition"
+              className="w-full sm:w-auto px-6 py-3 rounded-md bg-teal-500 hover:bg-teal-400 text-slate-950 font-bold text-sm transition"
             >
               Lacak Status Cucian Anda
             </a>
             <Link
               href="/login"
-              className="w-full sm:w-auto px-6 py-3 rounded-lg bg-white/10 hover:bg-white/20 text-white border border-white/20 font-semibold text-sm transition"
+              className="w-full sm:w-auto px-6 py-3 rounded-md bg-white/10 hover:bg-white/20 text-white border border-white/20 font-semibold text-sm transition"
             >
               Portal Petugas (Login)
             </Link>
@@ -204,7 +204,7 @@ export default async function IndexPage({ searchParams }) {
       </section>
 
       {/* 3. Section Cek Status Cucian (Tracking) */}
-      <section id="lacak" className="py-12 sm:py-16 bg-white border-b border-slate-200">
+      <section id="lacak" className="py-12 sm:py-16 bg-white border-b border-[#E5E7EB]">
         <div className="max-w-4xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-8">
             <h2 className="text-2xl sm:text-3xl font-bold text-slate-900">
@@ -224,7 +224,7 @@ export default async function IndexPage({ searchParams }) {
                 defaultValue={notaQuery}
                 placeholder="Masukkan Nomor Nota (mis. T0001)..."
                 required
-                className="w-full h-12 pl-11 pr-4 rounded-lg border border-slate-300 text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-teal-600 focus:border-teal-600 text-sm font-medium"
+                className="w-full h-12 pl-11 pr-4 rounded-md border border-[#E5E7EB] text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-teal-600 focus:border-teal-600 text-sm font-medium"
               />
               <svg
                 width="18"
@@ -243,7 +243,7 @@ export default async function IndexPage({ searchParams }) {
             </div>
             <button
               type="submit"
-              className="h-12 px-6 rounded-lg bg-teal-700 hover:bg-teal-800 text-white font-semibold text-sm shadow transition shrink-0"
+              className="h-12 px-6 rounded-md bg-teal-700 hover:bg-teal-800 text-white font-semibold text-sm transition shrink-0"
             >
               Cek Status
             </button>
@@ -251,7 +251,7 @@ export default async function IndexPage({ searchParams }) {
 
           {/* Alert Jika Tidak Ditemukan */}
           {statusLacak === 'not_found' && (
-            <div className="max-w-xl mx-auto p-4 rounded-xl bg-amber-50 border border-amber-200 text-amber-800 text-sm flex items-start gap-3">
+            <div className="max-w-xl mx-auto p-4 rounded-lg bg-amber-50 border border-amber-200 text-amber-800 text-sm flex items-start gap-3">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="shrink-0 text-amber-600 mt-0.5">
                 <circle cx="12" cy="12" r="10" />
                 <line x1="12" y1="8" x2="12" y2="12" />
@@ -268,8 +268,8 @@ export default async function IndexPage({ searchParams }) {
 
           {/* Hasil Pelacakan Cucian */}
           {statusLacak === 'found' && hasilLacak && (
-            <div className="max-w-2xl mx-auto bg-slate-50 border border-slate-200 rounded-2xl p-6 sm:p-8 shadow-sm">
-              <div className="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-slate-200">
+            <div className="max-w-2xl mx-auto bg-slate-50 border border-[#E5E7EB] rounded-lg p-6 sm:p-8">
+              <div className="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-[#E5E7EB]">
                 <div>
                   <div className="text-xs font-semibold uppercase tracking-wider text-teal-700">
                     Nomor Nota
@@ -298,12 +298,12 @@ export default async function IndexPage({ searchParams }) {
                     return (
                       <div
                         key={step}
-                        className={`p-3 rounded-xl border text-center transition ${
+                        className={`p-3 rounded-lg border text-center transition ${
                           isCurrent
                             ? 'bg-teal-50 border-teal-500 ring-2 ring-teal-500/20'
                             : isDone
                             ? 'bg-emerald-50 border-emerald-300'
-                            : 'bg-white border-slate-200 opacity-60'
+                            : 'bg-white border-[#E5E7EB] opacity-60'
                         }`}
                       >
                         <div
@@ -330,7 +330,7 @@ export default async function IndexPage({ searchParams }) {
               </div>
 
               {/* Ringkasan Waktu & Pembayaran */}
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 p-4 rounded-xl bg-white border border-slate-200 text-xs">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 p-4 rounded-lg bg-white border border-[#E5E7EB] text-xs">
                 <div>
                   <span className="text-slate-400 block mb-0.5">Tanggal Masuk:</span>
                   <span className="font-semibold text-slate-800">{formatTanggal(hasilLacak.tgl_masuk)}</span>
@@ -355,7 +355,7 @@ export default async function IndexPage({ searchParams }) {
 
               {/* Rincian Cucian */}
               {hasilLacak.detail_transaksi?.length > 0 && (
-                <div className="mt-4 pt-4 border-t border-slate-200">
+                <div className="mt-4 pt-4 border-t border-[#E5E7EB]">
                   <div className="text-xs font-bold text-slate-700 mb-2">Item Cucian:</div>
                   <ul className="divide-y divide-slate-100 text-xs text-slate-600">
                     {hasilLacak.detail_transaksi.map((d, i) => (
@@ -367,7 +367,7 @@ export default async function IndexPage({ searchParams }) {
                       </li>
                     ))}
                   </ul>
-                  <div className="mt-3 pt-2 border-t border-slate-200 flex justify-between items-center text-sm font-bold text-slate-900">
+                  <div className="mt-3 pt-2 border-t border-[#E5E7EB] flex justify-between items-center text-sm font-bold text-slate-900">
                     <span>Total Tagihan</span>
                     <span className="text-teal-700">{formatRupiah(hasilLacak.total_bayar)}</span>
                   </div>
@@ -394,10 +394,10 @@ export default async function IndexPage({ searchParams }) {
             {daftarLayanan.map((item) => (
               <div
                 key={item.id_layanan}
-                className="bg-white rounded-xl border border-slate-200 p-6 flex flex-col justify-between shadow-sm hover:shadow-md transition"
+                className="bg-white rounded-lg border border-[#E5E7EB] p-6 flex flex-col justify-between transition"
               >
                 <div>
-                  <div className="w-10 h-10 rounded-lg bg-teal-50 text-teal-700 flex items-center justify-center font-bold mb-4">
+                  <div className="w-10 h-10 rounded-md bg-teal-50 text-teal-700 flex items-center justify-center font-bold mb-4">
                     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                       <circle cx="12" cy="12" r="9" />
                       <path d="M12 6v6l4 2" />
@@ -426,7 +426,7 @@ export default async function IndexPage({ searchParams }) {
       </section>
 
       {/* 5. Section Keunggulan */}
-      <section id="keunggulan" className="py-16 bg-white border-t border-slate-200">
+      <section id="keunggulan" className="py-16 bg-white border-t border-[#E5E7EB]">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-12">
             <h2 className="text-2xl sm:text-3xl font-bold text-slate-900">
@@ -438,8 +438,8 @@ export default async function IndexPage({ searchParams }) {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="p-6 rounded-2xl bg-slate-50 border border-slate-200">
-              <div className="w-12 h-12 rounded-xl bg-teal-100 text-teal-800 flex items-center justify-center font-bold mb-4">
+            <div className="p-6 rounded-lg bg-slate-50 border border-[#E5E7EB]">
+              <div className="w-12 h-12 rounded-md bg-teal-50 text-teal-800 flex items-center justify-center font-bold mb-4">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
                 </svg>
@@ -450,8 +450,8 @@ export default async function IndexPage({ searchParams }) {
               </p>
             </div>
 
-            <div className="p-6 rounded-2xl bg-slate-50 border border-slate-200">
-              <div className="w-12 h-12 rounded-xl bg-teal-100 text-teal-800 flex items-center justify-center font-bold mb-4">
+            <div className="p-6 rounded-lg bg-slate-50 border border-[#E5E7EB]">
+              <div className="w-12 h-12 rounded-md bg-teal-50 text-teal-800 flex items-center justify-center font-bold mb-4">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <circle cx="12" cy="12" r="10" />
                   <polyline points="12 6 12 12 16 14" />
@@ -463,8 +463,8 @@ export default async function IndexPage({ searchParams }) {
               </p>
             </div>
 
-            <div className="p-6 rounded-2xl bg-slate-50 border border-slate-200">
-              <div className="w-12 h-12 rounded-xl bg-teal-100 text-teal-800 flex items-center justify-center font-bold mb-4">
+            <div className="p-6 rounded-lg bg-slate-50 border border-[#E5E7EB]">
+              <div className="w-12 h-12 rounded-md bg-teal-50 text-teal-800 flex items-center justify-center font-bold mb-4">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <rect x="2" y="5" width="20" height="14" rx="2" />
                   <line x1="2" y1="10" x2="22" y2="10" />
