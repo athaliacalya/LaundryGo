@@ -28,6 +28,12 @@ export default function PembayaranForm({ idTransaksi, sisaTagihan, catatPembayar
   const boundAction = catatPembayaranAction.bind(null, idTransaksi);
   const [state, formAction, isPending] = useActionState(boundAction, null);
   const [jumlah, setJumlah] = useState('');
+  // State metode pembayaran & konfirmasi dana masuk untuk non-tunai
+  const [metode, setMetode] = useState('tunai');
+  const [danaChecked, setDanaChecked] = useState(false);
+
+  const isNonTunai = metode === 'transfer' || metode === 'qris';
+  const isTombolDisabled = isPending || (isNonTunai && !danaChecked);
 
   return (
     <div
@@ -115,7 +121,17 @@ export default function PembayaranForm({ idTransaksi, sisaTagihan, catatPembayar
             <label htmlFor="metode" style={labelStyle}>
               Metode Pembayaran <span style={{ color: '#EF4444' }}>*</span>
             </label>
-            <select id="metode" name="metode" required style={{ ...inputStyle, width: '100%' }}>
+            <select
+              id="metode"
+              name="metode"
+              required
+              value={metode}
+              onChange={(e) => {
+                setMetode(e.target.value);
+                setDanaChecked(false); // Reset centang saat metode diganti
+              }}
+              style={{ ...inputStyle, width: '100%' }}
+            >
               <option value="tunai">Tunai</option>
               <option value="transfer">Transfer</option>
               <option value="qris">QRIS</option>
@@ -123,21 +139,75 @@ export default function PembayaranForm({ idTransaksi, sisaTagihan, catatPembayar
           </div>
         </div>
 
+        {/* Kotak centang verifikasi dana masuk bila metode non-tunai */}
+        {isNonTunai && (
+          <div
+            style={{
+              padding: '12px 14px',
+              backgroundColor: '#F8FAFC',
+              border: '1px solid #E5E7EB',
+              borderRadius: '6px',
+              marginBottom: '16px',
+            }}
+          >
+            <label
+              style={{
+                display: 'flex',
+                alignItems: 'flex-start',
+                gap: '8px',
+                cursor: 'pointer',
+                fontSize: '13px',
+                fontWeight: 600,
+                color: '#1E293B',
+              }}
+            >
+              <input
+                type="checkbox"
+                checked={danaChecked}
+                onChange={(e) => setDanaChecked(e.target.checked)}
+                style={{
+                  marginTop: '2px',
+                  width: '16px',
+                  height: '16px',
+                  accentColor: '#0F766E',
+                  cursor: 'pointer',
+                }}
+              />
+              <div>
+                <span>Dana sudah saya cek masuk</span>
+                <span
+                  style={{
+                    display: 'block',
+                    fontSize: '12px',
+                    fontWeight: 400,
+                    color: '#64748B',
+                    marginTop: '2px',
+                  }}
+                >
+                  Pastikan bukti transfer / notifikasi QRIS sudah diterima.
+                </span>
+              </div>
+            </label>
+          </div>
+        )}
+
         {/* Tombol Aksi */}
         <div className="pembayaran-buttons-row" style={{ display: 'flex', gap: '8px', alignItems: 'center', flexWrap: 'wrap' }}>
           <button
             type="button"
+            disabled={isTombolDisabled}
             onClick={() => setJumlah(String(sisaTagihan))}
             className="bayar-lunas-btn"
             style={{
               padding: '10px 16px',
               fontSize: '13px',
               fontWeight: 500,
-              color: '#0F766E',
-              backgroundColor: '#ECFDF5',
-              border: '1px solid #A7F3D0',
+              color: isTombolDisabled ? '#94A3B8' : '#0F766E',
+              backgroundColor: isTombolDisabled ? '#F1F5F9' : '#ECFDF5',
+              border: `1px solid ${isTombolDisabled ? '#E2E8F0' : '#A7F3D0'}`,
               borderRadius: '6px',
-              cursor: 'pointer',
+              cursor: isTombolDisabled ? 'not-allowed' : 'pointer',
+              opacity: isTombolDisabled ? 0.6 : 1,
               whiteSpace: 'nowrap',
             }}
           >
@@ -145,17 +215,18 @@ export default function PembayaranForm({ idTransaksi, sisaTagihan, catatPembayar
           </button>
           <button
             type="submit"
-            disabled={isPending}
+            disabled={isTombolDisabled}
             className="primary-btn"
             style={{
               padding: '10px 18px',
               fontSize: '14px',
               fontWeight: 600,
               color: '#FFFFFF',
-              backgroundColor: isPending ? '#0D9488' : '#0F766E',
+              backgroundColor: isTombolDisabled ? '#94A3B8' : '#0F766E',
               border: 'none',
               borderRadius: '6px',
-              cursor: isPending ? 'not-allowed' : 'pointer',
+              cursor: isTombolDisabled ? 'not-allowed' : 'pointer',
+              opacity: isTombolDisabled ? 0.6 : 1,
               whiteSpace: 'nowrap',
             }}
           >

@@ -37,6 +37,12 @@ export default function TransaksiForm({ action, pelangganList, layananList, back
   const [state, formAction, isPending] = useActionState(action, null);
   const [items, setItems] = useState([{ id_layanan: '', jumlah: '' }]);
   const [bayarAwal, setBayarAwal] = useState('');
+  // State metode pembayaran & konfirmasi dana masuk untuk DP non-tunai
+  const [metodeBayar, setMetodeBayar] = useState('tunai');
+  const [danaChecked, setDanaChecked] = useState(false);
+
+  const isNonTunaiDP = Number(bayarAwal) > 0 && (metodeBayar === 'transfer' || metodeBayar === 'qris');
+  const isSubmitDisabled = isPending || (isNonTunaiDP && !danaChecked);
 
   function addItem() {
     setItems([...items, { id_layanan: '', jumlah: '' }]);
@@ -292,6 +298,11 @@ export default function TransaksiForm({ action, pelangganList, layananList, back
               id="metode_bayar"
               name="metode_bayar"
               required
+              value={metodeBayar}
+              onChange={(e) => {
+                setMetodeBayar(e.target.value);
+                setDanaChecked(false); // Reset centang saat metode diganti
+              }}
               style={{ ...inputStyle, minHeight: '44px', fontSize: '16px' }}
             >
               <option value="tunai">Tunai</option>
@@ -300,6 +311,59 @@ export default function TransaksiForm({ action, pelangganList, layananList, back
             </select>
           </div>
         </div>
+
+        {/* Kotak centang verifikasi dana masuk bila bayar_awal > 0 dan metode transfer/qris */}
+        {isNonTunaiDP && (
+          <div
+            style={{
+              padding: '12px 14px',
+              backgroundColor: '#F8FAFC',
+              border: '1px solid #E5E7EB',
+              borderRadius: '6px',
+              marginTop: '10px',
+              marginBottom: '10px',
+            }}
+          >
+            <label
+              style={{
+                display: 'flex',
+                alignItems: 'flex-start',
+                gap: '8px',
+                cursor: 'pointer',
+                fontSize: '13px',
+                fontWeight: 600,
+                color: '#1E293B',
+              }}
+            >
+              <input
+                type="checkbox"
+                checked={danaChecked}
+                onChange={(e) => setDanaChecked(e.target.checked)}
+                style={{
+                  marginTop: '2px',
+                  width: '16px',
+                  height: '16px',
+                  accentColor: '#0F766E',
+                  cursor: 'pointer',
+                }}
+              />
+              <div>
+                <span>Dana sudah saya cek masuk</span>
+                <span
+                  style={{
+                    display: 'block',
+                    fontSize: '12px',
+                    fontWeight: 400,
+                    color: '#64748B',
+                    marginTop: '2px',
+                  }}
+                >
+                  Pastikan bukti transfer / notifikasi QRIS sudah diterima.
+                </span>
+              </div>
+            </label>
+          </div>
+        )}
 
         {totalBayar > 0 && (
           <button
@@ -327,17 +391,18 @@ export default function TransaksiForm({ action, pelangganList, layananList, back
       <div style={{ display: 'flex', gap: '10px', marginTop: '24px', flexWrap: 'wrap' }}>
         <button
           type="submit"
-          disabled={isPending}
+          disabled={isSubmitDisabled}
           className="primary-btn"
           style={{
             padding: '10px 20px',
             fontSize: '14px',
             fontWeight: 600,
             color: '#FFFFFF',
-            backgroundColor: isPending ? '#0D9488' : '#0F766E',
+            backgroundColor: isSubmitDisabled ? '#94A3B8' : '#0F766E',
             border: 'none',
             borderRadius: '6px',
-            cursor: isPending ? 'not-allowed' : 'pointer',
+            cursor: isSubmitDisabled ? 'not-allowed' : 'pointer',
+            opacity: isSubmitDisabled ? 0.6 : 1,
           }}
         >
           {isPending ? 'Menyimpan...' : 'Buat Transaksi'}
