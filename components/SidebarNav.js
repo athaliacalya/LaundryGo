@@ -17,7 +17,7 @@ export default function SidebarNav({ items, user, rolePrefix = 'admin' }) {
       <div
         style={{
           padding: '6px 12px 18px',
-          borderBottom: '1px solid #E2E8F0',
+          borderBottom: '1px solid #E5E7EB',
           marginBottom: '14px',
         }}
       >
@@ -73,7 +73,7 @@ export default function SidebarNav({ items, user, rolePrefix = 'admin' }) {
       {/* Kotak User Profile & Tombol Keluar */}
       <div
         style={{
-          borderTop: '1px solid #E2E8F0',
+          borderTop: '1px solid #E5E7EB',
           paddingTop: '16px',
           marginTop: '12px',
         }}
@@ -83,7 +83,7 @@ export default function SidebarNav({ items, user, rolePrefix = 'admin' }) {
           style={{
             padding: '10px 12px',
             backgroundColor: '#F8FAFC',
-            border: '1px solid #E2E8F0',
+            border: '1px solid #E5E7EB',
             borderRadius: '8px',
             marginBottom: '10px',
           }}
