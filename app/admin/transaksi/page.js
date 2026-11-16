@@ -71,7 +71,19 @@ export default async function TransaksiAdminPage({ searchParams }) {
     .range((halaman - 1) * PER_HALAMAN, halaman * PER_HALAMAN - 1);
 
   if (kataKunci) {
-    query = query.or(`id_transaksi.ilike.%${kataKunci}%,pelanggan.nama_pelanggan.ilike.%${kataKunci}%`);
+    // Cari id_pelanggan yang namanya sesuai kata kunci agar bisa difilter bersama no nota
+    const { data: pelangganMatch } = await supabaseAdmin
+      .from('pelanggan')
+      .select('id_pelanggan')
+      .ilike('nama_pelanggan', `%${kataKunci}%`);
+
+    const matchingIds = (pelangganMatch || []).map((p) => p.id_pelanggan);
+
+    if (matchingIds.length > 0) {
+      query = query.or(`id_transaksi.ilike.%${kataKunci}%,id_pelanggan.in.(${matchingIds.join(',')})`);
+    } else {
+      query = query.ilike('id_transaksi', `%${kataKunci}%`);
+    }
   }
 
   const { data: transaksi, count } = await query;
