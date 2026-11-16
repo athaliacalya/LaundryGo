@@ -4,6 +4,7 @@
 > **Nama Pengembang:** Athalia Calya Fitriani  
 > **Judul Proyek:** Sistem Informasi Laundry  
 > **Teknologi:** Node.js (Next.js 16 App Router) • React 19 • Supabase (PostgreSQL) • Tailwind CSS  
+> **Live Website:** [https://laundrygo.web.id](https://laundrygo.web.id) *(Mirror: [https://laundry-go-wine.vercel.app](https://laundry-go-wine.vercel.app))*  
 > **Repositori GitHub:** [https://github.com/athaliacalya/LaundryGo](https://github.com/athaliacalya/LaundryGo)
 
 ---
@@ -211,4 +212,4 @@ Jika Anda ingin merekam video demo penilaian, ikuti urutan alur berikut:
   - Tunjukkan sekilas repositori GitHub dengan riwayat commit, lalu tutup presentasi.
 
 ---
-*Dibuat dengan bangga untuk Penilaian Akhir Project WEB 26.*
+
