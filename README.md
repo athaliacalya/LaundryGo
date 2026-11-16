@@ -184,7 +184,7 @@ Aplikasi ini dibangun menggunakan **Node.js (Next.js App Router)** dan database 
 | 6 | **Tampilan Responsif** | Tampilan fleksibel dan nyaman diakses di smartphone (layar 360px), tablet, hingga laptop. | Terpenuhi |
 | 7 | **Judul Resmi** | Terdaftar resmi di No. 1: **ATHALIA CALYA FITRIANI — Sistem Informasi Laundry**. | Terpenuhi |
 | 8 | **README, ERD, Demo** | Dokumentasi lengkap dengan diagram ERD Mermaid, kredensial akun demo, dan panduan teknis. | Terpenuhi |
-| 9 | **Video Demo (2–3 Menit)** | Tersedia skenario alur perekaman demo yang terstruktur. | ✅ Terpenuhi |
+| 9 | **Video Demo (2–3 Menit)** | Tersedia skenario alur perekaman demo yang terstruktur. | Terpenuhi |
 
 ---
 
