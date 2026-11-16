@@ -34,7 +34,7 @@ export default async function PelangganPage({ searchParams }) {
     <div
       style={{
         padding: '28px 32px',
-        fontFamily: "'Plus Jakarta Sans', sans-serif",
+        fontFamily: 'inherit',
         maxWidth: '960px',
       }}
     >
@@ -100,7 +100,7 @@ export default async function PelangganPage({ searchParams }) {
             fontSize: '14px',
             color: '#1C1C1A',
             backgroundColor: '#FFFFFF',
-            border: '1px solid #E4E4E0',
+            border: '1px solid #E5E7EB',
             borderRadius: '6px',
             outline: 'none',
             width: '260px',
@@ -139,7 +139,7 @@ export default async function PelangganPage({ searchParams }) {
         className="table-container"
         style={{
           backgroundColor: '#FFFFFF',
-          border: '1px solid #E4E4E0',
+          border: '1px solid #E5E7EB',
           borderRadius: '8px',
           overflowX: 'auto',
           WebkitOverflowScrolling: 'touch',
@@ -147,7 +147,7 @@ export default async function PelangganPage({ searchParams }) {
       >
         <table style={{ width: '100%', minWidth: '600px', borderCollapse: 'collapse', fontSize: '14px' }}>
           <thead>
-            <tr style={{ backgroundColor: '#F7F7F5', borderBottom: '1px solid #E4E4E0' }}>
+            <tr style={{ backgroundColor: '#F7F7F5', borderBottom: '1px solid #E5E7EB' }}>
               <th style={thStyle}>Nama</th>
               <th style={thStyle}>No HP</th>
               <th style={thStyle}>Alamat</th>
@@ -204,7 +204,7 @@ export default async function PelangganPage({ searchParams }) {
                           border: 'none',
                           cursor: 'pointer',
                           padding: 0,
-                          fontFamily: "'Plus Jakarta Sans', sans-serif",
+                          fontFamily: 'inherit',
                         }}
                       >
                         Hapus
@@ -244,7 +244,7 @@ export default async function PelangganPage({ searchParams }) {
                 fontWeight: h === halaman ? 600 : 400,
                 color: h === halaman ? '#0F766E' : '#6B6B67',
                 backgroundColor: h === halaman ? '#F0FDF9' : '#FFFFFF',
-                border: `1px solid ${h === halaman ? '#0F766E' : '#E4E4E0'}`,
+                border: `1px solid ${h === halaman ? '#0F766E' : '#E5E7EB'}`,
                 borderRadius: '6px',
                 textDecoration: 'none',
               }}
