@@ -9,11 +9,11 @@ const inputStyle = {
   fontSize: '16px',
   color: '#1C1C1A',
   backgroundColor: '#FFFFFF',
-  border: '1px solid #E4E4E0',
+  border: '1px solid #E5E7EB',
   borderRadius: '6px',
   outline: 'none',
   boxSizing: 'border-box',
-  fontFamily: "'Plus Jakarta Sans', sans-serif",
+  fontFamily: 'inherit',
 };
 
 const labelStyle = {
@@ -33,7 +33,7 @@ export default function PembayaranForm({ idTransaksi, sisaTagihan, catatPembayar
     <div
       style={{
         backgroundColor: '#FFFFFF',
-        border: '1px solid #E4E4E0',
+        border: '1px solid #E5E7EB',
         borderRadius: '8px',
         padding: '20px',
       }}
