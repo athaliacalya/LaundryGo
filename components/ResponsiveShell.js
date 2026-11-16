@@ -101,11 +101,11 @@ export default function ResponsiveShell({ sidebar, children }) {
       <style>{`
         .app-shell-root {
           min-height: 100vh;
+          min-height: 100dvh;
           background-color: #F7F7F5;
           font-family: inherit;
           display: flex;
           flex-direction: column;
-          overflow-x: hidden;
           width: 100%;
         }
 
@@ -136,10 +136,13 @@ export default function ResponsiveShell({ sidebar, children }) {
             position: sticky;
             top: 0;
             height: 100vh;
+            height: 100dvh;
+            align-self: flex-start;
             overflow-y: auto;
             transform: none !important;
             box-shadow: none !important;
             z-index: 10;
+            box-sizing: border-box;
           }
           .app-shell-main {
             flex: 1;
@@ -149,6 +152,9 @@ export default function ResponsiveShell({ sidebar, children }) {
 
         /* Mobile (< 768px) */
         @media (max-width: 767px) {
+          .app-shell-root {
+            overflow-x: hidden;
+          }
           .app-topbar {
             display: flex;
             align-items: center;
