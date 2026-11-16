@@ -79,74 +79,58 @@ export default function LoginPage() {
       <div className="relative z-10 w-full flex-1 flex items-center justify-center px-4 sm:px-8 lg:px-16 py-8">
         <div className="w-full max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           
-          {/* Panel Kiri (Desktop >= 1024px) */}
+          {/* Panel Kiri (Sisi Foto): Disederhanakan */}
           <div className="hidden lg:flex flex-col justify-center text-left">
-            <div style={{ marginBottom: '32px' }}>
+            <div style={{ marginBottom: '28px' }}>
               <Logo />
             </div>
 
+            {/* Judul Besar tanpa pemisah baris manual agar mengalir otomatis */}
             <h1
               style={{
-                fontSize: '40px',
+                fontSize: 'clamp(28px, 3.2vw, 44px)',
                 fontWeight: 600,
                 lineHeight: 1.25,
                 color: '#F4F6F8',
-                marginBottom: '28px',
+                marginBottom: '16px',
                 letterSpacing: '-0.4px',
+                maxWidth: '560px',
               }}
             >
-              Catat cucian, hitung tagihan,
-              <br />
-              dan cetak nota dari satu tempat.
+              Catat cucian, hitung tagihan, dan cetak nota dari satu tempat.
             </h1>
 
-            <ul
+            {/* Kalimat pendukung 16px putih opasitas 75% */}
+            <p
               style={{
-                display: 'flex',
-                flexDirection: 'column',
-                gap: '12px',
-                listStyle: 'none',
-                padding: 0,
+                fontSize: '16px',
+                color: 'rgba(255, 255, 255, 0.75)',
                 margin: 0,
+                lineHeight: 1.5,
+                fontWeight: 400,
+                maxWidth: '520px',
               }}
             >
-              {['Pelanggan dan layanan', 'Transaksi dan pembayaran', 'Laporan pendapatan'].map((item) => (
-                <li
-                  key={item}
-                  style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '10px',
-                    fontSize: '15px',
-                    fontWeight: 500,
-                    color: '#C9CED6',
-                  }}
-                >
-                  <svg
-                    width="16"
-                    height="16"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="#F2D94E"
-                    strokeWidth="2.4"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    style={{ flexShrink: 0 }}
-                    aria-hidden="true"
-                  >
-                    <polyline points="20 6 9 17 4 12" />
-                  </svg>
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
+              Pelanggan, layanan, transaksi, dan laporan dalam satu aplikasi.
+            </p>
           </div>
 
           {/* Panel Kanan: Kartu Login Solid */}
           <div className="flex flex-col items-center lg:items-end w-full">
-            {/* Logo untuk Mobile (< 1024px) */}
+            {/* Logo dan judul untuk layar mobile (< 1024px) */}
             <div className="lg:hidden mb-6 text-center select-none">
               <Logo />
+              <p
+                style={{
+                  fontSize: '14px',
+                  color: 'rgba(255, 255, 255, 0.75)',
+                  marginTop: '8px',
+                  marginBottom: 0,
+                  fontWeight: 400,
+                }}
+              >
+                Catat cucian, hitung tagihan, dan cetak nota dari satu tempat.
+              </p>
             </div>
 
             {/* Kartu Solid Krem Padat */}
@@ -457,7 +441,7 @@ export default function LoginPage() {
       <footer style={{ position: 'relative', zIndex: 10, width: '100%', padding: '16px 24px' }}>
         <div className="w-full max-w-5xl mx-auto text-left">
           <p style={{ fontSize: '13px', color: '#8A8F98', margin: 0 }}>
-            Sistem Informasi Laundry - Project WEB 26
+            © 2026 LaundryGo
           </p>
         </div>
       </footer>
