@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useActionState } from 'react';
+import { formatDateTimeLocalWIB } from '@/lib/waktu';
 
 const inputStyle = {
   width: '100%',
@@ -121,7 +122,7 @@ export default function TransaksiForm({ action, pelangganList, layananList, back
           name="tgl_masuk"
           type="datetime-local"
           required
-          defaultValue={new Date().toISOString().slice(0, 16)}
+          defaultValue={formatDateTimeLocalWIB()}
           style={{ ...inputStyle, width: '100%', maxWidth: '280px' }}
         />
       </div>
