@@ -2,24 +2,7 @@ import Link from 'next/link';
 import PrintNotaButton from './PrintNotaButton';
 import PembayaranForm from './PembayaranForm';
 import StatusCucianButton from './StatusCucianButton';
-
-function formatTanggal(str) {
-  if (!str) return '—';
-  const d = new Date(str);
-  return d.toLocaleDateString('id-ID', {
-    day: 'numeric',
-    month: 'short',
-    year: 'numeric',
-    hour: '2-digit',
-    minute: '2-digit',
-  });
-}
-
-function formatTanggalShort(str) {
-  if (!str) return '—';
-  const d = new Date(str);
-  return d.toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' });
-}
+import { formatTanggal, formatTanggalJam } from '@/lib/waktu';
 
 function formatRupiah(val) {
   return new Intl.NumberFormat('id-ID', {
@@ -176,11 +159,11 @@ export default function TransaksiDetailView({
             </tr>
             <tr>
               <td>Tgl Masuk</td>
-              <td style={{ textAlign: 'right' }}>{formatTanggal(transaksi.tgl_masuk)}</td>
+              <td style={{ textAlign: 'right' }}>{formatTanggalJam(transaksi.tgl_masuk)}</td>
             </tr>
             <tr>
               <td>Est. Selesai</td>
-              <td style={{ textAlign: 'right' }}>{formatTanggalShort(transaksi.tgl_selesai)}</td>
+              <td style={{ textAlign: 'right' }}>{formatTanggal(transaksi.tgl_selesai)}</td>
             </tr>
             <tr>
               <td>Pelanggan</td>
@@ -303,7 +286,7 @@ export default function TransaksiDetailView({
               </span>
             </div>
             <p style={{ fontSize: '13px', color: '#9CA3AF', margin: 0 }}>
-              Masuk: {formatTanggal(transaksi.tgl_masuk)} • Estimasi Selesai: {formatTanggalShort(transaksi.tgl_selesai)}
+              Masuk: {formatTanggalJam(transaksi.tgl_masuk)} • Estimasi Selesai: {formatTanggal(transaksi.tgl_selesai)}
             </p>
           </div>
 
@@ -467,7 +450,7 @@ export default function TransaksiDetailView({
                       }}
                     >
                       <td style={{ ...tdStyle, color: '#1C1C1A' }}>
-                        {formatTanggal(p.tgl_bayar)}
+                        {formatTanggalJam(p.tgl_bayar)}
                       </td>
                       <td style={{ ...tdStyle, color: '#6B6B67', textTransform: 'capitalize' }}>
                         {p.metode}
