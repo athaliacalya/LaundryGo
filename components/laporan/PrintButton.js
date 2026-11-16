@@ -16,7 +16,7 @@ export default function PrintButton() {
         border: 'none',
         borderRadius: '6px',
         cursor: 'pointer',
-        fontFamily: "'Plus Jakarta Sans', sans-serif",
+        fontFamily: 'inherit',
       }}
     >
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
