@@ -31,7 +31,7 @@ export default async function PelangganKasirPage({ searchParams }) {
     <div
       style={{
         padding: '28px 32px',
-        fontFamily: "'Plus Jakarta Sans', sans-serif",
+        fontFamily: 'inherit',
         maxWidth: '960px',
       }}
     >
@@ -88,7 +88,7 @@ export default async function PelangganKasirPage({ searchParams }) {
             fontSize: '14px',
             color: '#1C1C1A',
             backgroundColor: '#FFFFFF',
-            border: '1px solid #E4E4E0',
+            border: '1px solid #E5E7EB',
             borderRadius: '6px',
             outline: 'none',
             width: '260px',
@@ -101,7 +101,7 @@ export default async function PelangganKasirPage({ searchParams }) {
         className="table-container"
         style={{
           backgroundColor: '#FFFFFF',
-          border: '1px solid #E4E4E0',
+          border: '1px solid #E5E7EB',
           borderRadius: '8px',
           overflowX: 'auto',
           WebkitOverflowScrolling: 'touch',
@@ -109,7 +109,7 @@ export default async function PelangganKasirPage({ searchParams }) {
       >
         <table style={{ width: '100%', minWidth: '600px', borderCollapse: 'collapse', fontSize: '14px' }}>
           <thead>
-            <tr style={{ backgroundColor: '#F7F7F5', borderBottom: '1px solid #E4E4E0' }}>
+            <tr style={{ backgroundColor: '#F7F7F5', borderBottom: '1px solid #E5E7EB' }}>
               <th style={{ textAlign: 'left', padding: '10px 16px', fontWeight: 500, color: '#6B6B67', width: '40px' }}>No</th>
               <th style={{ textAlign: 'left', padding: '10px 16px', fontWeight: 500, color: '#6B6B67' }}>Nama</th>
               <th style={{ textAlign: 'left', padding: '10px 16px', fontWeight: 500, color: '#6B6B67' }}>No. HP</th>
@@ -160,7 +160,7 @@ export default async function PelangganKasirPage({ searchParams }) {
               alignItems: 'center',
               justifyContent: 'space-between',
               padding: '12px 16px',
-              borderTop: '1px solid #E4E4E0',
+              borderTop: '1px solid #E5E7EB',
               backgroundColor: '#FAFAF9',
               fontSize: '13px',
               color: '#6B6B67',
@@ -174,7 +174,7 @@ export default async function PelangganKasirPage({ searchParams }) {
                   style={{
                     padding: '4px 10px',
                     borderRadius: '4px',
-                    border: '1px solid #E4E4E0',
+                    border: '1px solid #E5E7EB',
                     backgroundColor: '#FFFFFF',
                     color: '#1C1C1A',
                     textDecoration: 'none',
@@ -189,7 +189,7 @@ export default async function PelangganKasirPage({ searchParams }) {
                   style={{
                     padding: '4px 10px',
                     borderRadius: '4px',
-                    border: '1px solid #E4E4E0',
+                    border: '1px solid #E5E7EB',
                     backgroundColor: '#FFFFFF',
                     color: '#1C1C1A',
                     textDecoration: 'none',
