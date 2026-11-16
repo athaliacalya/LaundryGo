@@ -157,10 +157,10 @@ export default function LoginPage() {
                 maxWidth: '400px',
                 backgroundColor: '#F5F3EE',
                 color: '#12161C',
-                border: '1px solid #D9D5CB',
-                borderRadius: '14px',
+                border: '1px solid #E5E7EB',
+                borderRadius: '8px',
                 padding: '32px',
-                boxShadow: '0 8px 24px rgba(0, 0, 0, 0.25)',
+                boxShadow: 'none',
               }}
             >
               {/* Header Kartu */}
@@ -215,8 +215,8 @@ export default function LoginPage() {
                       fontSize: '16px',
                       color: '#12161C',
                       backgroundColor: '#FFFFFF',
-                      border: '1px solid #C9C4B8',
-                      borderRadius: '8px',
+                      border: '1px solid #E5E7EB',
+                      borderRadius: '6px',
                       outline: 'none',
                       boxSizing: 'border-box',
                     }}
@@ -226,7 +226,7 @@ export default function LoginPage() {
                       e.target.style.outlineOffset = '1px';
                     }}
                     onBlur={(e) => {
-                      e.target.style.borderColor = '#C9C4B8';
+                      e.target.style.borderColor = '#E5E7EB';
                       e.target.style.outline = 'none';
                     }}
                   />
@@ -264,8 +264,8 @@ export default function LoginPage() {
                         fontSize: '16px',
                         color: '#12161C',
                         backgroundColor: '#FFFFFF',
-                        border: '1px solid #C9C4B8',
-                        borderRadius: '8px',
+                        border: '1px solid #E5E7EB',
+                        borderRadius: '6px',
                         outline: 'none',
                         boxSizing: 'border-box',
                       }}
@@ -275,7 +275,7 @@ export default function LoginPage() {
                         e.target.style.outlineOffset = '1px';
                       }}
                       onBlur={(e) => {
-                        e.target.style.borderColor = '#C9C4B8';
+                        e.target.style.borderColor = '#E5E7EB';
                         e.target.style.outline = 'none';
                       }}
                     />
@@ -380,7 +380,7 @@ export default function LoginPage() {
                     width: '100%',
                     minHeight: '48px',
                     height: '48px',
-                    borderRadius: '8px',
+                    borderRadius: '6px',
                     backgroundColor: loading ? '#2A313B' : '#12161C',
                     color: '#FFFFFF',
                     fontSize: '15px',
@@ -412,8 +412,8 @@ export default function LoginPage() {
                     style={{
                       fontSize: '12px',
                       padding: '2px 8px',
-                      borderRadius: '4px',
-                      border: '1px solid #D9D5CB',
+                      borderRadius: '6px',
+                      border: '1px solid #E5E7EB',
                       backgroundColor: '#FFFFFF',
                       color: '#12161C',
                       cursor: 'pointer',
@@ -428,8 +428,8 @@ export default function LoginPage() {
                     style={{
                       fontSize: '12px',
                       padding: '2px 8px',
-                      borderRadius: '4px',
-                      border: '1px solid #D9D5CB',
+                      borderRadius: '6px',
+                      border: '1px solid #E5E7EB',
                       backgroundColor: '#FFFFFF',
                       color: '#12161C',
                       cursor: 'pointer',
