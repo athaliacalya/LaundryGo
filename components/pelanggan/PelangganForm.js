@@ -8,11 +8,11 @@ const inputStyle = {
   fontSize: '16px',
   color: '#1C1C1A',
   backgroundColor: '#FFFFFF',
-  border: '1px solid #E4E4E0',
+  border: '1px solid #E5E7EB',
   borderRadius: '6px',
   outline: 'none',
   boxSizing: 'border-box',
-  fontFamily: "'Plus Jakarta Sans', sans-serif",
+  fontFamily: 'inherit',
 };
 
 const labelStyle = {
@@ -64,7 +64,7 @@ export default function PelangganForm({ action, initialData, submitLabel }) {
           placeholder="Contoh: Budi Santoso"
           style={inputStyle}
           onFocus={(e) => (e.target.style.borderColor = '#0F766E')}
-          onBlur={(e) => (e.target.style.borderColor = '#E4E4E0')}
+          onBlur={(e) => (e.target.style.borderColor = '#E5E7EB')}
         />
         {state?.errors?.nama_pelanggan && (
           <p style={errorStyle}>{state.errors.nama_pelanggan}</p>
@@ -89,7 +89,7 @@ export default function PelangganForm({ action, initialData, submitLabel }) {
           placeholder="Contoh: 081234567890"
           style={inputStyle}
           onFocus={(e) => (e.target.style.borderColor = '#0F766E')}
-          onBlur={(e) => (e.target.style.borderColor = '#E4E4E0')}
+          onBlur={(e) => (e.target.style.borderColor = '#E5E7EB')}
         />
         {state?.errors?.no_hp && (
           <p style={errorStyle}>{state.errors.no_hp}</p>
@@ -109,7 +109,7 @@ export default function PelangganForm({ action, initialData, submitLabel }) {
           placeholder="Jl. Contoh No. 1, Kota..."
           style={{ ...inputStyle, resize: 'vertical', lineHeight: '1.5' }}
           onFocus={(e) => (e.target.style.borderColor = '#0F766E')}
-          onBlur={(e) => (e.target.style.borderColor = '#E4E4E0')}
+          onBlur={(e) => (e.target.style.borderColor = '#E5E7EB')}
         />
         {state?.errors?.alamat && (
           <p style={errorStyle}>{state.errors.alamat}</p>
@@ -131,7 +131,7 @@ export default function PelangganForm({ action, initialData, submitLabel }) {
             border: 'none',
             borderRadius: '6px',
             cursor: pending ? 'not-allowed' : 'pointer',
-            fontFamily: "'Plus Jakarta Sans', sans-serif",
+            fontFamily: 'inherit',
             transition: 'background-color 0.15s',
           }}
         >
@@ -146,7 +146,7 @@ export default function PelangganForm({ action, initialData, submitLabel }) {
             fontWeight: 500,
             color: '#6B6B67',
             backgroundColor: '#FFFFFF',
-            border: '1px solid #E4E4E0',
+            border: '1px solid #E5E7EB',
             borderRadius: '6px',
             textDecoration: 'none',
             display: 'inline-flex',
