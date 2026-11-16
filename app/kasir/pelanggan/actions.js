@@ -4,6 +4,7 @@ import { supabaseAdmin } from '@/lib/supabaseAdmin';
 import { requireLogin } from '@/lib/session';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
+import { tanggalHariIniWIB } from '@/lib/waktu';
 
 function validasiPelanggan(formData) {
   const nama = formData.get('nama_pelanggan')?.toString().trim();
@@ -29,7 +30,7 @@ export async function tambahPelangganKasir(prevState, formData) {
     nama_pelanggan: nama,
     no_hp,
     alamat,
-    tgl_daftar: new Date().toISOString().slice(0, 10),
+    tgl_daftar: tanggalHariIniWIB(),
   });
 
   if (error) return { errors: { umum: 'Gagal menyimpan: ' + error.message } };
