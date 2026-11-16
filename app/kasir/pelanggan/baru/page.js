@@ -7,7 +7,7 @@ export default function TambahPelangganKasirPage() {
     <div
       style={{
         padding: '28px 32px',
-        fontFamily: "'Plus Jakarta Sans', sans-serif",
+        fontFamily: 'inherit',
         maxWidth: '640px',
       }}
     >
@@ -36,7 +36,7 @@ export default function TambahPelangganKasirPage() {
       <div
         style={{
           backgroundColor: '#FFFFFF',
-          border: '1px solid #E4E4E0',
+          border: '1px solid #E5E7EB',
           borderRadius: '8px',
           padding: '24px',
         }}
