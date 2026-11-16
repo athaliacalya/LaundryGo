@@ -225,7 +225,7 @@ export default async function LaporanPage({ searchParams }) {
               fontSize: '14px',
               color: '#1C1C1A',
               backgroundColor: '#FFFFFF',
-              border: '1px solid #E4E4E0',
+              border: '1px solid #E5E7EB',
               borderRadius: '6px',
               outline: 'none',
               fontFamily: 'inherit',
@@ -245,7 +245,7 @@ export default async function LaporanPage({ searchParams }) {
               fontSize: '14px',
               color: '#1C1C1A',
               backgroundColor: '#FFFFFF',
-              border: '1px solid #E4E4E0',
+              border: '1px solid #E5E7EB',
               borderRadius: '6px',
               outline: 'none',
               fontFamily: 'inherit',
@@ -283,7 +283,7 @@ export default async function LaporanPage({ searchParams }) {
         <div
           style={{
             backgroundColor: '#FFFFFF',
-            border: '1px solid #E4E4E0',
+            border: '1px solid #E5E7EB',
             borderRadius: '8px',
             padding: '20px',
           }}
@@ -298,7 +298,7 @@ export default async function LaporanPage({ searchParams }) {
         <div
           style={{
             backgroundColor: '#FFFFFF',
-            border: '1px solid #E4E4E0',
+            border: '1px solid #E5E7EB',
             borderRadius: '8px',
             padding: '20px',
           }}
@@ -317,7 +317,7 @@ export default async function LaporanPage({ searchParams }) {
         className="table-container"
         style={{
           backgroundColor: '#FFFFFF',
-          border: '1px solid #E4E4E0',
+          border: '1px solid #E5E7EB',
           borderRadius: '8px',
           overflowX: 'auto',
           WebkitOverflowScrolling: 'touch',
@@ -326,7 +326,7 @@ export default async function LaporanPage({ searchParams }) {
       >
         <table style={{ width: '100%', minWidth: '550px', borderCollapse: 'collapse', fontSize: '14px' }}>
           <thead>
-            <tr style={{ backgroundColor: '#F7F7F5', borderBottom: '1px solid #E4E4E0' }}>
+            <tr style={{ backgroundColor: '#F7F7F5', borderBottom: '1px solid #E5E7EB' }}>
               <th style={thStyle}>No Nota</th>
               <th style={thStyle}>Tanggal</th>
               <th style={thStyle}>Pelanggan</th>
