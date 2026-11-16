@@ -1,16 +1,10 @@
 import Link from 'next/link';
 import { supabaseAdmin } from '@/lib/supabaseAdmin';
 import { bersihkanKataCari } from '@/lib/cari';
+import { formatTanggal } from '@/lib/waktu';
 import { hapusPelanggan } from './actions';
 
 const PER_HALAMAN = 10;
-
-// Format tanggal: "16 Okt 2026"
-function formatTanggal(str) {
-  if (!str) return '—';
-  const d = new Date(str);
-  return d.toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' });
-}
 
 export default async function PelangganPage({ searchParams }) {
   const sp = await searchParams;
