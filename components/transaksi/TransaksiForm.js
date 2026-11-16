@@ -9,11 +9,11 @@ const inputStyle = {
   fontSize: '16px',
   color: '#1C1C1A',
   backgroundColor: '#FFFFFF',
-  border: '1px solid #E4E4E0',
+  border: '1px solid #E5E7EB',
   borderRadius: '6px',
   outline: 'none',
   boxSizing: 'border-box',
-  fontFamily: "'Plus Jakarta Sans', sans-serif",
+  fontFamily: 'inherit',
 };
 
 const labelStyle = {
@@ -152,7 +152,7 @@ export default function TransaksiForm({ action, pelangganList, layananList, back
         <div
           className="transaksi-items-wrapper table-container"
           style={{
-            border: '1px solid #E4E4E0',
+            border: '1px solid #E5E7EB',
             borderRadius: '8px',
             overflowX: 'auto',
             WebkitOverflowScrolling: 'touch',
@@ -161,7 +161,7 @@ export default function TransaksiForm({ action, pelangganList, layananList, back
         >
           <table className="transaksi-items-table" style={{ width: '100%', borderCollapse: 'collapse', fontSize: '14px' }}>
             <thead>
-              <tr style={{ backgroundColor: '#F7F7F5', borderBottom: '1px solid #E4E4E0' }}>
+              <tr style={{ backgroundColor: '#F7F7F5', borderBottom: '1px solid #E5E7EB' }}>
                 <th style={{ textAlign: 'left', padding: '10px 12px', fontWeight: 500, color: '#6B6B67' }}>Layanan</th>
                 <th style={{ textAlign: 'center', padding: '10px 12px', fontWeight: 500, color: '#6B6B67', width: '110px' }}>Jumlah</th>
                 <th style={{ textAlign: 'right', padding: '10px 12px', fontWeight: 500, color: '#6B6B67', width: '130px' }}>Subtotal</th>
@@ -237,7 +237,7 @@ export default function TransaksiForm({ action, pelangganList, layananList, back
               })}
             </tbody>
             <tfoot>
-              <tr style={{ borderTop: '2px solid #E4E4E0', backgroundColor: '#FAFAF9' }}>
+              <tr style={{ borderTop: '2px solid #E5E7EB', backgroundColor: '#FAFAF9' }}>
                 <td colSpan={2} style={{ padding: '12px 14px', fontWeight: 600, textAlign: 'right', color: '#1C1C1A' }}>
                   Total:
                 </td>
@@ -349,7 +349,7 @@ export default function TransaksiForm({ action, pelangganList, layananList, back
             fontSize: '14px',
             fontWeight: 500,
             color: '#6B6B67',
-            border: '1px solid #E4E4E0',
+            border: '1px solid #E5E7EB',
             borderRadius: '6px',
             textDecoration: 'none',
             display: 'inline-flex',
@@ -415,7 +415,7 @@ export default function TransaksiForm({ action, pelangganList, layananList, back
             flex-direction: column !important;
             gap: 8px !important;
             background: #FFFFFF !important;
-            border: 1px solid #E4E4E0 !important;
+            border: 1px solid #E5E7EB !important;
             border-radius: 8px !important;
             padding: 12px !important;
             width: 100% !important;
@@ -446,7 +446,7 @@ export default function TransaksiForm({ action, pelangganList, layananList, back
             align-items: center !important;
             padding-top: 6px !important;
             padding-bottom: 6px !important;
-            border-top: 1px dashed #E4E4E0 !important;
+            border-top: 1px dashed #E5E7EB !important;
           }
           .transaksi-items-table .td-subtotal .subtotal-val {
             font-size: 15px !important;
@@ -478,7 +478,7 @@ export default function TransaksiForm({ action, pelangganList, layananList, back
             align-items: center !important;
             padding: 12px 14px !important;
             background: #FFFFFF !important;
-            border: 1px solid #E4E4E0 !important;
+            border: 1px solid #E5E7EB !important;
             border-radius: 8px !important;
             width: 100% !important;
             box-sizing: border-box !important;
