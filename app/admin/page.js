@@ -1,13 +1,7 @@
 import Link from 'next/link';
 import { supabaseAdmin } from '@/lib/supabaseAdmin';
 import { getSession } from '@/lib/session';
-
-// Format tanggal pendek: "16 Okt 2026"
-function formatTanggal(str) {
-  if (!str) return '—';
-  const d = new Date(str);
-  return d.toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' });
-}
+import { formatTanggal, formatHariTanggalWIB, tanggalHariIniWIB, awalAkhirHariWIB } from '@/lib/waktu';
 
 // Format mata uang: "Rp 50.000"
 function formatRupiah(val) {
@@ -18,31 +12,24 @@ export default async function AdminDashboardPage() {
   const session = await getSession();
   const user = session?.user;
 
-  // Tanggal hari ini
-  const now = new Date();
-  const todayFormatted = now.toLocaleDateString('id-ID', {
-    weekday: 'long',
-    day: 'numeric',
-    month: 'long',
-    year: 'numeric',
-  });
-
-  const todayStart = new Date(now.getFullYear(), now.getMonth(), now.getDate()).toISOString();
-  const tomorrowStart = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1).toISOString();
+  // Tanggal hari ini menurut zona waktu Asia/Jakarta (WIB)
+  const todayFormatted = formatHariTanggalWIB();
+  const hariIniWIB = tanggalHariIniWIB();
+  const { awal: todayStart, akhir: todayEnd } = awalAkhirHariWIB(hariIniWIB);
 
   // 1. Transaksi Hari Ini
   const { count: transaksiHariIni } = await supabaseAdmin
     .from('transaksi')
     .select('*', { count: 'exact', head: true })
     .gte('tgl_masuk', todayStart)
-    .lt('tgl_masuk', tomorrowStart);
+    .lte('tgl_masuk', todayEnd);
 
   // 2. Pendapatan Hari Ini — sum jumlah_bayar from pembayaran today
   const { data: pembayaranHariIni } = await supabaseAdmin
     .from('pembayaran')
     .select('jumlah_bayar')
     .gte('tgl_bayar', todayStart)
-    .lt('tgl_bayar', tomorrowStart);
+    .lte('tgl_bayar', todayEnd);
 
   const pendapatanHariIni = (pembayaranHariIni || []).reduce((sum, p) => sum + (p.jumlah_bayar || 0), 0);
 
