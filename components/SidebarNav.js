@@ -9,8 +9,7 @@ export default function SidebarNav({ items, user, rolePrefix = 'admin' }) {
   const pathname = usePathname();
 
   const homeHref = rolePrefix === 'admin' ? '/admin' : '/kasir/transaksi';
-  const initial = (user?.nama_lengkap || user?.username || 'U').charAt(0).toUpperCase();
-  const roleName = user?.role === 'admin' ? 'Administrator' : 'Kasir';
+  const roleDisplay = (user?.role || rolePrefix).toLowerCase();
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
@@ -71,7 +70,7 @@ export default function SidebarNav({ items, user, rolePrefix = 'admin' }) {
         })}
       </nav>
 
-      {/* User Profile Card & Logout */}
+      {/* Kotak User Profile & Tombol Keluar */}
       <div
         style={{
           borderTop: '1px solid #E2E8F0',
@@ -79,11 +78,9 @@ export default function SidebarNav({ items, user, rolePrefix = 'admin' }) {
           marginTop: '12px',
         }}
       >
+        {/* Info Pengguna: nama lengkap di atas, peran huruf kecil abu di bawah */}
         <div
           style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: '10px',
             padding: '10px 12px',
             backgroundColor: '#F8FAFC',
             border: '1px solid #E2E8F0',
@@ -91,54 +88,30 @@ export default function SidebarNav({ items, user, rolePrefix = 'admin' }) {
             marginBottom: '10px',
           }}
         >
-          {/* Avatar Inisial */}
-          <div
+          <p
             style={{
-              width: '34px',
-              height: '34px',
-              borderRadius: '50%',
-              backgroundColor: rolePrefix === 'admin' ? '#0F766E' : '#0284C7',
-              color: '#FFFFFF',
-              fontWeight: 700,
-              fontSize: '14px',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              flexShrink: 0,
+              fontSize: '13px',
+              fontWeight: 600,
+              color: '#1E293B',
+              margin: 0,
+              whiteSpace: 'nowrap',
+              overflow: 'hidden',
+              textOverflow: 'ellipsis',
             }}
           >
-            {initial}
-          </div>
-
-          {/* User Details */}
-          <div style={{ flex: 1, minWidth: 0 }}>
-            <p
-              style={{
-                fontSize: '13px',
-                fontWeight: 600,
-                color: '#1E293B',
-                margin: 0,
-                whiteSpace: 'nowrap',
-                overflow: 'hidden',
-                textOverflow: 'ellipsis',
-              }}
-            >
-              {user?.nama_lengkap || user?.username}
-            </p>
-            <span
-              style={{
-                display: 'inline-block',
-                fontSize: '11px',
-                fontWeight: 600,
-                color: rolePrefix === 'admin' ? '#0F766E' : '#0284C7',
-                textTransform: 'uppercase',
-                letterSpacing: '0.04em',
-                marginTop: '1px',
-              }}
-            >
-              {roleName}
-            </span>
-          </div>
+            {user?.nama_lengkap || user?.username}
+          </p>
+          <span
+            style={{
+              display: 'block',
+              fontSize: '12px',
+              fontWeight: 400,
+              color: '#64748B',
+              marginTop: '2px',
+            }}
+          >
+            {roleDisplay}
+          </span>
         </div>
 
         <LogoutButton />
