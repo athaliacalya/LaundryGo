@@ -3,7 +3,7 @@
 html, body {
   background-color: #F7F7F5;
   color: #1C1C1A;
-  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-family: inherit;
   -webkit-font-smoothing: antialiased;
 }
 
