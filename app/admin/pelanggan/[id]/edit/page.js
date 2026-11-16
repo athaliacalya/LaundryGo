@@ -21,7 +21,7 @@ export default async function EditPelangganPage({ params }) {
     <div
       style={{
         padding: '28px 32px',
-        fontFamily: "'Plus Jakarta Sans', sans-serif",
+        fontFamily: 'inherit',
         maxWidth: '600px',
       }}
     >
