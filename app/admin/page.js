@@ -188,6 +188,7 @@ export default async function AdminDashboardPage() {
       >
         <div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '4px' }}>
+            {/* Sapaan pengguna tanpa emoji */}
             <h1
               style={{
                 fontSize: '22px',
@@ -197,16 +198,17 @@ export default async function AdminDashboardPage() {
                 letterSpacing: '-0.3px',
               }}
             >
-              Halo, {user?.nama_lengkap || 'Admin'} 👋
+              Halo, {user?.nama_lengkap || 'Admin'}
             </h1>
           </div>
+          {/* Tanggal hari ini saja tanpa subjudul operasional */}
           <p style={{ fontSize: '14px', color: '#64748B', margin: 0 }}>
-            {todayFormatted} • Operasional Outlet Laundry
+            {todayFormatted}
           </p>
         </div>
 
-        {/* Quick Actions Bar */}
-        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', alignItems: 'center' }}>
+        {/* Quick Actions: hanya Transaksi Baru yang tombol solid, lainnya tautan teks */}
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '12px', alignItems: 'center' }}>
           <Link
             href="/admin/transaksi/baru"
             style={{
@@ -228,7 +230,7 @@ export default async function AdminDashboardPage() {
               <line x1="12" y1="5" x2="12" y2="19" />
               <line x1="5" y1="12" x2="19" y2="12" />
             </svg>
-            + Transaksi Baru
+            Transaksi Baru
           </Link>
 
           <Link
@@ -237,13 +239,10 @@ export default async function AdminDashboardPage() {
               display: 'inline-flex',
               alignItems: 'center',
               gap: '6px',
-              padding: '9px 14px',
+              padding: '8px 4px',
               fontSize: '13px',
               fontWeight: 500,
-              color: '#334155',
-              backgroundColor: '#FFFFFF',
-              border: '1px solid #CBD5E1',
-              borderRadius: '8px',
+              color: '#475569',
               textDecoration: 'none',
             }}
           >
@@ -253,7 +252,7 @@ export default async function AdminDashboardPage() {
               <line x1="20" y1="8" x2="20" y2="14" />
               <line x1="23" y1="11" x2="17" y2="11" />
             </svg>
-            + Pelanggan
+            Pelanggan
           </Link>
 
           <Link
@@ -262,13 +261,10 @@ export default async function AdminDashboardPage() {
               display: 'inline-flex',
               alignItems: 'center',
               gap: '6px',
-              padding: '9px 14px',
+              padding: '8px 4px',
               fontSize: '13px',
               fontWeight: 500,
-              color: '#334155',
-              backgroundColor: '#FFFFFF',
-              border: '1px solid #CBD5E1',
-              borderRadius: '8px',
+              color: '#475569',
               textDecoration: 'none',
             }}
           >
