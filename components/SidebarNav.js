@@ -12,7 +12,7 @@ export default function SidebarNav({ items, user, rolePrefix = 'admin' }) {
   const roleDisplay = (user?.role || rolePrefix).toLowerCase();
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', height: '100%', flex: 1 }}>
       {/* Brand Header */}
       <div
         style={{
@@ -27,7 +27,7 @@ export default function SidebarNav({ items, user, rolePrefix = 'admin' }) {
       </div>
 
       {/* Navigation List */}
-      <nav style={{ display: 'flex', flexDirection: 'column', gap: '4px', flex: 1 }}>
+      <nav style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
         {items.map((item) => {
           // Check if link is active
           const isExact = pathname === item.href;
@@ -70,12 +70,12 @@ export default function SidebarNav({ items, user, rolePrefix = 'admin' }) {
         })}
       </nav>
 
-      {/* Kotak User Profile & Tombol Keluar */}
+      {/* Kotak User Profile & Tombol Keluar: margin-top auto agar selalu menempel di dasar */}
       <div
         style={{
           borderTop: '1px solid #E5E7EB',
           paddingTop: '16px',
-          marginTop: '12px',
+          marginTop: 'auto',
         }}
       >
         {/* Info Pengguna: nama lengkap di atas, peran huruf kecil abu di bawah */}
