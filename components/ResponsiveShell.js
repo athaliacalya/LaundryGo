@@ -102,7 +102,7 @@ export default function ResponsiveShell({ sidebar, children }) {
         .app-shell-root {
           min-height: 100vh;
           background-color: #F7F7F5;
-          font-family: 'Plus Jakarta Sans', sans-serif;
+          font-family: inherit;
           display: flex;
           flex-direction: column;
           overflow-x: hidden;
@@ -129,7 +129,7 @@ export default function ResponsiveShell({ sidebar, children }) {
             width: 220px !important;
             flex-shrink: 0;
             background-color: #FFFFFF;
-            border-right: 1px solid #E4E4E0;
+            border-right: 1px solid #E5E7EB;
             display: flex !important;
             flex-direction: column;
             padding: 20px 12px;
@@ -156,7 +156,7 @@ export default function ResponsiveShell({ sidebar, children }) {
             height: 56px;
             padding: 0 12px 0 16px;
             background-color: #FFFFFF;
-            border-bottom: 1px solid #E4E4E0;
+            border-bottom: 1px solid #E5E7EB;
             position: sticky;
             top: 0;
             z-index: 30;
@@ -184,7 +184,7 @@ export default function ResponsiveShell({ sidebar, children }) {
             width: 240px;
             max-width: 80vw;
             background-color: #FFFFFF;
-            border-right: 1px solid #E4E4E0;
+            border-right: 1px solid #E5E7EB;
             display: flex;
             flex-direction: column;
             padding: 20px 12px;
