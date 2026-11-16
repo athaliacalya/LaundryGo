@@ -70,9 +70,9 @@ export default async function AdminDashboardPage() {
       label: 'Transaksi Hari Ini',
       value: transaksiHariIni ?? 0,
       sublabel: 'pesanan masuk hari ini',
-      iconBg: '#CCFBF1',
+      iconBg: '#F0FDFA',
       iconColor: '#0F766E',
-      borderColor: '#99F6E4',
+      borderColor: '#E5E7EB',
       icon: (
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
           <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
@@ -86,9 +86,9 @@ export default async function AdminDashboardPage() {
       label: 'Pendapatan Hari Ini',
       value: formatRupiah(pendapatanHariIni),
       sublabel: 'total kas masuk hari ini',
-      iconBg: '#D1FAE5',
-      iconColor: '#059669',
-      borderColor: '#A7F3D0',
+      iconBg: '#F0FDFA',
+      iconColor: '#0F766E',
+      borderColor: '#E5E7EB',
       icon: (
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
           <line x1="12" y1="1" x2="12" y2="23" />
@@ -100,9 +100,9 @@ export default async function AdminDashboardPage() {
       label: 'Cucian Diproses',
       value: cucianDiproses ?? 0,
       sublabel: 'sedang dicuci / disetrika',
-      iconBg: '#E0F2FE',
-      iconColor: '#0284C7',
-      borderColor: '#BAE6FD',
+      iconBg: '#F0FDFA',
+      iconColor: '#0F766E',
+      borderColor: '#E5E7EB',
       icon: (
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
           <circle cx="12" cy="12" r="9" />
@@ -114,9 +114,9 @@ export default async function AdminDashboardPage() {
       label: 'Belum Lunas',
       value: belumLunas ?? 0,
       sublabel: 'menunggu pembayaran',
-      iconBg: '#FEF3C7',
-      iconColor: '#D97706',
-      borderColor: '#FDE68A',
+      iconBg: '#F0FDFA',
+      iconColor: '#0F766E',
+      borderColor: '#E5E7EB',
       icon: (
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
           <circle cx="12" cy="12" r="10" />
@@ -145,10 +145,10 @@ export default async function AdminDashboardPage() {
 
   const statusCucianBadge = (status) => {
     const map = {
-      diterima: { bg: '#F1F5F9', color: '#475569', border: '#E2E8F0', label: 'Diterima' },
-      diproses: { bg: '#E0F2FE', color: '#0369A1', border: '#BAE6FD', label: 'Diproses' },
-      selesai: { bg: '#DCFCE7', color: '#15803D', border: '#BBF7D0', label: 'Selesai' },
-      diambil: { bg: '#F3E8FF', color: '#7E22CE', border: '#E9D5FF', label: 'Diambil' },
+      diterima: { bg: '#F3F4F6', color: '#4B5563', border: '#E5E7EB', label: 'Diterima' },
+      diproses: { bg: '#F0FDFA', color: '#0F766E', border: '#CCFBF1', label: 'Diproses' },
+      selesai: { bg: '#DCFCE7', color: '#166534', border: '#BBF7D0', label: 'Selesai' },
+      diambil: { bg: '#F3F4F6', color: '#4B5563', border: '#E5E7EB', label: 'Diambil' },
     };
     const s = map[status] || map.diterima;
     return {
@@ -183,7 +183,7 @@ export default async function AdminDashboardPage() {
           gap: '16px',
           paddingBottom: '20px',
           marginBottom: '20px',
-          borderBottom: '1px solid #E2E8F0',
+          borderBottom: '1px solid #E5E7EB',
         }}
       >
         <div>
@@ -220,9 +220,8 @@ export default async function AdminDashboardPage() {
               fontWeight: 600,
               color: '#FFFFFF',
               backgroundColor: '#0F766E',
-              borderRadius: '8px',
+              borderRadius: '6px',
               textDecoration: 'none',
-              boxShadow: '0 1px 2px rgba(15, 118, 110, 0.2)',
               transition: 'background-color 0.15s ease',
             }}
           >
@@ -293,10 +292,9 @@ export default async function AdminDashboardPage() {
             key={i}
             style={{
               backgroundColor: '#FFFFFF',
-              border: '1px solid #E2E8F0',
-              borderRadius: '10px',
+              border: '1px solid #E5E7EB',
+              borderRadius: '8px',
               padding: '16px 18px',
-              boxShadow: '0 1px 3px rgba(0,0,0,0.03)',
               position: 'relative',
               overflow: 'hidden',
             }}
@@ -309,7 +307,7 @@ export default async function AdminDashboardPage() {
                 style={{
                   width: '38px',
                   height: '38px',
-                  borderRadius: '8px',
+                  borderRadius: '6px',
                   backgroundColor: card.iconBg,
                   color: card.iconColor,
                   display: 'flex',
@@ -346,9 +344,8 @@ export default async function AdminDashboardPage() {
       <div
         style={{
           backgroundColor: '#FFFFFF',
-          border: '1px solid #E2E8F0',
-          borderRadius: '10px',
-          boxShadow: '0 1px 3px rgba(0,0,0,0.03)',
+          border: '1px solid #E5E7EB',
+          borderRadius: '8px',
           overflow: 'hidden',
         }}
       >
@@ -359,7 +356,7 @@ export default async function AdminDashboardPage() {
             alignItems: 'center',
             justifyContent: 'space-between',
             padding: '16px 20px',
-            borderBottom: '1px solid #E2E8F0',
+            borderBottom: '1px solid #E5E7EB',
             backgroundColor: '#FAFAFA',
           }}
         >
@@ -405,7 +402,7 @@ export default async function AdminDashboardPage() {
         >
           <table style={{ width: '100%', minWidth: '640px', borderCollapse: 'collapse', fontSize: '13px' }}>
             <thead>
-              <tr style={{ backgroundColor: '#F8FAFC', borderBottom: '1px solid #E2E8F0' }}>
+              <tr style={{ backgroundColor: '#F8FAFC', borderBottom: '1px solid #E5E7EB' }}>
                 <th style={thStyle}>No Nota</th>
                 <th style={thStyle}>Pelanggan</th>
                 <th style={thStyle}>Tgl Masuk</th>
@@ -421,7 +418,7 @@ export default async function AdminDashboardPage() {
                   <tr
                     key={t.id_transaksi}
                     style={{
-                      borderBottom: i < transaksiTerbaru.length - 1 ? '1px solid #F1F5F9' : 'none',
+                      borderBottom: i < transaksiTerbaru.length - 1 ? '1px solid #E5E7EB' : 'none',
                       height: '48px',
                     }}
                   >
