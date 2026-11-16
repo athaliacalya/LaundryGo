@@ -4,6 +4,7 @@ import { Poppins } from 'next/font/google';
 import Logo from '@/components/Logo';
 import { getSession } from '@/lib/session';
 import { supabaseAdmin } from '@/lib/supabaseAdmin';
+import { formatTanggal } from '@/lib/waktu';
 
 const poppins = Poppins({
   subsets: ['latin'],
@@ -17,17 +18,6 @@ function formatRupiah(val) {
     currency: 'IDR',
     maximumFractionDigits: 0,
   }).format(val || 0);
-}
-
-function formatTanggal(str) {
-  if (!str) return '—';
-  const d = new Date(str);
-  return d.toLocaleDateString('id-ID', {
-    weekday: 'short',
-    day: 'numeric',
-    month: 'short',
-    year: 'numeric',
-  });
 }
 
 export default async function IndexPage({ searchParams }) {
