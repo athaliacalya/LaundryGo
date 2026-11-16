@@ -86,7 +86,7 @@ export default async function TransaksiKasirPage({ searchParams }) {
     <div
       style={{
         padding: '28px 32px',
-        fontFamily: "'Plus Jakarta Sans', sans-serif",
+        fontFamily: 'inherit',
         maxWidth: '960px',
       }}
     >
@@ -152,7 +152,7 @@ export default async function TransaksiKasirPage({ searchParams }) {
             fontSize: '14px',
             color: '#1C1C1A',
             backgroundColor: '#FFFFFF',
-            border: '1px solid #E4E4E0',
+            border: '1px solid #E5E7EB',
             borderRadius: '6px',
             outline: 'none',
             width: '300px',
@@ -166,7 +166,7 @@ export default async function TransaksiKasirPage({ searchParams }) {
         className="table-container"
         style={{
           backgroundColor: '#FFFFFF',
-          border: '1px solid #E4E4E0',
+          border: '1px solid #E5E7EB',
           borderRadius: '8px',
           overflowX: 'auto',
           WebkitOverflowScrolling: 'touch',
@@ -174,7 +174,7 @@ export default async function TransaksiKasirPage({ searchParams }) {
       >
         <table style={{ width: '100%', minWidth: '680px', borderCollapse: 'collapse', fontSize: '14px' }}>
           <thead>
-            <tr style={{ backgroundColor: '#F7F7F5', borderBottom: '1px solid #E4E4E0' }}>
+            <tr style={{ backgroundColor: '#F7F7F5', borderBottom: '1px solid #E5E7EB' }}>
               <th style={thStyle}>No Nota</th>
               <th style={thStyle}>Tgl Masuk</th>
               <th style={thStyle}>Pelanggan</th>
@@ -257,7 +257,7 @@ export default async function TransaksiKasirPage({ searchParams }) {
                 fontWeight: h === halaman ? 600 : 400,
                 color: h === halaman ? '#0F766E' : '#6B6B67',
                 backgroundColor: h === halaman ? '#F0FDF9' : '#FFFFFF',
-                border: `1px solid ${h === halaman ? '#0F766E' : '#E4E4E0'}`,
+                border: `1px solid ${h === halaman ? '#0F766E' : '#E5E7EB'}`,
                 borderRadius: '6px',
                 textDecoration: 'none',
               }}
