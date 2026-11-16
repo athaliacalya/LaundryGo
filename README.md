@@ -168,30 +168,49 @@ Aplikasi ini dibangun menggunakan **Node.js (Next.js App Router)** dan database 
 2. **Frontend & Backend API:** Dihosting di [Vercel](https://vercel.com):
    - Hubungkan akun GitHub ke Vercel.
    - Pilih repositori `athaliacalya/LaundryGo`.
-   - Masukkan Environment Variables (`NEXT_PUBLIC_SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`, `SESSION_SECRET`).
-   - Klik **Deploy**. Website akan langsung aktif dengan HTTPS gratis.
+   - Masukkan Environment Variables (`NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`, `SUPABASE_SERVICE_ROLE_KEY`, `SESSION_SECRET`).
+   - Sambungkan Custom Domain: **`laundrygo.web.id`**.
+   - Klik **Deploy**. Website aktif dengan HTTPS/SSL otomatis.
 
 ---
 
-## 6. Pemetaan Ketentuan Tugas (Project WEB 26)
+## 6. Tangkapan Layar Aplikasi (Screenshots)
+
+Berikut adalah dokumentasi tangkapan layar antarmuka aplikasi LaundryGo:
+
+| No | Halaman / Fitur | File Tangkapan Layar | Deskripsi |
+|:---:|---|---|---|
+| 1 | **Halaman Masuk (Login)** | `docs/screenshots/01-login.png` | Antarmuka masuk petugas dengan pilihan akun cepat (`admin` dan `kasir1`). |
+| 2 | **Dashboard Admin** | `docs/screenshots/02-dashboard-admin.png` | Ringkasan metrik harian (Transaksi, Pendapatan, Cucian Diproses, Belum Lunas) & 5 transaksi terbaru. |
+| 3 | **Daftar Pelanggan** | `docs/screenshots/03-daftar-pelanggan.png` | Manajemen data pelanggan dengan fitur pencarian instan dan pagination 10 data. |
+| 4 | **Form Transaksi Baru** | `docs/screenshots/04-transaksi-baru.png` | Input multi-layanan (kiloan/satuan), kalkulasi otomatis subtotal & estimasi selesai, serta DP. |
+| 5 | **Detail Transaksi** | `docs/screenshots/05-detail-transaksi.png` | Rincian lengkap item layanan, riwayat pembayaran bertahap, dan pembaruan status cucian. |
+| 6 | **Pratinjau Nota Cetak** | `docs/screenshots/06-nota-cetak.png` | Format cetak struk nota 1 lembar bersih siap cetak ke printer/PDF (`window.print`). |
+| 7 | **Laporan Pendapatan** | `docs/screenshots/07-laporan-pendapatan.png` | Filter rentang tanggal (WIB), ringkasan omzet, serta tombol Cetak PDF dan Ekspor Excel (CSV). |
+| 8 | **Transaksi Kasir** | `docs/screenshots/08-transaksi-kasir.png` | Antarmuka operasional kasir dengan batasan hak akses menu tanpa laporan keuangan. |
+| 9 | **Daftar Layanan & Tarif** | `docs/screenshots/09-daftar-layanan.png` | Pengelolaan data master layanan cucian, satuan, tarif harga, dan estimasi hari pengerjaan. |
+
+---
+
+## 7. Pemetaan Ketentuan Tugas (Project WEB 26)
 
 | No | Ketentuan Tugas | Implementasi di LaundryGo | Status |
 |:---:|---|---|:---:|
-| 1 | **Bahasa / Framework** | Menggunakan framework **Node.js (Next.js 16)** dengan arsitektur Server Components & Server Actions. | Terpenuhi |
-| 2 | **Git & GitHub** | Repositori GitHub aktif sejak awal dengan riwayat commit deskriptif per modul. | Terpenuhi |
-| 3 | **Minimal 2 Peran & CRUD** | Peran **Admin** dan **Kasir**; CRUD Pelanggan, Layanan, dan Transaksi; dilengkapi **Pencarian** & **Pagination 10 data**. | Terpenuhi |
-| 4 | **Laporan Cetak / Ekspor** | Laporan Pendapatan di `/admin/laporan` dapat **Dicetak / Simpan PDF** dan **Diekspor ke CSV (Excel)**, serta fitur **Cetak Nota**. | Terpenuhi |
-| 5 | **Keamanan Dasar** | Password di-hash dengan **Bcrypt**, Prepared Statement via Supabase SDK, validasi input sisi server & browser, Row Level Security (RLS). | Terpenuhi |
-| 6 | **Tampilan Responsif** | Tampilan fleksibel dan nyaman diakses di smartphone (layar 360px), tablet, hingga laptop. | Terpenuhi |
-| 7 | **Judul Resmi** | Terdaftar resmi di No. 1: **ATHALIA CALYA FITRIANI — Sistem Informasi Laundry**. | Terpenuhi |
-| 8 | **README, ERD, Demo** | Dokumentasi lengkap dengan diagram ERD Mermaid, kredensial akun demo, dan panduan teknis. | Terpenuhi |
-| 9 | **Video Demo (2–3 Menit)** | Tersedia skenario alur perekaman demo yang terstruktur. | Terpenuhi |
+| 1 | **Bahasa / Framework** | Menggunakan framework modern **Node.js (Next.js 16)** dengan Server Components & Server Actions. | Terpenuhi |
+| 2 | **Git & GitHub** | Repositori GitHub aktif sejak awal dengan riwayat commit deskriptif per modul tugas. | Terpenuhi |
+| 3 | **Minimal 2 Peran & CRUD** | Peran **Admin** dan **Kasir**; CRUD Pelanggan, Layanan, dan Transaksi; dilengkapi **Pencarian** & **Pagination**. | Terpenuhi |
+| 4 | **Laporan Cetak / Ekspor** | Laporan Pendapatan di `/admin/laporan` dapat **Dicetak / Simpan PDF** dan **Diekspor ke CSV (Excel)**, serta **Cetak Nota**. | Terpenuhi |
+| 5 | **Keamanan Dasar** | Password di-hash dengan **Bcrypt**, Prepared Statement via Supabase SDK, validasi input berlapis sisi server & browser. | Terpenuhi |
+| 6 | **Tampilan Responsif** | Tampilan fleksibel dan nyaman diakses di smartphone (layar 360px), tablet, hingga laptop desktop. | Terpenuhi |
+| 7 | **Judul Resmi** | Terdaftar resmi di No. 1 & 6: **ATHALIA CALYA FITRIANI — Sistem Informasi Laundry**. | Terpenuhi |
+| 8 | **README, ERD, Demo** | Dokumentasi lengkap dengan diagram ERD Mermaid, kredensial akun demo, tabel screenshot, dan panduan teknis. | Terpenuhi |
+| 9 | **Video Demo (2–3 Menit)** | Tersedia skenario alur perekaman demo yang terstruktur siap pakai. | Terpenuhi |
 
 ---
 
-## 7. Skenario Video Demo (Durasi Target: 2:30 Menit)
+## 8. Skenario Video Demo (Durasi Target: 2:30 Menit)
 
-Jika Anda ingin merekam video demo penilaian, ikuti urutan alur berikut:
+Alur panduan untuk merekam video presentasi penilaian singkat:
 
 - **Menit 0:00 – 0:25 (Pengenalan & Halaman Utama)**:
   - Tampilkan halaman Beranda (`UI Index`), jelaskan judul proyek "Sistem Informasi Laundry - LaundryGo", serta demonstrasikan fitur publik **Cek Status Cucian** dengan memasukkan nomor nota.
@@ -199,17 +218,18 @@ Jika Anda ingin merekam video demo penilaian, ikuti urutan alur berikut:
   - Masuk sebagai Kasir (`kasir1`).
   - Buka menu Pelanggan ➔ Tambah Pelanggan Baru.
   - Buat Transaksi Baru dengan memilih 2 jenis layanan (kiloan + satuan). Tunjukkan kalkulasi otomatis subtotal & estimasi tanggal selesai.
-  - Catat Pembayaran DP, lalu klik **Cetak Nota** (tunjukkan tampilan preview print 1 lembar).
+  - Catat Pembayaran DP, centang verifikasi dana non-tunai, lalu klik **Cetak Nota** (tunjukkan tampilan preview print 1 lembar).
 - **Menit 1:10 – 1:35 (Status Cucian & Batasan Hak Akses)**:
   - Ubah status cucian menjadi "Diproses" ➔ "Selesai".
   - Tunjukkan bahwa kasir **tidak memiliki akses** ke menu Laporan Pendapatan (keamanan route protection).
 - **Menit 1:35 – 2:10 (Alur Administrator)**:
   - Logout kasir, login sebagai Admin (`admin`).
-  - Tunjukkan Dashboard ringkasan pendapatan hari ini dan cucian diproses.
+  - Tunjukkan Dashboard ringkasan pendapatan hari ini dan cucian diproses (zona WIB).
   - Buka menu Laporan Pendapatan, atur filter tanggal, tunjukkan tombol **Cetak / Simpan PDF** dan tombol **Ekspor CSV (Excel)**.
 - **Menit 2:10 – 2:30 (Responsif HP & Penutup)**:
   - Buka Inspect Element / mode HP (360px) untuk menunjukkan sidebar drawer dan tombol yang tetap rapi.
   - Tunjukkan sekilas repositori GitHub dengan riwayat commit, lalu tutup presentasi.
 
 ---
+*Dibuat dengan bangga untuk Penilaian Akhir Project WEB 26 — SMKN 6 Surakarta.*
 
