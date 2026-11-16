@@ -89,7 +89,7 @@ export default function TransaksiDetailView({
     <div
       style={{
         padding: '28px 32px',
-        fontFamily: "'Plus Jakarta Sans', sans-serif",
+        fontFamily: 'inherit',
         maxWidth: '960px',
       }}
     >
@@ -324,7 +324,7 @@ export default function TransaksiDetailView({
           <div
             style={{
               backgroundColor: '#FFFFFF',
-              border: '1px solid #E4E4E0',
+              border: '1px solid #E5E7EB',
               borderRadius: '8px',
               padding: '18px 20px',
             }}
@@ -346,7 +346,7 @@ export default function TransaksiDetailView({
           <div
             style={{
               backgroundColor: '#FFFFFF',
-              border: '1px solid #E4E4E0',
+              border: '1px solid #E5E7EB',
               borderRadius: '8px',
               padding: '18px 20px',
             }}
@@ -362,7 +362,7 @@ export default function TransaksiDetailView({
               <span style={{ color: '#6B6B67' }}>Sudah Dibayar:</span>
               <span style={{ fontWeight: 600, color: '#0F766E' }}>{formatRupiah(totalSudahBayar)}</span>
             </div>
-            <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '13px', paddingTop: '6px', borderTop: '1px dashed #E4E4E0' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '13px', paddingTop: '6px', borderTop: '1px dashed #E5E7EB' }}>
               <span style={{ color: '#6B6B67', fontWeight: 500 }}>Sisa Tagihan:</span>
               <span style={{ fontWeight: 700, color: sisaTagihan > 0 ? '#B91C1C' : '#0F766E' }}>
                 {formatRupiah(sisaTagihan)}
@@ -380,7 +380,7 @@ export default function TransaksiDetailView({
             className="table-container"
             style={{
               backgroundColor: '#FFFFFF',
-              border: '1px solid #E4E4E0',
+              border: '1px solid #E5E7EB',
               borderRadius: '8px',
               overflowX: 'auto',
               WebkitOverflowScrolling: 'touch',
@@ -388,7 +388,7 @@ export default function TransaksiDetailView({
           >
             <table style={{ width: '100%', minWidth: '480px', borderCollapse: 'collapse', fontSize: '14px' }}>
               <thead>
-                <tr style={{ backgroundColor: '#F7F7F5', borderBottom: '1px solid #E4E4E0' }}>
+                <tr style={{ backgroundColor: '#F7F7F5', borderBottom: '1px solid #E5E7EB' }}>
                   <th style={thStyle}>Layanan</th>
                   <th style={{ ...thStyle, textAlign: 'center' }}>Jumlah</th>
                   <th style={{ ...thStyle, textAlign: 'right' }}>Harga Satuan</th>
@@ -420,7 +420,7 @@ export default function TransaksiDetailView({
                 ))}
               </tbody>
               <tfoot>
-                <tr style={{ backgroundColor: '#FAFAF9', borderTop: '2px solid #E4E4E0' }}>
+                <tr style={{ backgroundColor: '#FAFAF9', borderTop: '2px solid #E5E7EB' }}>
                   <td colSpan={3} style={{ ...tdStyle, fontWeight: 600, textAlign: 'right', color: '#1C1C1A', height: '44px' }}>
                     Total:
                   </td>
@@ -442,7 +442,7 @@ export default function TransaksiDetailView({
             className="table-container"
             style={{
               backgroundColor: '#FFFFFF',
-              border: '1px solid #E4E4E0',
+              border: '1px solid #E5E7EB',
               borderRadius: '8px',
               overflowX: 'auto',
               WebkitOverflowScrolling: 'touch',
@@ -450,7 +450,7 @@ export default function TransaksiDetailView({
           >
             <table style={{ width: '100%', minWidth: '480px', borderCollapse: 'collapse', fontSize: '14px' }}>
               <thead>
-                <tr style={{ backgroundColor: '#F7F7F5', borderBottom: '1px solid #E4E4E0' }}>
+                <tr style={{ backgroundColor: '#F7F7F5', borderBottom: '1px solid #E5E7EB' }}>
                   <th style={thStyle}>Tanggal Pembayaran</th>
                   <th style={thStyle}>Metode</th>
                   <th style={{ ...thStyle, textAlign: 'right' }}>Jumlah Dibayar</th>
@@ -509,7 +509,7 @@ export default function TransaksiDetailView({
             <div
               style={{
                 backgroundColor: '#FFFFFF',
-                border: '1px solid #E4E4E0',
+                border: '1px solid #E5E7EB',
                 borderRadius: '8px',
                 padding: '20px',
                 display: 'flex',
