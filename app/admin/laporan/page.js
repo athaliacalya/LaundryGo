@@ -65,7 +65,7 @@ export default async function LaporanPage({ searchParams }) {
     <div
       style={{
         padding: '28px 32px',
-        fontFamily: "'Plus Jakarta Sans', sans-serif",
+        fontFamily: 'inherit',
         maxWidth: '960px',
       }}
     >
@@ -104,7 +104,7 @@ export default async function LaporanPage({ searchParams }) {
           body {
             background: #FFFFFF !important;
             color: #000000 !important;
-            font-family: 'Plus Jakarta Sans', Arial, sans-serif;
+            font-family: inherit, Arial, sans-serif;
             font-size: 12px;
             margin: 0;
             padding: 0;
@@ -228,7 +228,7 @@ export default async function LaporanPage({ searchParams }) {
               border: '1px solid #E4E4E0',
               borderRadius: '6px',
               outline: 'none',
-              fontFamily: "'Plus Jakarta Sans', sans-serif",
+              fontFamily: 'inherit',
             }}
           />
         </div>
@@ -248,7 +248,7 @@ export default async function LaporanPage({ searchParams }) {
               border: '1px solid #E4E4E0',
               borderRadius: '6px',
               outline: 'none',
-              fontFamily: "'Plus Jakarta Sans', sans-serif",
+              fontFamily: 'inherit',
             }}
           />
         </div>
@@ -263,7 +263,7 @@ export default async function LaporanPage({ searchParams }) {
             border: 'none',
             borderRadius: '6px',
             cursor: 'pointer',
-            fontFamily: "'Plus Jakarta Sans', sans-serif",
+            fontFamily: 'inherit',
           }}
         >
           Filter
