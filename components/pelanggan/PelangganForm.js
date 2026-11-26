@@ -1,5 +1,6 @@
 'use client';
 import { useActionState } from 'react';
+import Link from 'next/link';
 
 const inputStyle = {
   width: '100%',
@@ -29,7 +30,12 @@ const errorStyle = {
   marginTop: '4px',
 };
 
-export default function PelangganForm({ action, initialData, submitLabel }) {
+export default function PelangganForm({
+  action,
+  initialData,
+  submitLabel = 'Simpan',
+  cancelHref = '/admin/pelanggan',
+}) {
   const [state, formAction, pending] = useActionState(action, { errors: {} });
 
   return (
@@ -135,10 +141,10 @@ export default function PelangganForm({ action, initialData, submitLabel }) {
             transition: 'background-color 0.15s',
           }}
         >
-          {pending ? 'Menyimpan...' : submitLabel}
+          {pending ? 'Menyimpan...' : (submitLabel || 'Simpan')}
         </button>
-        <a
-          href="/admin/pelanggan"
+        <Link
+          href={cancelHref}
           className="cancel-btn"
           style={{
             padding: '10px 16px',
@@ -155,7 +161,7 @@ export default function PelangganForm({ action, initialData, submitLabel }) {
           }}
         >
           Batal
-        </a>
+        </Link>
       </div>
 
       <style>{`

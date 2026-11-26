@@ -41,7 +41,7 @@ export default function TambahPelangganKasirPage() {
           padding: '24px',
         }}
       >
-        <PelangganForm action={tambahPelangganKasir} />
+        <PelangganForm action={tambahPelangganKasir} submitLabel="Simpan" cancelHref="/kasir/pelanggan" />
       </div>
     </div>
   );
