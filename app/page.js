@@ -162,11 +162,6 @@ export default async function IndexPage({ searchParams }) {
         </div>
 
         <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-teal-500/20 border border-teal-400/30 text-teal-200 text-xs font-semibold mb-6">
-            <span className="w-2 h-2 rounded-full bg-teal-400 animate-pulse"></span>
-            Sistem Informasi &amp; Kasir Laundry Modern
-          </div>
-
           <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight leading-tight sm:leading-tight mb-4">
             Cucian Bersih, Rapi, &amp; Tepat Waktu <br className="hidden sm:inline" />
             <span className="text-teal-400">Tanpa Khawatir Hilang</span>
