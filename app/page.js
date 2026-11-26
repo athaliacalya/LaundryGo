@@ -511,17 +511,23 @@ export default async function IndexPage({ searchParams }) {
       </section>
 
       {/* 6. Footer */}
-      <footer className="mt-auto bg-slate-900 text-slate-400 py-10 border-t border-slate-800">
+      <footer
+        className="mt-auto text-slate-300 py-10 border-t border-white/10"
+        style={{
+          background: 'linear-gradient(to top right, #123332 0%, #1E2E3B 50%, #182334 100%)',
+        }}
+      >
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-6 pb-6 border-b border-slate-800">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-6 pb-6 border-b border-white/10">
             <div className="flex items-center gap-2">
               <Logo textColor="#FFFFFF" />
             </div>
-            <div className="text-xs text-slate-400 text-center sm:text-right">
-              Jl. Pendidikan No. 26 • Jam Operasional: 07.00 - 21.00 WIB
+            <div className="text-xs text-center sm:text-right space-y-1">
+              <p className="text-slate-200 font-medium">Jam Operasional: 07.00 - 21.00 WIB</p>
+              <p className="text-slate-400">Jl. Pendidikan No. 26</p>
             </div>
           </div>
-          <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-500">
+          <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-400">
             <p>© 2026 LaundryGo • Sistem Informasi Pengelolaan Laundry</p>
             <p>Athalia Calya Fitriani — Project WEB 26</p>
           </div>
