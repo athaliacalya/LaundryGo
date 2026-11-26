@@ -529,7 +529,6 @@ export default async function IndexPage({ searchParams }) {
           </div>
           <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-400">
             <p>© 2026 LaundryGo • Sistem Informasi Pengelolaan Laundry</p>
-            <p>Athalia Calya Fitriani — Project WEB 26</p>
           </div>
         </div>
       </footer>
