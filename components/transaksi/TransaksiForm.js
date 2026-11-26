@@ -44,6 +44,31 @@ export default function TransaksiForm({ action, pelangganList, layananList, back
   const isNonTunaiDP = Number(bayarAwal) > 0 && (metodeBayar === 'transfer' || metodeBayar === 'qris');
   const isSubmitDisabled = isPending || (isNonTunaiDP && !danaChecked);
 
+  const handleNumericKeyDown = (e) => {
+    if (
+      [
+        'Backspace',
+        'Delete',
+        'Tab',
+        'Escape',
+        'Enter',
+        'ArrowLeft',
+        'ArrowRight',
+        'ArrowUp',
+        'ArrowDown',
+        'Home',
+        'End',
+      ].includes(e.key) ||
+      e.ctrlKey ||
+      e.metaKey
+    ) {
+      return;
+    }
+    if (!/^[0-9]$/.test(e.key)) {
+      e.preventDefault();
+    }
+  };
+
   function addItem() {
     setItems([...items, { id_layanan: '', jumlah: '' }]);
   }
@@ -285,7 +310,20 @@ export default function TransaksiForm({ action, pelangganList, layananList, back
               step={1}
               inputMode="numeric"
               value={bayarAwal}
-              onChange={(e) => setBayarAwal(e.target.value)}
+              onKeyDown={handleNumericKeyDown}
+              onBeforeInput={(e) => {
+                if (e.data && !/^\d+$/.test(e.data)) {
+                  e.preventDefault();
+                }
+              }}
+              onPaste={(e) => {
+                e.preventDefault();
+                const paste = e.clipboardData.getData('text').replace(/\D/g, '');
+                if (paste) {
+                  setBayarAwal(paste);
+                }
+              }}
+              onChange={(e) => setBayarAwal(e.target.value.replace(/\D/g, ''))}
               placeholder="Nominal DP (0)"
               style={{ ...inputStyle, minHeight: '44px', fontSize: '16px' }}
             />

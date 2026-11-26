@@ -35,6 +35,39 @@ export default function PembayaranForm({ idTransaksi, sisaTagihan, catatPembayar
   const isNonTunai = metode === 'transfer' || metode === 'qris';
   const isTombolDisabled = isPending || (isNonTunai && !danaChecked);
 
+  const handleNumericKeyDown = (e) => {
+    if (
+      [
+        'Backspace',
+        'Delete',
+        'Tab',
+        'Escape',
+        'Enter',
+        'ArrowLeft',
+        'ArrowRight',
+        'ArrowUp',
+        'ArrowDown',
+        'Home',
+        'End',
+      ].includes(e.key) ||
+      e.ctrlKey ||
+      e.metaKey
+    ) {
+      return;
+    }
+    if (!/^[0-9]$/.test(e.key)) {
+      e.preventDefault();
+    }
+  };
+
+  const handleNumericPaste = (e) => {
+    e.preventDefault();
+    const paste = e.clipboardData.getData('text').replace(/\D/g, '');
+    if (paste) {
+      setJumlah(paste);
+    }
+  };
+
   return (
     <div
       style={{
@@ -116,7 +149,14 @@ export default function PembayaranForm({ idTransaksi, sisaTagihan, catatPembayar
               inputMode="numeric"
               required
               value={jumlah}
-              onChange={(e) => setJumlah(e.target.value)}
+              onKeyDown={handleNumericKeyDown}
+              onBeforeInput={(e) => {
+                if (e.data && !/^\d+$/.test(e.data)) {
+                  e.preventDefault();
+                }
+              }}
+              onPaste={handleNumericPaste}
+              onChange={(e) => setJumlah(e.target.value.replace(/\D/g, ''))}
               placeholder="0"
               style={{ ...inputStyle, width: '100%' }}
             />
