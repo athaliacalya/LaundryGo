@@ -48,12 +48,6 @@ export default function LoginPage() {
     }
   }
 
-  function handleQuickFill(role) {
-    setUsername(role);
-    const passInput = document.getElementById('password');
-    if (passInput) passInput.focus();
-  }
-
   return (
     <main
       className={`${poppins.className} relative min-h-screen w-full flex flex-col justify-between overflow-x-hidden`}
@@ -386,43 +380,6 @@ export default function LoginPage() {
                 >
                   {loading ? 'Memeriksa...' : 'Masuk'}
                 </button>
-
-                {/* Pilihan Akun Cepat */}
-                <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginTop: '2px', flexWrap: 'wrap' }}>
-                  <span style={{ fontSize: '12px', color: '#7E8691' }}>Pilih akun:</span>
-                  <button
-                    type="button"
-                    onClick={() => handleQuickFill('admin')}
-                    style={{
-                      fontSize: '12px',
-                      padding: '2px 8px',
-                      borderRadius: '6px',
-                      border: '1px solid #E5E7EB',
-                      backgroundColor: '#FFFFFF',
-                      color: '#12161C',
-                      cursor: 'pointer',
-                      fontWeight: 500,
-                    }}
-                  >
-                    admin
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => handleQuickFill('kasir1')}
-                    style={{
-                      fontSize: '12px',
-                      padding: '2px 8px',
-                      borderRadius: '6px',
-                      border: '1px solid #E5E7EB',
-                      backgroundColor: '#FFFFFF',
-                      color: '#12161C',
-                      cursor: 'pointer',
-                      fontWeight: 500,
-                    }}
-                  >
-                    kasir1
-                  </button>
-                </div>
               </form>
 
               <style>{`
