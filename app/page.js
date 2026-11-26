@@ -135,7 +135,7 @@ export default async function IndexPage({ searchParams }) {
                 href="/login"
                 className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-teal-700 hover:bg-teal-800 text-white text-xs sm:text-sm font-semibold transition"
               >
-                <span>Login Petugas</span>
+                <span>Masuk ke Sistem</span>
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" />
                   <polyline points="10 17 15 12 10 7" />
@@ -147,31 +147,10 @@ export default async function IndexPage({ searchParams }) {
         </div>
       </header>
 
-      {/* 2. Hero Section — tinggi penuh layar dikurangi navbar */}
-      <section
-        className="relative overflow-hidden text-white"
-        style={{ minHeight: 'calc(100svh - 64px)' }}
-      >
-        {/* CSS Variables untuk warna utama */}
-        <style>{`
-          :root {
-            --primary: #00BFA5;
-            --primary-dark: #00897B;
-            --text-dark: #0F172A;
-          }
-        `}</style>
-
-        {/* Overlay gradasi sejuk — lebih terang dari versi lama */}
-        <div
-          className="absolute inset-0 z-0"
-          style={{
-            background:
-              'linear-gradient(135deg, rgba(10,25,35,0.80) 0%, rgba(0,30,45,0.68) 50%, rgba(10,20,40,0.72) 100%)',
-          }}
-        />
-
-        {/* Foto latar mesin cuci */}
-        <div className="absolute inset-0 z-[-1]">
+      {/* 2. Hero Section */}
+      <section className="relative overflow-hidden bg-gradient-to-br from-slate-900 via-teal-950 to-slate-900 text-white py-16 sm:py-24">
+        {/* Latar Belakang Mesin Cuci Halus */}
+        <div className="absolute inset-0 z-0 opacity-15">
           <Image
             src="/images/login-bg.jpg"
             alt="Latar belakang mesin cuci"
@@ -182,120 +161,78 @@ export default async function IndexPage({ searchParams }) {
           />
         </div>
 
-        {/* Konten rata tengah vertikal & horizontal */}
-        <div className="relative z-10 flex flex-col items-center justify-center min-h-[inherit] px-4 sm:px-6 lg:px-8 py-16 text-center"
-          style={{ minHeight: 'calc(100svh - 64px)' }}
-        >
-          {/* Judul dua baris */}
-          <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight leading-tight sm:leading-tight mb-4 max-w-3xl">
-            Cucian Bersih, Rapi, &amp; Tepat Waktu{' '}
-            <br />
-            <span style={{ color: 'var(--primary)' }}>Tanpa Khawatir Hilang</span>
+        <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight leading-tight sm:leading-tight mb-4">
+            Cucian Bersih, Rapi, &amp; Tepat Waktu <br className="hidden sm:inline" />
+            <span className="text-teal-400">Tanpa Khawatir Hilang</span>
           </h1>
 
-          {/* Deskripsi singkat */}
-          <p className="max-w-xl mx-auto text-sm sm:text-base text-slate-300 leading-relaxed mb-8">
-            Pantau status cucianmu secara langsung dengan nomor nota.
+          <p className="max-w-2xl mx-auto text-sm sm:text-base text-slate-300 leading-relaxed mb-8">
+            LaundryGo menghadirkan pencatatan operasional laundry yang transparan. Pelanggan dapat memantau status cucian secara langsung dan kasir dapat mencetak nota secara otomatis.
           </p>
 
-          {/* Form pelacakan nota langsung di hero */}
-          <form
-            method="GET"
-            action="/"
-            className="w-full max-w-md mx-auto flex flex-col sm:flex-row gap-2 mb-6"
-          >
-            <label htmlFor="nota-hero" className="sr-only">
-              Nomor nota cucian
-            </label>
-            <input
-              id="nota-hero"
-              type="text"
-              name="nota"
-              defaultValue={notaQuery}
-              placeholder="Contoh: T0001"
-              aria-label="Masukkan nomor nota cucian"
-              className="flex-1 h-12 px-4 rounded-md text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 text-sm font-medium bg-white"
-              style={{ '--tw-ring-color': 'var(--primary)' }}
-            />
-            <button
-              type="submit"
-              className="h-12 px-6 rounded-md font-bold text-sm transition shrink-0 whitespace-nowrap text-slate-950"
-              style={{ background: 'var(--primary)' }}
-              onMouseOver={(e) => { e.currentTarget.style.background = 'var(--primary-dark)'; }}
-              onMouseOut={(e) => { e.currentTarget.style.background = 'var(--primary)'; }}
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 max-w-md mx-auto">
+            <a
+              href="#lacak"
+              className="w-full sm:w-auto px-6 py-3 rounded-md bg-teal-500 hover:bg-teal-400 text-slate-950 font-bold text-sm transition"
             >
-              Lacak Cucian
-            </button>
-          </form>
-
-          {/* Kartu pratinjau statis dekoratif (aria-hidden agar tidak dibaca screen reader) */}
-          <div
-            aria-hidden="true"
-            className="w-full max-w-sm mx-auto rounded-xl border border-white/15 text-left text-xs"
-            style={{ background: 'rgba(255,255,255,0.08)', backdropFilter: 'blur(8px)' }}
-          >
-            <div className="px-4 py-3 border-b border-white/10 flex items-center justify-between">
-              <span className="font-bold text-white text-sm">Nota T0001</span>
-              <span
-                className="px-2 py-0.5 rounded-full text-[10px] font-semibold"
-                style={{ background: 'var(--primary)', color: 'var(--text-dark)' }}
-              >
-                Sedang dicuci
-              </span>
-            </div>
-            <div className="px-4 py-3 grid grid-cols-4 gap-1">
-              {[
-                { label: 'Diterima', done: true },
-                { label: 'Dicuci', active: true },
-                { label: 'Disetrika', done: false },
-                { label: 'Siap diambil', done: false },
-              ].map((s, i) => (
-                <div key={i} className="flex flex-col items-center gap-1">
-                  <div
-                    className="w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-bold"
-                    style={{
-                      background: s.done
-                        ? '#10B981'
-                        : s.active
-                        ? 'var(--primary)'
-                        : 'rgba(255,255,255,0.15)',
-                      color: s.done || s.active ? '#fff' : 'rgba(255,255,255,0.5)',
-                    }}
-                  >
-                    {s.done ? '✓' : s.active ? '●' : i + 1}
-                  </div>
-                  <span
-                    className="text-center leading-tight"
-                    style={{
-                      color: s.done || s.active ? 'rgba(255,255,255,0.9)' : 'rgba(255,255,255,0.4)',
-                      fontSize: '9px',
-                    }}
-                  >
-                    {s.label}
-                  </span>
-                </div>
-              ))}
-            </div>
+              Lacak Status Cucian Anda
+            </a>
+            <Link
+              href="/login"
+              className="w-full sm:w-auto px-6 py-3 rounded-md bg-white/10 hover:bg-white/20 text-white border border-white/20 font-semibold text-sm transition"
+            >
+              Portal Petugas (Login)
+            </Link>
           </div>
         </div>
       </section>
 
-      {/* 3. Section Cek Status Cucian — form ada di hero, section ini hanya tampilkan hasil */}
+      {/* 3. Section Cek Status Cucian (Tracking) */}
       <section id="lacak" className="py-12 sm:py-16 bg-white border-b border-[#E5E7EB]">
         <div className="max-w-4xl mx-auto px-4 sm:px-6">
-          {/* Judul hanya tampil jika belum ada query */}
-          {!notaQuery && (
-            <div className="text-center mb-8">
-              <h2 className="text-2xl sm:text-3xl font-bold text-slate-900">
-                Lacak Pesanan Cucian
-              </h2>
-              <p className="text-xs sm:text-sm text-slate-500 mt-1">
-                Masukkan Nomor Nota (contoh:{' '}
-                <span className="font-semibold text-teal-700">T0001</span>) di kolom
-                pencarian di atas untuk memeriksa proses pencucian.
-              </p>
+          <div className="text-center mb-8">
+            <h2 className="text-2xl sm:text-3xl font-bold text-slate-900">
+              Lacak Pesanan Cucian
+            </h2>
+            <p className="text-xs sm:text-sm text-slate-500 mt-1">
+              Masukkan Nomor Nota (contoh: <span className="font-semibold text-teal-700">T0001</span>) untuk memeriksa proses pencucian
+            </p>
+          </div>
+
+          {/* Form Pencarian Nota */}
+          <form method="GET" action="/#lacak" className="flex flex-col sm:flex-row gap-2 max-w-xl mx-auto mb-8">
+            <div className="relative flex-1">
+              <input
+                type="text"
+                name="nota"
+                defaultValue={notaQuery}
+                placeholder="Masukkan Nomor Nota (mis. T0001)..."
+                required
+                className="w-full h-12 pl-11 pr-4 rounded-md border border-[#E5E7EB] text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-teal-600 focus:border-teal-600 text-sm font-medium"
+              />
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400"
+              >
+                <circle cx="11" cy="11" r="8" />
+                <line x1="21" y1="21" x2="16.65" y2="16.65" />
+              </svg>
             </div>
-          )}
+            <button
+              type="submit"
+              className="h-12 px-6 rounded-md bg-teal-700 hover:bg-teal-800 text-white font-semibold text-sm transition shrink-0"
+            >
+              Cek Status
+            </button>
+          </form>
 
           {/* Alert Jika Tidak Ditemukan */}
           {statusLacak === 'not_found' && (
