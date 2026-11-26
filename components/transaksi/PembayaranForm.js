@@ -42,6 +42,10 @@ export default function PembayaranForm({ idTransaksi, sisaTagihan, catatPembayar
         border: '1px solid #E5E7EB',
         borderRadius: '8px',
         padding: '20px',
+        display: 'flex',
+        flexDirection: 'column',
+        height: '100%',
+        boxSizing: 'border-box',
       }}
     >
       <h3
@@ -87,7 +91,7 @@ export default function PembayaranForm({ idTransaksi, sisaTagihan, catatPembayar
         </div>
       )}
 
-      <form action={formAction}>
+      <form action={formAction} style={{ display: 'flex', flexDirection: 'column', flex: 1 }}>
         {/* Baris Dua Kolom: Jumlah Bayar & Metode (menjadi 1 kolom di layar < 640px) */}
         <div
           className="pembayaran-form-grid"
@@ -192,7 +196,17 @@ export default function PembayaranForm({ idTransaksi, sisaTagihan, catatPembayar
         )}
 
         {/* Tombol Aksi */}
-        <div className="pembayaran-buttons-row" style={{ display: 'flex', gap: '8px', alignItems: 'center', flexWrap: 'wrap' }}>
+        <div
+          className="pembayaran-buttons-row"
+          style={{
+            display: 'flex',
+            gap: '8px',
+            alignItems: 'center',
+            flexWrap: 'wrap',
+            marginTop: 'auto',
+            paddingTop: '16px',
+          }}
+        >
           <button
             type="button"
             disabled={isTombolDisabled}

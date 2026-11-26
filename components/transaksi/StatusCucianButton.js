@@ -53,63 +53,74 @@ export default function StatusCucianButton({ idTransaksi, currentStatus, updateA
         border: '1px solid #E5E7EB',
         borderRadius: '8px',
         padding: '20px',
+        display: 'flex',
+        flexDirection: 'column',
+        height: '100%',
+        boxSizing: 'border-box',
       }}
     >
-      <h3
-        style={{
-          fontSize: '15px',
-          fontWeight: 600,
-          color: '#1C1C1A',
-          margin: '0 0 12px',
-        }}
-      >
-        Update Status Cucian
-      </h3>
-
-      <p style={{ fontSize: '14px', color: '#6B6B67', margin: '0 0 12px' }}>
-        Status saat ini: <strong style={{ color: '#1C1C1A' }}>{statusLabels[currentStatus] || currentStatus}</strong>
-      </p>
-
-      {error && (
-        <div
+      <div>
+        <h3
           style={{
-            padding: '10px 14px',
-            backgroundColor: '#FEF2F2',
-            border: '1px solid #FECACA',
-            borderRadius: '6px',
-            color: '#B91C1C',
-            fontSize: '13px',
-            marginBottom: '12px',
+            fontSize: '15px',
+            fontWeight: 600,
+            color: '#1C1C1A',
+            margin: '0 0 12px',
           }}
         >
-          {error}
+          Update Status Cucian
+        </h3>
+
+        <p style={{ fontSize: '14px', color: '#6B6B67', margin: '0 0 12px' }}>
+          Status saat ini: <strong style={{ color: '#1C1C1A' }}>{statusLabels[currentStatus] || currentStatus}</strong>
+        </p>
+
+        {error && (
+          <div
+            style={{
+              padding: '10px 14px',
+              backgroundColor: '#FEF2F2',
+              border: '1px solid #FECACA',
+              borderRadius: '6px',
+              color: '#B91C1C',
+              fontSize: '13px',
+              marginBottom: '12px',
+            }}
+          >
+            {error}
+          </div>
+        )}
+      </div>
+
+      {!isFinal && nextStatus && (
+        <div style={{ marginTop: 'auto', paddingTop: '16px' }}>
+          <button
+            onClick={handleClick}
+            disabled={loading}
+            className="status-action-btn"
+            style={{
+              padding: '10px 18px',
+              fontSize: '14px',
+              fontWeight: 600,
+              color: '#FFFFFF',
+              backgroundColor: loading ? '#0D9488' : '#0F766E',
+              border: 'none',
+              borderRadius: '6px',
+              cursor: loading ? 'not-allowed' : 'pointer',
+              whiteSpace: 'nowrap',
+            }}
+          >
+            {loading ? 'Memproses...' : `→ ${nextLabel[currentStatus] || 'Lanjutkan'}`}
+          </button>
         </div>
       )}
 
-      {!isFinal && nextStatus && (
-        <button
-          onClick={handleClick}
-          disabled={loading}
-          className="status-action-btn"
-          style={{
-            padding: '10px 18px',
-            fontSize: '13px',
-            fontWeight: 600,
-            color: '#FFFFFF',
-            backgroundColor: loading ? '#0D9488' : '#0F766E',
-            border: 'none',
-            borderRadius: '6px',
-            cursor: loading ? 'not-allowed' : 'pointer',
-          }}
-        >
-          {loading ? 'Memproses...' : `→ ${nextLabel[currentStatus] || 'Lanjutkan'}`}
-        </button>
-      )}
-
       {isFinal && (
-        <p style={{ fontSize: '13px', color: '#9CA3AF', margin: 0, fontStyle: 'italic' }}>
-          Cucian sudah diambil (status akhir).
-        </p>
+        <div style={{ marginTop: 'auto', paddingTop: '16px' }}>
+          <p style={{ fontSize: '13px', color: '#9CA3AF', margin: 0, fontStyle: 'italic' }}>
+            Cucian sudah diambil (status akhir).
+          </p>
+        </div>
       )}
 
       <style>{`
